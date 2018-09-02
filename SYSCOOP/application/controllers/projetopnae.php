@@ -30,7 +30,7 @@ class Projetopnae extends CI_Controller {
 	public function cadastrar(){
 		$this->load->library(array('form_validation','email'));
 		 
-		$this->form_validation->set_rules('numero', 		'Numero Projeto',         'trim|required');
+		$this->form_validation->set_rules('numero', 		'Numero Projeto',         'trim');
 		$this->form_validation->set_rules('cooperativa',     'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('entidadeExecutora',     'entidadeExecutora',      'trim|required|is_natural');
 		
@@ -50,7 +50,7 @@ class Projetopnae extends CI_Controller {
 			if(empty($dados['formerror']) ){
 				$id = $this->projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
 				if($id){
-					redirect('projetopnae/'.$id.'/itens');
+					redirect('projetopnae/'.$id.'/projetopnae/itens');
 				}
 				$dados['formerror'] .= '<p>Não foi possivel cadastrar este projeto!</p>';
 			}

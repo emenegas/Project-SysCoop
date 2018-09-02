@@ -24,7 +24,7 @@ $this->load->view('menu')?><!DOCTYPE html>
 				<form action="<?php echo site_url('projetopnae/cadastrar') ?>" method="post">
 
 					<div>
-						<label form="numero">Numero do projeto</label>
+						<label form="numero">Nome do projeto</label>
 						<?php echo form_error('numero'); ?>
 						<input type="text" name="numero" id="numero" class="form-control" value="<?php echo set_value('numero')?>">
 					</div>

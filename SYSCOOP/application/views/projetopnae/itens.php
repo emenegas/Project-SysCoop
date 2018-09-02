@@ -54,7 +54,7 @@ $this->load->view('menu')?><!DOCTYPE html>
 						<input type="text" name="valorUnitario" id="valorUnitario" class="form-control" value="<?php echo set_value('valorUnitario')?>">
 					</div>
 					<div class="button">
-						<button type="submit" class="btn btn-info">Cadastrar</button>
+						<button type="submit" class="btn btn-info">Adicionar</button>
 					</div>
 				</form>
 

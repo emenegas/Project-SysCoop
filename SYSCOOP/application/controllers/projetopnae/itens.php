@@ -29,36 +29,50 @@ class Itens extends CI_Controller {
 	
 	//----------------------------------------------------------------------------------
 
-	public function cadastrar(){
-		$this->load->library(array('form_validation','email'));
-		 
-		$this->form_validation->set_rules('numero', 		'Numero Projeto',         'trim|required');
-		$this->form_validation->set_rules('cooperativa',     'Cooperativa',           'trim|required|is_natural');
-		$this->form_validation->set_rules('entidadeExecutora',     'entidadeExecutora',      'trim|required|is_natural');
+	public function Adicionar(){
+		$this->load->library(array('form_validation'));
+
+		$this->form_validation->set_rules('projeto', 		'Cod Projeto',         'trim|required|is_natutal');
+		$this->form_validation->set_rules('produto',     'Cod Produto',           'trim|required|is_natural');
+		$this->form_validation->set_rules('agricultor',     'Cod Agricultor',      'trim|required|is_natural');
 		
-		$dados = ['formerror' => ''];		
+		$this->form_validation->set_rules('quantidade',     'Quantidade',      'trim|required');
+		$this->form_validation->set_rules('precoUnidade',     'Preço Unitário',      'trim|required');
+		$this->form_validation->set_rules('totalProjeto',     'Total do Projeto',      'trim|required');
+		
+		$dados = ['formerror' => ''];	
+		$dados['form'] = $this->form_validation();
+
+		$this->load->view('projetopnae/itens', $dados);
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function cadastrarEtapa2(){
+
+			
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 		}else{
-			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
-			if(!$cooperativa){
-				$dados['formerror'] .= '<p>Esta cooperativa não existe</p>';
+			$produto = $this->produto_model->getById(set_value('produto'));
+			if(!$produto){
+				$dados['formerror'] .= '<p>Este produto não existe</p>';
 			}
-			$entidadeExecutora = $this->Entidade_model->getById(set_value('entidadeExecutora'));
-			if(!$entidadeExecutora){
-				$dados['formerror'] .= '<p>Esta entidadeExecutora não existe</p>';
+			$agricultor = $this->agricultor_model->getById(set_value('agricultor'));
+			if(!$agricultor){
+				$dados['formerror'] .= '<p>Este agricultor não existe</p>';
 			}
 
 			if(empty($dados['formerror']) ){
-				$id = $this->projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
+				$id = $this->itens_model->cadastrar($produto, $agricultor);
 				if($id){
 					redirect('projetopnae/'.$id.'/itens');
 				}
-				$dados['formerror'] .= '<p>Não foi possivel cadastrar este projeto!</p>';
+				$dados['formerror'] .= '<p>Não foi possivel adicionar este item!</p>';
 			}
 		}
 
-		$this->load->view('projetopnae', $dados);
+		$this->load->view('projetopnae/itens', $dados);
 	}
 
 	//----------------------------------------------------------------------------------

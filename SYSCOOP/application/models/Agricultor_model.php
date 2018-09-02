@@ -58,4 +58,15 @@ class Agricultor_model extends CI_Model {
 		return $this->db->get('agricultores')->result();
 	}
 
+	//----------------------------------------------------------------------------------
+	
+	public function getById($id){
+		$agricultor = $this->db
+			->where('id', $id)
+			->get('agricultores')
+			->result();
+
+		return reset($agricultor);
+	}
+
 }
