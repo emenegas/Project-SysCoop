@@ -9,30 +9,29 @@ class Itens extends CI_Controller {
 		$this->load->helper('form');
 		
 		$this->load->model('projetopnae_model');
-		$this->load->model('Cooperativa_model');
-		$this->load->model('Entidade_model');
+		$this->load->model('produto_model');
+		$this->load->model('agricultor_model');
 
 	}
 
 	//----------------------------------------------------------------------------------
 
 	public function index($idProjeto){
-		echo $idProjeto;
-		exit;
+		/*echo $idProjeto;
+		exit;*/
 		$dados=[
 			
 			'produtos'=> $this->produtos_model->listar(),
-			'agricultores' => $this->Entidade_model->listar()
+			'agricultores' => $this->agricultor_model->listar()
 		];
 		$this->load->view('itens', $dados);
 	}
 	
 	//----------------------------------------------------------------------------------
 
-	public function adicionar(){
+	public function adicionar($idProjeto){
 		$this->load->library(array('form_validation'));
 
-		$this->form_validation->set_rules('projeto', 		'Cod Projeto',         'trim|required|is_natutal');
 		$this->form_validation->set_rules('produto',     'Cod Produto',           'trim|required|is_natural');
 		$this->form_validation->set_rules('agricultor',     'Cod Agricultor',      'trim|required|is_natural');
 		
@@ -48,9 +47,9 @@ class Itens extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function cadastrarEtapa2(){
+	public function cadastrarEtapa2($idProjeto){
 
-			
+
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 		}else{
