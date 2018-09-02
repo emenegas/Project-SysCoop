@@ -24,12 +24,12 @@ class Itens extends CI_Controller {
 			'produtos'=> $this->produtos_model->listar(),
 			'agricultores' => $this->Entidade_model->listar()
 		];
-		$this->load->view('Projetopnae', $dados);
+		$this->load->view('itens', $dados);
 	}
 	
 	//----------------------------------------------------------------------------------
 
-	public function Adicionar(){
+	public function adicionar(){
 		$this->load->library(array('form_validation'));
 
 		$this->form_validation->set_rules('projeto', 		'Cod Projeto',         'trim|required|is_natutal');

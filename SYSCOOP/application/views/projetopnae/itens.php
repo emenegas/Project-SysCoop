@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')?><!DOCTYPE html>
+$this->load->view('menu')
+?><!DOCTYPE html>
 
 <html lang="pt-br">
 <head>
@@ -21,13 +22,13 @@ $this->load->view('menu')?><!DOCTYPE html>
 		<div class="row">
 			<div class="col-md-6  col-md-offset-3 classe">
 
-				<form action="<?php echo site_url('itens/cadastrar') ?>" method="post">
+				<form action="<?php echo site_url('itens/adicionar') ?>" method="post">
 
 					
 					<div>
 						<label for="produto">Produto:</label>
 						<input list="produto" name="produto" class="form-control">
-						<select> id="produto" >
+						<select id="produto" >
 							<?php foreach ($produtos as $produto): ?>
 								<option value="<?php echo $produto->id ?>"><?php echo $produto->nome ?></option>
 							<?php endforeach ?>
