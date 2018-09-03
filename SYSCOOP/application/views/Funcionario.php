@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')?><!DOCTYPE html>
+$this->load->view('Menu')?><!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -12,7 +12,7 @@ $this->load->view('menu')?><!DOCTYPE html>
 <body>
 	<div class="container">
 		<div class="row">
-			<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post">
+			<form action="<?php echo site_url('Funcionario/cadastrar')?>" method="post">
 				<div>
 					<label form="nome">Nome</label>
 					<?php echo form_error('nome'); ?>

@@ -1,7 +1,7 @@
 	<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	
-	$this->load->view('menu');
+	$this->load->view('Menu');
 	?>
 
 	
@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 
-			<form action="cooperativa/cadastrar" method="post">
+			<form action="<?php echo site_url('Cooperativa/cadastrar')?> method="post">
 					<div>
 						<label form="cnpj">CNPJ</label>
 						<?php echo form_error('cnpj'); ?>

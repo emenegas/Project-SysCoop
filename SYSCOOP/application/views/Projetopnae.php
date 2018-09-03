@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')?><!DOCTYPE html>
+$this->load->view('Menu')?><!DOCTYPE html>
 
 <html lang="pt-br">
 <head>
@@ -21,7 +21,7 @@ $this->load->view('menu')?><!DOCTYPE html>
 		<div class="row">
 			<div class="col-md-6  col-md-offset-3 classe">
 
-				<form action="<?php echo site_url('projetopnae/cadastrar') ?>" method="post">
+				<form action="<?php echo site_url('Projetopnae/cadastrar') ?>" method="post">
 
 					<div>
 						<label form="numero">Nome do projeto</label>

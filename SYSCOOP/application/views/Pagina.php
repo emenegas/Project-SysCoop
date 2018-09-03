@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->view('menu')?><!DOCTYPE html>
+$this->load->view('Menu')?><!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	

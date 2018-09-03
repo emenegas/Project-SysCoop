@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')?><!DOCTYPE html>
+$this->load->view('Menu')?><!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	
@@ -11,7 +11,7 @@ $this->load->view('menu')?><!DOCTYPE html>
 	<div class="container">
 		<div class="row">
 
-			<form action="<?php echo site_url('dap/cadastrar')?>" method="post">
+			<form action="<?php echo site_url('Dap/cadastrar')?>" method="post">
 				<div>
 					
 					<select name="tipoDoc" id="tipoDoc">

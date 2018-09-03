@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')
+$this->load->view('Menu')
 ?>
 <div class="container">
 	<div class="row">
-		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">
+		<form action="<?php echo site_url('Agricultor/cadastrar')?>" method="post">
 			<div>
 				<label form="nome">Nome</label>
 				<?php echo form_error('nome'); ?>

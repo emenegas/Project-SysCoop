@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('menu')
+$this->load->view('Menu')
 ?><!DOCTYPE html>
 
 <html lang="pt-br">
