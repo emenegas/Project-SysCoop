@@ -5,7 +5,7 @@ class Entidade extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-		$this->load->helper('form');
+		$this->load->helper('Form');
 		$this->load->model('Entidade_model');
 	}
 

@@ -39,7 +39,7 @@ $dados=['formerror'=>FALSE];
 			$this->Produto_model->cadastrar();
 		}
 
-		$this->load->view('produto', $dados);
+		$this->load->view('Produto', $dados);
 	}
 
 	//----------------------------------------------------------------------------------

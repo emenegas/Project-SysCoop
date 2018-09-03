@@ -5,11 +5,11 @@ class Agricultor extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-		$this->load->helper('form');
+		$this->load->helper('Form');
 		$this->load->model('Agricultor_model');
-		$this->load->model('produto_model');
-		$this->load->model('cooperativa_model');
-		$this->load->library('curl');
+		$this->load->model('Produto_model');
+		$this->load->model('Cooperativa_model');
+		$this->load->library('Curl');
 
 	}
 
@@ -23,7 +23,7 @@ class Agricultor extends CI_Controller {
 			'cooperativas'=> $this->cooperativa_model->listar()
 			
 		];
-		$this->load->view('agricultor', $dados);
+		$this->load->view('Agricultor', $dados);
 		
 	}
 
@@ -55,8 +55,8 @@ class Agricultor extends CI_Controller {
 			$this->Agricultor_model->cadastrar();
 		endif;
 		
-		$dados['produtos'] = $this->produto_model->listar();
-		$this->load->view('agricultor', $dados);
+		$dados['produtos'] = $this->Produto_model->listar();
+		$this->load->view('Agricultor', $dados);
 
 	}
 

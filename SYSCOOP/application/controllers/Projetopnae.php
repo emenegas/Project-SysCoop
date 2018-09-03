@@ -8,7 +8,7 @@ class Projetopnae extends CI_Controller {
 		
 		$this->load->helper('form');
 		
-		$this->load->model('projetopnae_model');
+		$this->load->model('Projetopnae_model');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Entidade_model');
 
@@ -38,17 +38,17 @@ class Projetopnae extends CI_Controller {
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 		}else{
-			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
+			$cooperativa = $this->Cooperativa_model->getById(set_value('Cooperativa'));
 			if(!$cooperativa){
 				$dados['formerror'] .= '<p>Esta cooperativa não existe</p>';
 			}
-			$entidadeExecutora = $this->Entidade_model->getById(set_value('entidadeExecutora'));
+			$entidadeExecutora = $this->Entidade_model->getById(set_value('EntidadeExecutora'));
 			if(!$entidadeExecutora){
 				$dados['formerror'] .= '<p>Esta entidadeExecutora não existe</p>';
 			}
 
 			if(empty($dados['formerror']) ){
-				$id = $this->projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
+				$id = $this->Projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
 				if($id){
 					redirect('projetopnae/'.$id.'/itens');
 				}
@@ -56,7 +56,7 @@ class Projetopnae extends CI_Controller {
 			}
 		}
 
-		$this->load->view('projetopnae', $dados);
+		$this->load->view('Projetopnae', $dados);
 	}
 
 	//----------------------------------------------------------------------------------

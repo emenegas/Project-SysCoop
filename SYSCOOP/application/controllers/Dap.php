@@ -6,9 +6,9 @@ class Dap extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-		$this->load->helper('form');
-		$this->load->model('dap_model');
-		$this->load->model('agricultor_model');
+		$this->load->helper('Form');
+		$this->load->model('Dap_model');
+		$this->load->model('Agricultor_model');
 		$this->load->model('Cooperativa_model');
 
 	}
@@ -18,10 +18,10 @@ class Dap extends CI_Controller {
 	public function index()
 	{
 		$dados=[
-			'agricultores'=>$this->agricultor_model->listar(),
+			'agricultores'=>$this->Agricultor_model->listar(),
 			'cooperativas'=>$this->Cooperativa_model->listar()
 		];
-		$this->load->view('dap',$dados);
+		$this->load->view('Dap',$dados);
 				
 	}
 
@@ -45,7 +45,7 @@ class Dap extends CI_Controller {
 			$dados['formerror'] = 'Validação OK';
 			$this->dap_model->cadastrar();
 		endif;
-			$this->load->view('dap', $dados);
+			$this->load->view('Dap', $dados);
 
 	}
 

@@ -5,10 +5,10 @@ class Funcionario extends CI_Controller {
 
 	function __construct(){
 		parent:: __construct();
-		$this->load->helper('form');
+		$this->load->helper('Form');
 		$this->load->library('curl');
-		$this->load->model('cooperativa_model');
-		$this->load->model('funcionario_model');
+		$this->load->model('Cooperativa_model');
+		$this->load->model('Funcionario_model');
 
 	}
 
@@ -18,10 +18,10 @@ class Funcionario extends CI_Controller {
 	{
 		$dados=[
 			
-			'cooperativas'=> $this->cooperativa_model->listar()
+			'cooperativas'=> $this->Cooperativa_model->listar()
 
 		];
-		$this->load->view('funcionario', $dados);
+		$this->load->view('Funcionario', $dados);
 		
 	}
 
@@ -54,9 +54,9 @@ class Funcionario extends CI_Controller {
 
 		else:
 			$dados['formerror'] = 'Validação OK';
-			$this->funcionario_model->cadastrar();
+			$this->Funcionario_model->cadastrar();
 		endif;
-		$this->load->view('funcionario', $dados);
+		$this->load->view('Funcionario', $dados);
 
 	}
 	function valid_cpf($cpf)
