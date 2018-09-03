@@ -12,17 +12,14 @@ class Relatorio extends CI_Controller {
 	public function index(){
 		$dados=[
 			
-			'relatorio'=> $this->Relatorio_model->listar(),
+			'cooperativas'=> $this->Relatorio_model->listarCooperativa(),
+			'produtos'=> $this->Relatorio_model->listarProduto(),
+			'entidadesExecutoras'=> $this->Relatorio_model->listarEntidade(),
+			'agricultores'=> $this->Relatorio_model->listarAgricultor()
+
 			
 		];
-		$this->load->view('relatorio', $dados);
+		$this->load->view('Relatorio', $dados);
 	}
-	public function listarProdutos(){
-		$dados=[
-			
-			'produto'=> $this->Relatorio_model->listarProdutos(),
-			
-		];
-		$this->load->view('relatorio', $dados);
-	}
+
 }

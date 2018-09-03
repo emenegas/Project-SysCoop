@@ -27,19 +27,20 @@ class Produto extends CI_Controller {
 		$this->form_validation->set_rules('unidadeMedida',     'Unidade Medida',     'trim|required');
 		$this->form_validation->set_rules('tipo',       	  'Tipo',          'trim|required');
 		$this->form_validation->set_rules('epoca',    	     'Epoca',          'trim|required');
+	
 
-		if($this->form_validation->run()== FALSE){
-			$dados['formerror'] = validation_errors();
-		}else{
-			$dados['formerror'] = 'Validação OK';
-			$this->Produto_model->cadastrar();
-		}
-
-		$this->load->view('Produto', $dados);
+	if($this->form_validation->run()== FALSE){
+		$dados['formerror'] = validation_errors();
+	}else{
+		$dados['formerror'] = 'Validação OK';
+		$this->Produto_model->cadastrar();
 	}
+
+	$this->load->view('Produto', $dados);
+}
 
 	//----------------------------------------------------------------------------------
 
-	
-	
+
+
 }

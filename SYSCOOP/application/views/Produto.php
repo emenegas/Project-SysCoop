@@ -7,7 +7,7 @@
  <div class="container">
  	<div class="row">
 
- 		<form action="<?php echo site_url('produto/cadastrar')?> method="post">
+ 		<form action="<?php echo site_url('produto/cadastrar')?>" method="post">
  			<div>
  				<label for="nome">Nome:</label>
  				<?php echo form_error('nome'); ?>
@@ -15,6 +15,7 @@
  			</div>
  			<div>
  				<label for="unidadeMedida">Unidade de medida:</label>
+ 				<?php echo form_error('unidadeMedida'); ?>
  				<select id="unidadeMedida" name="unidadeMedida" class="form-control">
  					<option>Selecione</option>
  					<option>Kg</option>
@@ -24,6 +25,7 @@
  			</div>
  			<div>
  				<label for="tipo">Tipo:</label>
+ 				<?php echo form_error('tipo'); ?>
  				<select id="tipo" name="tipo" class="form-control">
  					<option>Selecione</option>
  					<option>Transgênico</option>
@@ -32,6 +34,7 @@
  			</div>
  			<div>
  				<label for="epoca">Epoca:</label>
+ 				<?php echo form_error('epoca'); ?>
  				<select id="epoca" name="epoca" class="form-control">
  					<option>Selecione</option>
  					<option>Verão</option>
@@ -43,11 +46,13 @@
  			<div class="button">
  				<button type="submit" class="btn btn-info">Cadastrar</button>
  			</div>
- 		</form>
-
- 		<?php if(isset($formerror)): ?>
+ 			<?php if(isset($formerror)): ?>
  			<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
  		<?php endif; ?>
+
+ 		</form>
+
+ 		
 
  	</div>
  </div>
