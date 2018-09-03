@@ -1,27 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')?><!DOCTYPE html>
-
-<html lang="pt-br">
-<head>
-	<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+$this->load->view('Menu')
+?>
 
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-	<title>Projeto PNAE</title>
-	<meta charset="utf-8">
-
-	
-</head>
 <body>
 	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6  col-md-offset-3 classe">
 
-				<form action="<?php echo site_url('Projetopnae/cadastrar') ?>" method="post">
+				<form action="<?php echo site_url('projetopnae/cadastrar') ?>" method="post">
 
 					<div>
 						<label form="numero">Nome do projeto</label>

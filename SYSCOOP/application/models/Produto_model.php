@@ -17,14 +17,16 @@ class Produto_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	
-	public function listar(){
+	public function listar()
+	{
 
 		return $this->db->get('produtos')->result();
 	}
 
 	//----------------------------------------------------------------------------------
 	
-	public function getById($id){
+	public function getById($id)
+	{
 		$produto = $this->db
 			->where('id', $id)
 			->get('produtos')

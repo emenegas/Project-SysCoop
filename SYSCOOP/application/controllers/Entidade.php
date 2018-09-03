@@ -44,10 +44,7 @@ class Entidade extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function remover(){
-		echo __CLASS__, ': ', __FUNCTION__;
 
-	}
 
 	
 	

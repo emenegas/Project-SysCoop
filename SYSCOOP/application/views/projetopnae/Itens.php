@@ -1,21 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')
-?><!DOCTYPE html>
-
-<html lang="pt-br">
-<head>
-	<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-	<title>Itens</title>
-	<meta charset="utf-8">
-
-	
-</head>
+$this->load->view('Menu');
+?>
 <body>
 	
 	<div class="container">
@@ -26,6 +12,7 @@ $this->load->view('Menu')
 
 					
 					<div>
+
 						<label for="produto">Produto:</label>
 						<input list="produto" name="produto" class="form-control">
 						<select id="produto" >

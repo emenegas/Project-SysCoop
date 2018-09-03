@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')
+$this->load->view('Menu');
 ?>
+<body>
 <div class="container">
 	<div class="row">
 		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">

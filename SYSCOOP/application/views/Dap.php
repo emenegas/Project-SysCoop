@@ -1,12 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')?><!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	
-	<title>SysCoop</title>
-	<meta charset="utf-8">
-</head>
+$this->load->view('Menu');
+?>
 <body>
 	<div class="container">
 		<div class="row">

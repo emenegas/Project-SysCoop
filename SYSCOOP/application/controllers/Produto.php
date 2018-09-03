@@ -13,24 +13,20 @@ class Produto extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function index(){
-		/*$dados=[
-			'categorias'=>$this->Categoria_model->listar()
-		];*/
-$dados=['formerror'=>FALSE];
-		$this->load->view('Produto',$dados);
+		
+		$this->load->view('Produto');
 	}
 	
 	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
 
-		$this->load->library(array('form_validation','email'));
+		$this->load->library(array('form_validation'));
 		
 		$this->form_validation->set_rules('nome', 			   'Nome', 				'trim|required');
 		$this->form_validation->set_rules('unidadeMedida',     'Unidade Medida',     'trim|required');
-		
-		$this->form_validation->set_rules('tipo',         'Tipo',          'trim|required');
-		$this->form_validation->set_rules('epoca',         'Epoca',          'trim|required');
+		$this->form_validation->set_rules('tipo',       	  'Tipo',          'trim|required');
+		$this->form_validation->set_rules('epoca',    	     'Epoca',          'trim|required');
 
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
@@ -43,11 +39,6 @@ $dados=['formerror'=>FALSE];
 	}
 
 	//----------------------------------------------------------------------------------
-
-	public function remover(){
-		echo __CLASS__, ': ', __FUNCTION__;
-
-	}
 
 	
 	
