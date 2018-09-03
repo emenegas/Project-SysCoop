@@ -12,7 +12,7 @@ $this->load->view('Menu')?><!DOCTYPE html>
 	<div class="container">
 		<div class="row">
 
-			<form action="<?php echo site_url('Entidade/cadastrar')?>" method="post">
+			<form action="<?php echo site_url('entidade/cadastrar')?>" method="post">
 					<div>
 						<label form="cnpj">CNPJ</label>
 						<?php echo form_error('cnpj'); ?>

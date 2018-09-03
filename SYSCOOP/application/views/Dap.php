@@ -11,7 +11,7 @@ $this->load->view('Menu')?><!DOCTYPE html>
 	<div class="container">
 		<div class="row">
 
-			<form action="<?php echo site_url('Dap/cadastrar')?>" method="post">
+			<form action="<?php echo site_url('dap/cadastrar')?>" method="post">
 				<div>
 					
 					<select name="tipoDoc" id="tipoDoc">

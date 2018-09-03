@@ -12,7 +12,7 @@ $this->load->view('Menu')?><!DOCTYPE html>
 <body>
 	<div class="container">
 		<div class="row">
-			<form action="<?php echo site_url('Funcionario/cadastrar')?>" method="post">
+			<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post">
 				<div>
 					<label form="nome">Nome</label>
 					<?php echo form_error('nome'); ?>

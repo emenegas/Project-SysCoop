@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Projetopnae extends CI_Controller {
 
 	function __construct(){
+		
 		parent:: __construct();
-		
 		$this->load->helper('form');
-		
 		$this->load->model('Projetopnae_model');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Entidade_model');
@@ -29,7 +28,7 @@ class Projetopnae extends CI_Controller {
 
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
-		 
+
 		$this->form_validation->set_rules('numero', 		'Numero Projeto',         'trim');
 		$this->form_validation->set_rules('cooperativa',     'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('entidadeExecutora',     'entidadeExecutora',      'trim|required|is_natural');
@@ -61,12 +60,6 @@ class Projetopnae extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function remover(){
-		echo __CLASS__, ': ', __FUNCTION__;
-
-	}
-
-	//----------------------------------------------------------------------------------
 
 	
 	

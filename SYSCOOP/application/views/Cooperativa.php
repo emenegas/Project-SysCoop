@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 
-			<form action="<?php echo site_url('Cooperativa/cadastrar')?> method="post">
+			<form action="<?php echo site_url('cooperativa/cadastrar')?> method="post">
 					<div>
 						<label form="cnpj">CNPJ</label>
 						<?php echo form_error('cnpj'); ?>

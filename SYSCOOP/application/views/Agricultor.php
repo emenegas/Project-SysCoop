@@ -4,7 +4,7 @@ $this->load->view('Menu')
 ?>
 <div class="container">
 	<div class="row">
-		<form action="<?php echo site_url('Agricultor/cadastrar')?>" method="post">
+		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">
 			<div>
 				<label form="nome">Nome</label>
 				<?php echo form_error('nome'); ?>

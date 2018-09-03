@@ -20,24 +20,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item">
-        <a class="navbar-brand" href="<?php echo site_url('Projetopnae')?>">Novo Projeto</a>
+        <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Novo Projeto</a>
       </li>
       <li class="nav-item dropdown">
         <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Cadastros
        </a>
        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="<?php echo site_url('Entidade')?>">Entidade</a>
-        <a class="dropdown-item" href="<?php echo site_url('Agricultor')?>">Agricultor</a>
-        <a class="dropdown-item" href="<?php echo site_url('Dap')?>">Dap</a>
-        <a class="dropdown-item" href="<?php echo site_url('Cooperativa')?>">Cooperativa</a>
-        <a class="dropdown-item" href="<?php echo site_url('Produto')?>">Produto</a>
-        <a class="dropdown-item" href="<?php echo site_url('Funcionario')?>">Funcionário</a>
+        <a class="dropdown-item" href="<?php echo site_url('entidade')?>">Entidade</a>
+        <a class="dropdown-item" href="<?php echo site_url('agricultor')?>">Agricultor</a>
+        <a class="dropdown-item" href="<?php echo site_url('dap')?>">Dap</a>
+        <a class="dropdown-item" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>
+        <a class="dropdown-item" href="<?php echo site_url('produto')?>">Produto</a>
+        <a class="dropdown-item" href="<?php echo site_url('funcionario')?>">Funcionário</a>
 
       </div>
     </li>
     <li class="nav-item">
-      <a class="navbar-brand" href="<?php echo site_url('Relatorio')?>">Relatório</a>
+      <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
     </li>
     <li class="nav-item">
       <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
