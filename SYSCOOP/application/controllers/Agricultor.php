@@ -19,8 +19,8 @@ class Agricultor extends CI_Controller {
 	{
 		$dados=[
 			
-			'produtos'=> $this->produto_model->listar(),
-			'cooperativas'=> $this->cooperativa_model->listar()
+			'produtos'=> $this->Produto_model->listar(),
+			'cooperativas'=> $this->Cooperativa_model->listar()
 			
 		];
 		$this->load->view('Agricultor', $dados);
