@@ -43,7 +43,7 @@ class Dap extends CI_Controller {
 
 		else:
 			$dados['formerror'] = 'Validação OK';
-			$this->dap_model->cadastrar();
+			$this->Dap_model->cadastrar();
 		endif;
 			$this->load->view('Dap', $dados);
 

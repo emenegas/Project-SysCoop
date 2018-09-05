@@ -29,19 +29,20 @@ class Projetopnae extends CI_Controller {
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
 
-		$this->form_validation->set_rules('numero', 		'Numero Projeto',         'trim');
-		$this->form_validation->set_rules('cooperativa',     'Cooperativa',           'trim|required|is_natural');
-		$this->form_validation->set_rules('entidadeExecutora',     'entidadeExecutora',      'trim|required|is_natural');
+		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim');
+		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim');
+		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
+		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 		}else{
-			$cooperativa = $this->Cooperativa_model->getById(set_value('Cooperativa'));
+			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
 			if(!$cooperativa){
 				$dados['formerror'] .= '<p>Esta cooperativa não existe</p>';
 			}
-			$entidadeExecutora = $this->Entidade_model->getById(set_value('EntidadeExecutora'));
+			$entidadeExecutora = $this->Entidade_model->getById(set_value('entidadeExecutora'));
 			if(!$entidadeExecutora){
 				$dados['formerror'] .= '<p>Esta entidadeExecutora não existe</p>';
 			}
