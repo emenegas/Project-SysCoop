@@ -48,4 +48,12 @@ class Projetopnae_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	
+	public function getById($idProjeto){
+		$projeto = $this->db
+			->where('id', $idProjeto)
+			->get('projetos')
+			->result();
+
+		return reset($projeto);
+	}
 }

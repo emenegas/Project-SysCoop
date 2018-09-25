@@ -27,7 +27,7 @@ $this->load->view('Menu');
 					<input type="text" name="telefone" id="telefone" class="form-control" value="<?php echo set_value('telefone')?>">
 				</div>
 				<div>
-					<label form="cep">cep</label>
+					<label form="cep">ceps	</label>
 					<?php echo form_error('cep'); ?>
 					<input type="text" name="cep" id="cep" class="form-control" value="<?php echo set_value('cep')?>">
 				</div>

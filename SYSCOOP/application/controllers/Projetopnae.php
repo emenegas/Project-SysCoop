@@ -50,7 +50,7 @@ class Projetopnae extends CI_Controller {
 			if(empty($dados['formerror']) ){
 				$id = $this->Projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
 				if($id){
-					redirect('projetopnae/'.$id.'/itens');
+					redirect('projetopnae/'.$id.'/itens');	
 				}
 				$dados['formerror'] .= '<p>Não foi possivel cadastrar este projeto!</p>';
 			}

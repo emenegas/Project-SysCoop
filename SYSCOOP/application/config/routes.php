@@ -52,4 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pagina';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['projetopnae/(:num)/itens'] = 'projetopnae/itens/$1';
+$route['projetopnae/(:num)/itens']['get'] = 'itens/index/$1';
+$route['projetopnae/(:num)/itens']['post'] = 'itens/adicionar/$1';
+
