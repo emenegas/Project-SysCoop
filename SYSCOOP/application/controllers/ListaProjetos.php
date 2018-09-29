@@ -24,8 +24,8 @@ class Itens extends CI_Controller {
 			show_404();
 
 		$dados=[
+			'projeto' => $this->projetopnae_model->getById($idProjeto),
 			'itens_do_projeto' => $this->itens_model->getByProjeto($idProjeto),
-			
 			'produtos'=> $this->produto_model->listar(),
 			'agricultores' => $this->agricultor_model->listar(),
 			'idProjeto' => $idProjeto
@@ -36,7 +36,7 @@ class Itens extends CI_Controller {
 	
 	//----------------------------------------------------------------------------------
 
-	public function adicionar($idProjeto){
+	public function alterar($idProjeto){
 		$projeto = $this->projetopnae_model->getById($idProjeto);
 
 		if(!$projeto)
@@ -62,16 +62,26 @@ class Itens extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function remover($idProjeto){
+	public function removerProjeto($idProjeto){
 
 		$this->itens_model->remover($idProjeto);
-		redirect('/projetopnae/'.$idProjeto. '/itens');
+		
 	}
 
 	//----------------------------------------------------------------------------------
 
-	public function produtos($projetopnae){
+	public function remover($idProjeto){
+
+		$this->itens_model->remover($idProjeto);
+		redirect('/projetopnae/'.$idProjeto. '/itens');
+
 		
 	}
 
+	//----------------------------------------------------------------------------------
+
+	
+	
+	
 }
+

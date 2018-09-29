@@ -20,9 +20,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item">
-        <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Novo Projeto</a>
-      </li>
+       <li class="nav-item dropdown">
+        <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Projeto PNAE
+       </a>
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="<?php echo site_url('projetopnae')?>">Novo</a>
+        <a class="dropdown-item" href="<?php echo site_url('agricultor')?>">Lista de Projetos</a>
+       
+      </div>
+    </li>
       <li class="nav-item dropdown">
         <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Cadastros
@@ -44,10 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
     </li>
   </ul>
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+
 </div>
 </nav>
 

@@ -25,7 +25,6 @@ class Projetopnae_model extends CI_Model {
 		$data['coopUf']                  = $cooperativa->uf;
 		$data['coopCidade']              = $cooperativa->cidade;
 		$data['coopEndereco']            = $cooperativa->endereco;
-
 		$data['entidadeExecutora']       = $entidade->id;
 		$data['entNomeFantasia']         = $entidade->nomeFantasia;
 		$data['entEmail']                = $entidade->email;
@@ -56,4 +55,28 @@ class Projetopnae_model extends CI_Model {
 
 		return reset($projeto);
 	}
+
+	//----------------------------------------------------------------------------------
+	
+	public function listar(){
+		$projeto = $this->db
+			->get('projetos')
+			->result();
+
+		return ($projeto);
+	}
+
+	//----------------------------------------------------------------------------------
+	
+	public function remover($idProjeto){
+		$this->db
+		->where('projeto', $idProjeto)
+		->where('id', $this->input->post('itemDoProjeto'))
+		->delete('projeto');
+
+	}
+
+	//----------------------------------------------------------------------------------
+	
+	
 }

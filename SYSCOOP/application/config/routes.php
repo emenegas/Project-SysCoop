@@ -54,4 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['projetopnae/(:num)/itens']['get'] = 'itens/index/$1';
 $route['projetopnae/(:num)/itens']['post'] = 'itens/adicionar/$1';
+$route['projetopnae/(:num)/itens/remover'] = 'itens/remover/$1';
+$route['projetopnae/(:num)/info'] = 'projetopnae/info/$1';
 

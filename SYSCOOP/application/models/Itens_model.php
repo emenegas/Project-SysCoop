@@ -55,4 +55,24 @@ class Itens_model extends CI_Model {
 
 		return $this->db->get('itens_do_projeto')->result();
 	}
+
+	//----------------------------------------------------------------------------------
+
+	public function remover($idProjeto){
+		$this->db
+		->where('projeto', $idProjeto)
+		->where('id', $this->input->post('itemDoProjeto'))
+		->delete('itens_do_projeto');
+
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function alterar($idProjeto){
+		$this->db
+		->where('projeto', $idProjeto)
+		->where('id', $this->input->post('itemDoProjeto'))
+		->update('itens_do_projeto');
+
+	}
 }
