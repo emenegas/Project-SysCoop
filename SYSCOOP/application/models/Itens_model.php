@@ -7,13 +7,13 @@ class Itens_model extends CI_Model {
 	public function cadastrar($idProjeto)
 	{
 		
-		$this->load->model('produto_model');
-		$this->load->model('agricultor_model');
-		$this->load->model('projetopnae_model');
-		$this->load->model('dap_model');
-		$produto = $this->produto_model->getById($this->input->post('produto'));
-		$agricultor = $this->agricultor_model->getById($this->input->post('agricultor'));
-		$agricultorDap = $this->dap_model->getByAgricultor($agricultor->id);
+		$this->load->model('Produto_model');
+		$this->load->model('Agricultor_model');
+		$this->load->model('Projetopnae_model');
+		$this->load->model('Dap_model');
+		$produto = $this->Produto_model->getById($this->input->post('produto'));
+		$agricultor = $this->Agricultor_model->getById($this->input->post('agricultor'));
+		$agricultorDap = $this->Dap_model->getByAgricultor($agricultor->id);
 
 
 		$data['projeto']             = $idProjeto;
@@ -24,7 +24,8 @@ class Itens_model extends CI_Model {
 		/*$data['epoca']               = $produto->epoca;*/
 		$data['agricultor']       = $agricultor->id;
 		$data['nomeAgricultor']         = $agricultor->nome;
-		$data['agricultorDap']          = $agricultorDap->agricultor;
+		$data['cpf']				=$agricultor->cpf;
+		$data['agricultorDap']          = $agricultorDap? $agricultorDap->numero : NULL;
 		$data['quantidade'] 		= $this->input->post('quantidade');
 		$data['precoUnidade'] 		= $this->input->post('precoUnidade');
 		/*$data['totalProjeto']		= */

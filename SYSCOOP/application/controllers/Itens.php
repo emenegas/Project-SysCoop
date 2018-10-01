@@ -10,7 +10,7 @@ class Itens extends CI_Controller {
 		$this->load->model('Itens_model');
 		$this->load->model('Projetopnae_model');
 		$this->load->model('Produto_model');
-		$this->load->model('agricultor_model');
+		$this->load->model('Agricultor_model');
 		$this->load->model('Dap_model');
 
 	}
@@ -52,7 +52,7 @@ class Itens extends CI_Controller {
 			$dados['formerror'] = validation_errors();
 			
 		}else{
-			$this->itens_model->Cadastrar($idProjeto);
+			$this->Itens_model->Cadastrar($idProjeto);
 			redirect('/projetopnae/'.$idProjeto. '/itens');
 			
 		}

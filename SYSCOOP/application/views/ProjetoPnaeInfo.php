@@ -11,7 +11,7 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3>Projetos </th></tr>
+                  <tr id="title"><th colspan=3>Projeto <?php echo $projeto->id ?></th></tr>
                </thead>
 
                <tbody>
@@ -23,13 +23,13 @@ $this->load->view('Menu');
                      <th>Data</th>
                      <tr>
                         <tr>
-                           <?php foreach ($projeto as $item): ?>
+                          
                               <tr>
-                                 <td>  <?php echo $item->id ?></td>
-                                 <td>  <?php echo $item->coopNomeFantasia ?></td>
-                                 <td>  <?php echo $item->entNomeFantasia ?></td>
+                                 <td>  <?php echo $projeto->id ?></td>
+                                 <td>  <?php echo $projeto->coopNomeFantasia ?></td>
+                                 <td>  <?php echo $projeto->entNomeFantasia ?></td>
                               </tr>
-                           <?php endforeach ?>
+                          
                         </tr>
                         <td>
                            <div class="btn-group" role="group" aria-label="Basic example">
