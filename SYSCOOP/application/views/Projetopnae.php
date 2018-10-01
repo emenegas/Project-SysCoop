@@ -5,23 +5,28 @@ $this->load->view('Menu')
 
 
 <body>
+
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6  col-md-offset-3 classe">
+			<div class="col-md-6  col-md-offset-3 classe"style="margin: 0 auto; flex: 0 0 80%;
+         max-width: 100%;">
 
 				<form action="<?php echo site_url('projetopnae/cadastrar') ?>" method="post">
 
 					<div>
-						<label form="numero">Nome do projeto</label>
-						<?php echo form_error('numero'); ?>
-						<input type="text" name="numero" id="numero" class="form-control" value="<?php echo set_value('numero')?>">
+						<label form="nomeEdital">Nome do Edital</label>
+						<?php echo form_error('nomeEdital'); ?>
+						<input type="text" name="nomeEdital" id="nomeEdital" class="form-control" value="<?php echo set_value('nomeEdital')?>">
 					</div>
-
-					<h2>Cooperativa</h2>
-
+					<div>
+						<label form="arquivoEdital">Arquivo Edital</label>
+						<?php echo form_error('arquivoEdital'); ?>
+						<input type="text" name="arquivoEdital" id="arquivoEdital" class="form-control" value="<?php echo set_value('arquivoEdital')?>">
+					</div>
 					<div>
 						<label for="cooperativa">Cooperativa:</label>
+						<?php echo form_error('cooperativa'); ?>
 						<input list="cooperativa" name="cooperativa" class="form-control">
 						<datalist id="cooperativa" >
 							<?php foreach ($cooperativas as $cooperativa): ?>
@@ -29,11 +34,9 @@ $this->load->view('Menu')
 							<?php endforeach ?>
 						</datalist>
 					</div>
-
-					<h2>Entidade</h2>
-
 					<div>
 						<label for="entidadeExecutora">Entidade Executora:</label>
+						<?php echo form_error('entidadeExecutora');?>
 						<input list="entidadeExecutora" name="entidadeExecutora" class="form-control">
 						<datalist id="entidadeExecutora" >
 							<?php foreach ($entidadesExecutoras as $entidadeExecutora): ?>
@@ -48,10 +51,10 @@ $this->load->view('Menu')
 				</form>
 
 				<?php if(isset($formerror)): ?>
-			 	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+					<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
 				<?php endif; ?>
 
+			</div>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>

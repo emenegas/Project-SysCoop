@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 
 <html lang="pt-br">
-
+ 
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          Projeto PNAE
        </a>
        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="<?php echo site_url('projetopnae')?>">Novo</a>
-        <a class="dropdown-item" href="<?php echo site_url('agricultor')?>">Lista de Projetos</a>
+        <a class="dropdown-item" href="<?php echo site_url('projetopnae/novo')?>">Novo</a>
+        <a class="dropdown-item" href="<?php echo site_url('projetopnae')?>">Lista de Projetos</a>
        
       </div>
     </li>
@@ -54,4 +54,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div>
 </nav>
-

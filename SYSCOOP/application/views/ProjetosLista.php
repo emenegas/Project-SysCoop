@@ -11,7 +11,9 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3>Projetos</th></tr>
+                  <tr id="title"><th colspan=3>Projetos <a style="width: 100px;" href="<?php echo site_url('projetopnae/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+
+                  </th></tr>
                </thead>
 
                <tbody>
@@ -31,7 +33,8 @@ $this->load->view('Menu');
                                  <td>
                                     <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
                                     <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Info</a>
-                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >-</a>
+                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
+
                                  </td>
                               </tr>
                            <?php endforeach ?>
@@ -47,7 +50,7 @@ $this->load->view('Menu');
                   </tbody>
                </table>
             </div>
-
+            
             <?php if(isset($formerror)): ?>
                <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
             <?php endif; ?>

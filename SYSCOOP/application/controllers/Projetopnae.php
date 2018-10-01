@@ -10,7 +10,8 @@ class Projetopnae extends CI_Controller {
 		$this->load->model('Projetopnae_model');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Entidade_model');
-		$this->load->model('itens_model');
+		$this->load->model('Itens_model');
+
 
 	}
 
@@ -27,10 +28,9 @@ class Projetopnae extends CI_Controller {
 
 	public function info($idProjeto){
 		$dados=[
-			'projetos'=> $this->Projetopnae_model->getById($idProjeto),
-			'itens_do_projeto' => $this->itens_model->getByProjeto($idProjeto),
 			'idProjeto' => $idProjeto,
-
+			'projetos'=> $this->Projetopnae_model->getById($idProjeto),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($idProjeto)
 		];
 		$this->load->view('ProjetoPnaeInfo', $dados);
 	}
@@ -51,8 +51,8 @@ class Projetopnae extends CI_Controller {
 
 	public function remover($idProjeto){
 
-		$this->projetopnae_model->remover($idProjeto);
-		redirect('/projetopnae/'.$idProjeto. '/itens');
+		$this->projetopnae_model->remover($this->itens_do_projeto->remover($idProjeto));
+		$this->load->view('ProjetosLista');
 	}	
 	
 	//----------------------------------------------------------------------------------

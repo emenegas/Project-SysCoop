@@ -7,9 +7,9 @@ class Itens extends CI_Controller {
 		parent:: __construct();
 		
 		$this->load->helper('form');
-		$this->load->model('itens_model');
-		$this->load->model('projetopnae_model');
-		$this->load->model('produto_model');
+		$this->load->model('Itens_model');
+		$this->load->model('Projetopnae_model');
+		$this->load->model('Produto_model');
 		$this->load->model('agricultor_model');
 		$this->load->model('Dap_model');
 
@@ -18,16 +18,15 @@ class Itens extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function index($idProjeto){
-		$projeto = $this->projetopnae_model->getById($idProjeto);
+		$projeto = $this->Projetopnae_model->getById($idProjeto);
 
 		if(!$projeto)
 			show_404();
 
 		$dados=[
-			'itens_do_projeto' => $this->itens_model->getByProjeto($idProjeto),
-			
-			'produtos'=> $this->produto_model->listar(),
-			'agricultores' => $this->agricultor_model->listar(),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($idProjeto),
+			'produtos'=> $this->Produto_model->listar(),
+			'agricultores' => $this->Agricultor_model->listar(),
 			'idProjeto' => $idProjeto
 		];
 		$this->load->view('Itens', $dados);
@@ -37,7 +36,7 @@ class Itens extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function adicionar($idProjeto){
-		$projeto = $this->projetopnae_model->getById($idProjeto);
+		$projeto = $this->Projetopnae_model->getById($idProjeto);
 
 		if(!$projeto)
 			show_404();
@@ -64,14 +63,11 @@ class Itens extends CI_Controller {
 
 	public function remover($idProjeto){
 
-		$this->itens_model->remover($idProjeto);
+		$this->Itens_model->remover($idProjeto);
 		redirect('/projetopnae/'.$idProjeto. '/itens');
 	}
 
 	//----------------------------------------------------------------------------------
 
-	public function produtos($projetopnae){
-		
-	}
 
 }

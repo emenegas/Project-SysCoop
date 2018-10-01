@@ -48,10 +48,22 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function getById($idProjeto){
+		// $projeto = $this->db
+		// ->where('id', $idProjeto)
+		// ->get('projetos')
+		// ->result();
+		// if($projeto->num_rows()==0){
+		// 	echo "Projeto not found!";
+		// } 
+		// else{
+		// 	$row = $projeto->row();
+		// 	$id = intval($row->id);
+		// }
+
 		$projeto = $this->db
-			->where('id', $idProjeto)
-			->get('projetos')
-			->result();
+		->where('id', $idProjeto)
+		->get('projetos')
+		->result();
 
 		return reset($projeto);
 	}
@@ -60,8 +72,8 @@ class Projetopnae_model extends CI_Model {
 	
 	public function listar(){
 		$projeto = $this->db
-			->get('projetos')
-			->result();
+		->get('projetos')
+		->result();
 
 		return ($projeto);
 	}
