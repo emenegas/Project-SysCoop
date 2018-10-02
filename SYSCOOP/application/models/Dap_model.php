@@ -46,5 +46,17 @@ class Dap_model extends CI_Model {
 		return ($agricultor);
 	}
 	
+	//----------------------------------------------------------------------------------
+	
+	public function getByCooperativa($idCooperativa)
+	{
+		$cooperativa = $this->db
+		->where('cooperativa', $idCooperativa)
+		->get('daps')
+		->result();
+
+		return ($cooperativa);
+	}
+	
 
 }

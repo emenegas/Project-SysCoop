@@ -6,10 +6,13 @@ class Projetopnae_model extends CI_Model {
 	
 	public function cadastrar($cooperativa , $entidade)
 	{
+		$this->load->model('Dap_model');
+		$this->load->model('Cooperativa_model');
+		// $cooperativa = $this->Cooperativa_model->getById($this->input->post('cooperativa'));
+		// $cooperativaDap = $this->Dap_model->getByCooperativa($cooperativa->id);
 		
 		$data['nomeEdital']              = $this->input->post('nomeEdital');
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');
-
 		$data['cooperativa']             = $cooperativa->id;
 		$data['coopNomeFantasia']        = $cooperativa->nomeFantasia;
 		$data['coopPresidente']          = $cooperativa->presidente;
@@ -17,7 +20,7 @@ class Projetopnae_model extends CI_Model {
 		$data['coopEmail']               = $cooperativa->email;
 		$data['coopCnpj']                = $cooperativa->cnpj;
 		$data['coopTelefone']            = $cooperativa->telefone;
-		/*$data['coopCooperativa'] 		 = $cooperativa->cooperativa;*/
+		// $data['coopCooperativa'] 		 = $cooperativaDap->cooperativa;
 		$data['coopBanco']               = $cooperativa->banco;
 		$data['coopAgencia']             = $cooperativa->agencia;
 		$data['coopNumeroContaCorrente'] = $cooperativa->numeroContaCorrente;
@@ -48,17 +51,6 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function getById($idProjeto){
-		// $projeto = $this->db
-		// ->where('id', $idProjeto)
-		// ->get('projetos')
-		// ->result();
-		// if($projeto->num_rows()==0){
-		// 	echo "Projeto not found!";
-		// } 
-		// else{
-		// 	$row = $projeto->row();
-		// 	$id = intval($row->id);
-		// }
 
 		$projeto = $this->db
 		->where('id', $idProjeto)

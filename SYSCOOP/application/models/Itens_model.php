@@ -20,15 +20,15 @@ class Itens_model extends CI_Model {
 		$data['produto']             = $produto->id;
 		$data['nomeProduto']        = $produto->nome;
 		$data['unidadeMedida']          = $produto->unidadeMedida;
-		//$data['tipo']       		  = $produto->tipo;
-		/*$data['epoca']               = $produto->epoca;*/
+		// $data['tipo']       		  = $produto->tipo;
+		// $data['epoca']               = $produto->epoca;
 		$data['agricultor']       = $agricultor->id;
 		$data['nomeAgricultor']         = $agricultor->nome;
 		$data['cpf']				=$agricultor->cpf;
 		$data['agricultorDap']          = $agricultorDap? $agricultorDap->numero : NULL;
 		$data['quantidade'] 		= $this->input->post('quantidade');
 		$data['precoUnidade'] 		= $this->input->post('precoUnidade');
-		/*$data['totalProjeto']		= */
+		$data['totalProjeto']		= $this->input->post('quantidade') * $this->input->post('precoUnidade');
 		try{
 			$this->db->insert('itens_do_projeto',$data);
 			return $this->db->insert_id();

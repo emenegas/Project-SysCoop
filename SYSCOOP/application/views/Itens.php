@@ -26,6 +26,7 @@ $this->load->view('Menu');
 									<th>Agricultor</th>
 									<th>Quantidade</th>
 									<th>Preço Unitário</th>
+									<th>Total</th>
 								</tr>
 								<tr>
 
@@ -36,12 +37,15 @@ $this->load->view('Menu');
 										<td>	<?php echo $item->nomeAgricultor ?></td>
 										<td>	<?php echo $item->quantidade ?></td>
 										<td>	<?php echo $item->precoUnidade ?></td>
+									
 										<td><button type="submit" name="itemDoProjeto" value="<?php echo $item->id ?>" formaction="<?php echo site_url('/projetopnae/'.$idProjeto.'/itens/remover') ?>" class="btn btn-outline-danger" >-</button></td>
 										</tr>
 									<?php endforeach ?>
 								</tr>
 								
-								
+								<tr>
+									
+								</tr>
 							</tr>
 								<td>
 									<select name="produto" class="form-control" id="produto" >
@@ -83,6 +87,7 @@ $this->load->view('Menu');
 			</form>
 
 			
+
 
 			<?php if(isset($formerror)): ?>
 				<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>

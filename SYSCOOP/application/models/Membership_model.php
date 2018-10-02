@@ -3,13 +3,13 @@ class Membership_model extends CI_Model {
 
     # VALIDA USUÁRIO
     function validate() {
-        $this->db->where('username', $this->input->post('username')); 
-        $this->db->where('password', md5($this->input->post('password')));
+        $this->db->where('cpf', $this->input->post('username')); 
+        $this->db->where('senha', $this->input->post('password'));
         $this->db->where('status', 1); // Verifica o status do usuário
 
-        $query = $this->db->get('membership'); 
+     $query = $this->db->get('funcionarios'); 
 
-        if ($query->num_rows == 1) { 
+     if ($query->num_rows == 1) { 
             return true; // RETORNA VERDADEIRO
         }
     }

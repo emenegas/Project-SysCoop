@@ -12,23 +12,22 @@ class Login extends CI_Controller {
 
         // VALIDATION RULES
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-
+        $this->form_validation->set_rules('cpf', 'cpf', 'required');
+        $this->form_validation->set_rules('senha', 'senha', 'required');
 
         // MODELO MEMBERSHIP
-        $this->load->model('membership_model', 'membership');
-        $query = $this->membership->validate();
+        $this->load->model('membership_model');
+        $query = $this->membership_model->validate();
 
         if ($this->form_validation->run() == FALSE) {
 
-            $this->load->view('login/login_view');
+            $this->load->view('Login');
+            
         } else {
 
             if ($query) { // VERIFICA LOGIN E SENHA
                 $data = array(
-                    'username' => $this->input->post('username'),
+                    'cpf' => $this->input->post('cpf'),
                     'logged' => true
                 );
                 $this->session->set_userdata($data);
