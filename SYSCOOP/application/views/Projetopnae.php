@@ -15,14 +15,14 @@ $this->load->view('Menu')
 				<form action="<?php echo site_url('projetopnae/cadastrar') ?>" method="post">
 
 					<div>
-						<label form="nomeEdital">Nome do Edital</label>
+						<label form="nomeEdital">Identificação da proposta de atendimento ao edital/chamada pública N°</label>
 						<?php echo form_error('nomeEdital'); ?>
 						<input type="text" name="nomeEdital" id="nomeEdital" class="form-control" value="<?php echo set_value('nomeEdital')?>">
 					</div>
 					<div>
 						<label form="arquivoEdital">Arquivo Edital</label>
 						<?php echo form_error('arquivoEdital'); ?>
-						<input type="text" name="arquivoEdital" id="arquivoEdital" class="form-control" value="<?php echo set_value('arquivoEdital')?>">
+						<input type="file" name="arquivoEdital" id="arquivoEdital">
 					</div>
 					<div>
 						<label for="cooperativa">Cooperativa:</label>

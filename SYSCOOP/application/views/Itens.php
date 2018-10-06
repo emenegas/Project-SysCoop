@@ -26,7 +26,7 @@ $this->load->view('Menu');
 									<th>Agricultor</th>
 									<th>Quantidade</th>
 									<th>Preço Unitário</th>
-									<th>Total</th>
+									<th>Total do Item</th>
 								</tr>
 								<tr>
 
@@ -37,7 +37,7 @@ $this->load->view('Menu');
 										<td>	<?php echo $item->nomeAgricultor ?></td>
 										<td>	<?php echo $item->quantidade ?></td>
 										<td>	<?php echo $item->precoUnidade ?></td>
-									
+										<td>	<?php echo $item->totalItem ?></td>
 										<td><button type="submit" name="itemDoProjeto" value="<?php echo $item->id ?>" formaction="<?php echo site_url('/projetopnae/'.$idProjeto.'/itens/remover') ?>" class="btn btn-outline-danger" >-</button></td>
 										</tr>
 									<?php endforeach ?>

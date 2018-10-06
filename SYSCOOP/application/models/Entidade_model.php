@@ -6,6 +6,7 @@ class Entidade_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	public function cadastrar()
 	{
+		$data = [];
 		$data['nomeFantasia'] = $this->input->post('nomeFantasia');
 		$data['email'] = $this->input->post('email');
 		$data['cnpj'] = $this->input->post('cnpj');

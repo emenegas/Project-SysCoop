@@ -16,6 +16,8 @@ class Agricultor_model extends CI_Model {
 		$data['cep'] = $this->input->post('cep');
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
+		$data['dapNumero'] = $this->input->post('dapNumero');
+		$data['dapValidade'] = $this->input->post('dapValidade');
 		
 		try{
 			$this->db->insert('agricultores',$data);

@@ -32,8 +32,9 @@ class Cooperativa extends CI_Controller {
 		$this->form_validation->set_rules('cnpj',         'CNPJ',          'trim|required');
 		$this->form_validation->set_rules('telefone',     'Telefone',      'trim|required');
 		$this->form_validation->set_rules('cooperativa',  'Cooperativa',   'trim');
-		$this->form_validation->set_rules('dapJuridica',  'Dap Juridica',  'trim');
 		$this->form_validation->set_rules('uf',  'UF',  'trim');
+		$this->form_validation->set_rules('dapNumero','Numero da DAP','trim');
+		$this->form_validation->set_rules('dapValidade','Validade da DAP','trim');
 
 			if($this->form_validation->run()== FALSE){
 				$dados['formerror'] = validation_errors();

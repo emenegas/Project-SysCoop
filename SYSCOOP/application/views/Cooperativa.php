@@ -94,7 +94,15 @@
 						<?php echo form_error('endereco'); ?>
 						<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo set_value('endereco')?>">
 					</div>
-					
+					<div>
+						<label form="dapNumero">DAP Juridica</label>
+						<?php echo form_error('dapNumero'); ?>
+						<input type="text" name="dapNumero" id="dapNumero" class="form-control" value="<?php echo set_value('dapNumero')?>">
+					</div>
+					<div>
+						<label form="dapValidade">Validade DAP</label>
+						<input type="date" name="dapValidade" id="dapValidade" class="form-control">
+					</div>
 
 					<div class="button">
 						<button type="submit">Cadastrar</button>

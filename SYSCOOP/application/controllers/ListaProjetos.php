@@ -11,7 +11,7 @@ class Itens extends CI_Controller {
 		$this->load->model('projetopnae_model');
 		$this->load->model('produto_model');
 		$this->load->model('agricultor_model');
-		$this->load->model('Dap_model');
+		
 
 	}
 

@@ -56,5 +56,6 @@ $route['projetopnae/(:num)/itens']['get'] = 'itens/index/$1';
 $route['projetopnae/(:num)/itens']['post'] = 'itens/adicionar/$1';
 $route['projetopnae/(:num)/itens/remover'] = 'itens/remover/$1';
 $route['projetopnae/(:num)/info'] = 'projetopnae/info/$1';
-$route['login'] = 'login/login';
+$route['projetopnae/(:num)/remover'] = 'projetopnae/remover/$1';
+$route['agricultor/(:num)/remover'] = 'agricultor/remover/$1';
 

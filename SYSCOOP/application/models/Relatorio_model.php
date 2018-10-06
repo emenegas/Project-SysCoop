@@ -28,14 +28,7 @@ class Relatorio_model extends CI_Model {
 	
 	public function listarEntidade(){
 
-		return $this->db->get('entidadesExecutoras')->result();
-	}
-
-	//----------------------------------------------------------------------------------
-	
-	public function listarDap(){
-
-		return $this->db->get('daps')->result();
+		return $this->db->get('entidadesexecutoras')->result();
 	}
 
 	//----------------------------------------------------------------------------------

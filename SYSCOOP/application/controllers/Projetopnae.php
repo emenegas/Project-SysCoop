@@ -50,9 +50,9 @@ class Projetopnae extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function remover($idProjeto){
-
-		$this->projetopnae_model->remover($this->itens_do_projeto->remover($idProjeto));
-		$this->load->view('ProjetosLista');
+		$this->Itens_model->removerProjeto($idProjeto);
+		$this->Projetopnae_model->remover($idProjeto);
+		redirect('projetopnae');
 	}	
 	
 	//----------------------------------------------------------------------------------
@@ -60,8 +60,8 @@ class Projetopnae extends CI_Controller {
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
 
-		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim');
-		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim');
+		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim|required');
+		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim|required');
 		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		

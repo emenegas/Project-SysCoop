@@ -11,7 +11,7 @@ class Itens extends CI_Controller {
 		$this->load->model('Projetopnae_model');
 		$this->load->model('Produto_model');
 		$this->load->model('Agricultor_model');
-		$this->load->model('Dap_model');
+	
 
 	}
 
@@ -46,7 +46,7 @@ class Itens extends CI_Controller {
 		$this->form_validation->set_rules('agricultor',     'Cod Agricultor',      'trim|required|is_natural');
 		$this->form_validation->set_rules('quantidade',     'Quantidade',      'trim|required');
 		$this->form_validation->set_rules('precoUnidade',     'Preço Unitário',      'trim|required');
-		$this->form_validation->set_rules('totalProjeto',     'Total do Projeto',      'trim');
+		$this->form_validation->set_rules('totalItem',     'Total do Item',      'trim');
 		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();

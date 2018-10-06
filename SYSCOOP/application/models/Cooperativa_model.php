@@ -6,6 +6,7 @@ class Cooperativa_model extends CI_Model {
 	
 	public function cadastrar()
 	{
+		$data = [];
 		$data['nomeFantasia'] = $this->input->post('nomeFantasia');
 		$data['presidente'] = $this->input->post('presidente');
 		$data['responsavel'] = $this->input->post('responsavel');
@@ -20,6 +21,8 @@ class Cooperativa_model extends CI_Model {
 		$data['uf'] = $this->input->post('uf');
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
+		$data['dapNumero'] = $this->input->post('dapNumero');
+		$data['dapValidade'] = $this->input->post('dapValidade');
 		
 		return $this->db->insert('cooperativas',$data);
 

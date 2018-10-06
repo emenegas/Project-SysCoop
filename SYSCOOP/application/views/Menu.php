@@ -21,29 +21,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <ul class="navbar-nav mr-auto">
 
        <li class="nav-item dropdown">
-        <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Projeto PNAE
-       </a>
-       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="<?php echo site_url('projetopnae/novo')?>">Novo</a>
-        <a class="dropdown-item" href="<?php echo site_url('projetopnae')?>">Lista de Projetos</a>
-       
-      </div>
+         <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Projeto</a>       
     </li>
-      <li class="nav-item dropdown">
-        <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Cadastros
-       </a>
-       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="<?php echo site_url('entidade')?>">Entidade</a>
-        <a class="dropdown-item" href="<?php echo site_url('agricultor')?>">Agricultor</a>
-        <a class="dropdown-item" href="<?php echo site_url('dap')?>">Dap</a>
-        <a class="dropdown-item" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>
-        <a class="dropdown-item" href="<?php echo site_url('produto')?>">Produto</a>
-        <a class="dropdown-item" href="<?php echo site_url('funcionario')?>">Funcionário</a>
-
-      </div>
+     <li class="nav-item dropdown">
+         <a class="navbar-brand" href="<?php echo site_url('entidade')?>">Entidade</a>       
     </li>
+     <li class="nav-item dropdown">
+         <a class="navbar-brand" href="<?php echo site_url('agricultor')?>">Agricultor</a>       
+    </li>
+     <li class="nav-item dropdown">
+         <a class="navbar-brand" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>       
+    </li>
+     <li class="nav-item dropdown">
+         <a class="navbar-brand" href="<?php echo site_url('funcionario')?>">Funcionário</a>       
+    </li>
+      
     <li class="nav-item">
       <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
     </li>

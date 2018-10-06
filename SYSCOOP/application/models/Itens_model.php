@@ -10,25 +10,24 @@ class Itens_model extends CI_Model {
 		$this->load->model('Produto_model');
 		$this->load->model('Agricultor_model');
 		$this->load->model('Projetopnae_model');
-		$this->load->model('Dap_model');
+		
 		$produto = $this->Produto_model->getById($this->input->post('produto'));
 		$agricultor = $this->Agricultor_model->getById($this->input->post('agricultor'));
-		$agricultorDap = $this->Dap_model->getByAgricultor($agricultor->id);
+		
 
-
+		$data = [];
 		$data['projeto']             = $idProjeto;
 		$data['produto']             = $produto->id;
 		$data['nomeProduto']        = $produto->nome;
-		$data['unidadeMedida']          = $produto->unidadeMedida;
-		// $data['tipo']       		  = $produto->tipo;
-		// $data['epoca']               = $produto->epoca;
-		$data['agricultor']       = $agricultor->id;
-		$data['nomeAgricultor']         = $agricultor->nome;
+		$data['unidadeMedida']      = $produto->unidadeMedida;
+		$data['agricultor']      	 = $agricultor->id;
+		$data['nomeAgricultor']     = $agricultor->nome;
 		$data['cpf']				=$agricultor->cpf;
-		$data['agricultorDap']          = $agricultorDap? $agricultorDap->numero : NULL;
+		$data['dapAgricultor']          = $agricultor? $agricultor->dapNumero : NULL;
 		$data['quantidade'] 		= $this->input->post('quantidade');
-		$data['precoUnidade'] 		= $this->input->post('precoUnidade');
-		$data['totalProjeto']		= $this->input->post('quantidade') * $this->input->post('precoUnidade');
+		$data['precoUnidade'] 		= str_replace(',','.',$this->input->post('precoUnidade'));
+		$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  
+		$data['data'] 				= date('Y-m-d H:i:s');
 		try{
 			$this->db->insert('itens_do_projeto',$data);
 			return $this->db->insert_id();
@@ -63,6 +62,14 @@ class Itens_model extends CI_Model {
 		$this->db
 		->where('projeto', $idProjeto)
 		->where('id', $this->input->post('itemDoProjeto'))
+		->delete('itens_do_projeto');
+
+	}
+	//----------------------------------------------------------------------------------
+
+	public function removerProjeto($idProjeto){
+		$this->db
+		->where('projeto', $idProjeto)
 		->delete('itens_do_projeto');
 
 	}

@@ -48,6 +48,16 @@ $this->load->view('Menu');
 				<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo set_value('endereco')?>">
 			</div>
 			<div>
+				<label form="dapNumero">Numero DAP</label>
+				<?php echo form_error('dapNumero'); ?>
+				<input type="text" name="dapNumero" id="dapNumero" class="form-control" value="<?php echo set_value('dapNumero')?>">
+			</div>
+			<div>
+				<label form="dapValidade">Validade DAP</label>
+				<?php echo form_error('dapValidade'); ?>
+				<input type="date" name="dapValidade" id="dapValidade" class="form-control" value="<?php echo set_value('dapValidade')?>">
+			</div>
+			<div>
 				<label for="cooperativa">Cooperativa:</label>
 				<select name="cooperativa" class="form-control">
 					<option></option>

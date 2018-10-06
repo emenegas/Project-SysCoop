@@ -15,7 +15,7 @@ class Agricultor extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function index()
+	public function novo()
 	{
 		$dados=[
 			
@@ -27,11 +27,25 @@ class Agricultor extends CI_Controller {
 		
 	}
 
+
+	//----------------------------------------------------------------------------------
+
+	public function index(){
+		$dados=[
+			'agricultores'=> $this->Agricultor_model->listar()
+		];
+		$this->load->view('AgricultoresLista', $dados);
+	}
+	
+	//----------------------------------------------------------------------------------
+
+	public function alterar(){
+
+	}
+
 	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
-		/*print_r($this->input->post());
-		exit;*/
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome','trim|required');
@@ -43,7 +57,9 @@ class Agricultor extends CI_Controller {
 		$this->form_validation->set_rules('cidade','Cidade','trim|required');
 		$this->form_validation->set_rules('endereco','Endereço','trim|required');
 		$this->form_validation->set_rules('cooperativa','cooperativa','trim');
-		$this->form_validation->set_rules('produtos','Produtos','trim|');
+		$this->form_validation->set_rules('produtos','Produtos','trim');
+		$this->form_validation->set_rules('dapNumero','Numero da DAP','trim');
+		$this->form_validation->set_rules('dapValidade','Validade da DAP','trim');
 
 		if($this->form_validation->run()== FALSE):
 
@@ -68,10 +84,5 @@ class Agricultor extends CI_Controller {
 	}
 
 	//----------------------------------------------------------------------------------
-
-	/*public function consulta(){
-		$cep = this->input->post->post('cep');
-		echo $this->curl->consulta($cep);
-	}*/
 	
 }

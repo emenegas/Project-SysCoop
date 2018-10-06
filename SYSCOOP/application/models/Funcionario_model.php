@@ -6,6 +6,7 @@ class Funcionario_model extends CI_Model {
 	
 	public function cadastrar()
 	{
+		$data = [];
 		$data['nome'] = $this->input->post('nome');
 		$data['cpf'] = $this->input->post('cpf');
 		$data['email'] = $this->input->post('email');

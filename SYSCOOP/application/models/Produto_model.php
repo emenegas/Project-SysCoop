@@ -6,6 +6,7 @@ class Produto_model extends CI_Model {
 	
 	public function cadastrar()
 	{
+		$data = [];
 		$data['nome'] = $this->input->post('nome');
 		$data['unidadeMedida'] = $this->input->post('unidadeMedida');
 		$data['tipo'] = $this->input->post('tipo');

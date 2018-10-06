@@ -6,11 +6,12 @@ class Projetopnae_model extends CI_Model {
 	
 	public function cadastrar($cooperativa , $entidade)
 	{
-		$this->load->model('Dap_model');
-		$this->load->model('Cooperativa_model');
-		// $cooperativa = $this->Cooperativa_model->getById($this->input->post('cooperativa'));
-		// $cooperativaDap = $this->Dap_model->getByCooperativa($cooperativa->id);
 		
+		$this->load->model('Cooperativa_model');
+		$this->load->model('itens_model');
+		
+		
+		$data = [];
 		$data['nomeEdital']              = $this->input->post('nomeEdital');
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');
 		$data['cooperativa']             = $cooperativa->id;
@@ -20,7 +21,7 @@ class Projetopnae_model extends CI_Model {
 		$data['coopEmail']               = $cooperativa->email;
 		$data['coopCnpj']                = $cooperativa->cnpj;
 		$data['coopTelefone']            = $cooperativa->telefone;
-		// $data['coopCooperativa'] 		 = $cooperativaDap->cooperativa;
+		$data['coopDapJuridica'] 		 = $cooperativa->dapNumero;
 		$data['coopBanco']               = $cooperativa->banco;
 		$data['coopAgencia']             = $cooperativa->agencia;
 		$data['coopNumeroContaCorrente'] = $cooperativa->numeroContaCorrente;
@@ -28,6 +29,7 @@ class Projetopnae_model extends CI_Model {
 		$data['coopUf']                  = $cooperativa->uf;
 		$data['coopCidade']              = $cooperativa->cidade;
 		$data['coopEndereco']            = $cooperativa->endereco;
+
 		$data['entidadeExecutora']       = $entidade->id;
 		$data['entNomeFantasia']         = $entidade->nomeFantasia;
 		$data['entEmail']                = $entidade->email;
@@ -39,7 +41,8 @@ class Projetopnae_model extends CI_Model {
 		$data['entUf']                   = $entidade->uf;
 		$data['entCidade']               = $entidade->cidade;
 		$data['entEndereco']             = $entidade->endereco;
-		
+		// $data['totalProjeto'] 			= $
+		$data['data'] = date('Y-m-d H:i:s');
 		try{
 			$this->db->insert('projetos',$data);
 			return $this->db->insert_id();
@@ -74,9 +77,8 @@ class Projetopnae_model extends CI_Model {
 	
 	public function remover($idProjeto){
 		$this->db
-		->where('projeto', $idProjeto)
-		->where('id', $this->input->post('itemDoProjeto'))
-		->delete('projeto');
+		->where('id', $idProjeto)
+		->delete('projetos');
 
 	}
 
