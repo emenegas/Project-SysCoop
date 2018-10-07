@@ -64,11 +64,34 @@ class Agricultor_model extends CI_Model {
 	
 	public function getById($id){
 		$agricultor = $this->db
-			->where('id', $id)
-			->get('agricultores')
-			->result();
+		->where('id', $id)
+		->get('agricultores')
+		->result();
 
 		return reset($agricultor);
 	}
+	
+	//-----------------ALTERAR-----------------------------------------------------------------
+
+	public function editar($id) {
+		$this->db->where('id', $id);
+		return $this->db->get('agricultores')->result();
+	}
+	public function alterar($data) {
+		$this->db->where('id', $data['id']);
+		$this->db->set($data);
+		return $this->db->update('agricultores');
+	}
+
+	//--------------------------Ativar/Inativar-----------------------------------
+
+	public function alterarLista($id) {
+		$this->db
+		->where('id', $id);
+		
+		return $this->db->update('agricultores');
+	}
+
+	//----------------------------------------------------------------------------------
 
 }

@@ -27,7 +27,6 @@ class Agricultor extends CI_Controller {
 		
 	}
 
-
 	//----------------------------------------------------------------------------------
 
 	public function index(){
@@ -39,8 +38,93 @@ class Agricultor extends CI_Controller {
 	
 	//----------------------------------------------------------------------------------
 
-	public function alterar(){
+	public function editar($id){
 
+		$data['dados_pessoa'] = $this->Agricultor_model->editar($id);
+
+		$this->load->view('AgricultorEdita', $data);
+	}
+
+
+	public function alterar(){
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+		$validations = array(
+			array(
+				'field' => 'nome',
+				'label' => 'Nome',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'telefone',
+				'label' => 'Telefone',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'email',
+				'label' => 'E-mail',
+				'rules' => 'trim|required|valid_email|max_length[45]'
+			),
+			array(
+				'field' => 'uf',
+				'label' => 'Uf',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'cep',
+				'label' => 'CEP',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'cidade',
+				'label' => 'Cidade',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'endereco',
+				'label' => 'Endereço',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'dapNumero',
+				'label' => 'DAP Numero',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'dapValidade',
+				'label' => 'DAP Validade',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'status',
+				'label' => 'Status',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			)
+		);
+		$this->form_validation->set_rules($validations);
+		if ($this->form_validation->run() == FALSE) {
+			$this->editar($this->input->post('id'));
+		} else {
+			$data['id'] = $this->input->post('id');
+			$data['nome'] = $this->input->post('nome');
+			$data['telefone'] = $this->input->post('telefone');
+			$data['email'] = $this->input->post('email');
+			$data['uf'] = $this->input->post('uf');
+			$data['cep'] = $this->input->post('cep');
+			$data['cidade'] = $this->input->post('cidade');
+			$data['endereco'] = $this->input->post('endereco');
+			$data['dapNumero'] = $this->input->post('dapNumero');
+			$data['dapValidade'] = $this->input->post('dapValidade');
+			$data['status'] = $this->input->post('status');
+
+			
+			if ($this->Agricultor_model->alterar($data)) {
+				redirect('Agricultor');
+			} else {
+				log_message('error', 'Erro na alteração...');
+			}
+		}
 	}
 
 	//----------------------------------------------------------------------------------
@@ -78,7 +162,7 @@ class Agricultor extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function remover(){
+	public function removerLista(){
 		echo __CLASS__, ': ', __FUNCTION__;
 
 	}

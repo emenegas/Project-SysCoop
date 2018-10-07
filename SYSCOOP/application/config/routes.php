@@ -57,5 +57,7 @@ $route['projetopnae/(:num)/itens']['post'] = 'itens/adicionar/$1';
 $route['projetopnae/(:num)/itens/remover'] = 'itens/remover/$1';
 $route['projetopnae/(:num)/info'] = 'projetopnae/info/$1';
 $route['projetopnae/(:num)/remover'] = 'projetopnae/remover/$1';
-$route['agricultor/(:num)/remover'] = 'agricultor/remover/$1';
+$route['agricultor/(:num)/remover'] = 'agricultor/alterarLista/$1';
+$route['agricultor/(:num)/editar'] = 'agricultor/editar/$1';
+$route['cooperativa/(:num)/editar'] = 'cooperativa/editar/$1';
 

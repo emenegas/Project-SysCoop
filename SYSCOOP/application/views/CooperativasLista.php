@@ -11,7 +11,7 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3>Agricultores <a style="width: 100px;" href="<?php echo site_url('agricultor/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+                  <tr id="title"><th colspan=3>Cooperativas <a style="width: 100px;" href="<?php echo site_url('cooperativa/novo') ?>" class="btn btn-outline-info">NOVO</a> 
 
                   </th></tr>
                </thead>
@@ -19,20 +19,21 @@ $this->load->view('Menu');
                <tbody>
                   <!--Create rows here -->
                   <tr style="width: 80px;">
-                     <th>ID</th>
-                     <th>Nome</th>
-                     <th>Dap</th>
+                     <th>Código</th>
+                     <th>Nome Fantasia</th>
+                     <th>Dap Juridica</th>
                      <th>Data</th>
                      <tr>
                         <tr>
-                           <?php foreach ($agricultores as $item): ?>
+                           <?php foreach ($cooperativas as $item): ?>
                               <tr>
+                                 
                                  <td><?php echo $item->id ?></td>
-                                 <td>  <?php echo $item->nome ?></td>
+                                 <td>  <?php echo $item->nomeFantasia ?></td>
                                  <td>  <?php echo $item->dapNumero ?></td>
                                  <td>
-                                    <a href="<?php echo site_url('/agricultor/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
-                                    <a href="<?php echo site_url('/agricultor/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
+                                    <a href="<?php echo site_url('/cooperativa/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
+                                    <a href="<?php echo site_url('/cooperativa/'.$item->id.'/removerLista') ?>" class="btn btn-outline-danger" >Remover</a>
                                  </td>
                               </tr>
                            <?php endforeach ?>
