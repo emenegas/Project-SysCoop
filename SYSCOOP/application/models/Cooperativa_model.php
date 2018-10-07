@@ -5,10 +5,9 @@ class Cooperativa_model extends CI_Model {
 
 	
 	public function cadastrar()
-	{
+	{	
 		$data = [];
 		$data['nomeFantasia'] = $this->input->post('nomeFantasia');
-		$data['presidente'] = $this->input->post('presidente');
 		$data['responsavel'] = $this->input->post('responsavel');
 		$data['email'] = $this->input->post('email');
 		$data['cnpj'] = $this->input->post('cnpj');

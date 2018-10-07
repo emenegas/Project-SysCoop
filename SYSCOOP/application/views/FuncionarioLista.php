@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-<body>
+
    <div class="container">
       <div class="row">
          <div class="col-md-6  col-md-offset-3 "style="margin: 0 auto; flex: 0 0 80%;

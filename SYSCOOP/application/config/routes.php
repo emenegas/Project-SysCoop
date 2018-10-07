@@ -63,4 +63,5 @@ $route['cooperativa/(:num)/editar'] = 'cooperativa/editar/$1';
 $route['cooperativa/(:num)/remover'] = 'cooperativa/alterarLista/$1';
 $route['entidade/(:num)/editar'] = 'entidade/editar/$1';
 $route['entidade/(:num)/remover'] = 'entidade/alterarLista/$1';
+$route['funcionario/(:num)/editar'] = 'funcionario/editar/$1';
 

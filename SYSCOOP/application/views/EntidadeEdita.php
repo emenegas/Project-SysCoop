@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-<body>
+
 	<div>
 		<?php echo form_open('entidade/alterar', 'id="form-entidade"'); ?>
 		<input type="hidden" name="id" value="<?php echo $dados_entidade[0]->id; ?>"/>

@@ -9,6 +9,9 @@ class Projetopnae_model extends CI_Model {
 		
 		$this->load->model('Cooperativa_model');
 		$this->load->model('itens_model');
+		$this->load->model('Funciorio_model');
+
+		$funcionario = $this->Funciorio_model->getById($this->input->post($cooperativa));
 		
 		
 		$data = [];
@@ -16,8 +19,9 @@ class Projetopnae_model extends CI_Model {
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');
 		$data['cooperativa']             = $cooperativa->id;
 		$data['coopNomeFantasia']        = $cooperativa->nomeFantasia;
-		$data['coopPresidente']          = $cooperativa->presidente;
-		$data['coopResponsavel']         = $cooperativa->responsavel;
+		$data['coopResponsavel']          = $cooperativa->responsavel;
+		$data['coopNomeResponsavel']         = $funcionario->nome;
+		$data['coopCpfResponsavel']         = $funcionario->cpf;
 		$data['coopEmail']               = $cooperativa->email;
 		$data['coopCnpj']                = $cooperativa->cnpj;
 		$data['coopTelefone']            = $cooperativa->telefone;

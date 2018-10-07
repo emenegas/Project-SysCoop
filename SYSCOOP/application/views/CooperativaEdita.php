@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-<body>
+
 <?php echo form_open('cooperativa/alterar', 'id="form-cooperativa"'); ?>
 <input type="hidden" name="id" value="<?php echo $dados_cooperativa[0]->id; ?>"/>
 <label for="nome">CNPJ:<?php echo $dados_cooperativa[0]->cnpj?></label><br/>

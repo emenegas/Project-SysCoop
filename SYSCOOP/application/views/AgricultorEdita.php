@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-<body>
+
 <?php echo form_open('agricultor/alterar', 'id="form-pessoas"'); ?>
 <input type="hidden" name="id" value="<?php echo $dados_pessoa[0]->id; ?>"/>
 <label for="nome">CPF:<?php echo $dados_pessoa[0]->cpf?></label><br/>
@@ -51,4 +51,3 @@ $this->load->view('Menu');
 
 <input type="submit" name="alterar" value="Alterar" />
 <?php echo form_close(); ?>
-<!-- fecha o formulário de edição -->

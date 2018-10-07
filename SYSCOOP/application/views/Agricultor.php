@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-<body>
 <div class="container">
 	<div class="row">
 		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">
@@ -73,10 +72,11 @@ $this->load->view('Menu');
 				{
 					echo '<input type="checkbox" name="produtos[]" value="' .$produto->id.'">' .$produto->nome;
 				}?>
-
+				<!-- <a href="<?php echo site_url('produto')?>">Adicionar</a>      -->  
 			</div>
-
+			
 			<div class="button">
+
 				<button type="submit">Cadastrar</button>
 			</div>
 

@@ -9,6 +9,7 @@ class Funcionario extends CI_Controller {
 		$this->load->library('curl');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Funcionario_model');
+	
 
 	}
 
@@ -47,8 +48,13 @@ class Funcionario extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
 			array(
-				'field' => 'nomeFantasia',
-				'label' => 'Nome Fantasia',
+				'field' => 'nome',
+				'label' => 'Nome',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'email',
+				'label' => 'Email',
 				'rules' => 'required|min_length[4]|max_length[45]'
 			),
 			array(
@@ -58,19 +64,9 @@ class Funcionario extends CI_Controller {
 			),
 
 			array(
-				'field' => 'representante',
-				'label' => 'Representante',
-				'rules' => 'trim|required|valid_email|max_length[45]'
-			),
-			array(
-				'field' => 'cpfRepresentante',
-				'label' => 'CPF Representante',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
 				'field' => 'cep',
 				'label' => 'Cep',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'trim|required|valid_email|max_length[45]'
 			),
 			array(
 				'field' => 'uf',
@@ -88,6 +84,16 @@ class Funcionario extends CI_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			),
 			array(
+				'field' => 'senha',
+				'label' => 'Senha',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'cooperativa',
+				'label' => 'Cooperativa',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
 				'field' => 'status',
 				'label' => 'Status',
 				'rules' => 'required|min_length[4]|max_length[45]'
@@ -98,15 +104,16 @@ class Funcionario extends CI_Controller {
 			$this->editar($this->input->post('id'));
 		} else {
 			$data['id'] = $this->input->post('id');
-			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
-			// $data['cnpj'] = $this->input->post('cep');
+			$data['nome'] = $this->input->post('nome');
+			// $data['cpf'] = $this->input->post('cpf');
+			$data['email'] = $this->input->post('email');
 			$data['telefone'] = $this->input->post('telefone');
-			$data['representante'] = $this->input->post('representante');
-			$data['cpfRepresentante'] = $this->input->post('cpfRepresentante');
 			$data['cep'] = $this->input->post('cep');
 			$data['uf'] = $this->input->post('uf');
 			$data['cidade'] = $this->input->post('cidade');
 			$data['endereco'] = $this->input->post('endereco');
+			$data['senha'] = $this->input->post('senha');
+			$data['cooperativa'] = $this->input->post('cooperativa');
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Funcionario_model->alterar($data)) {
@@ -131,7 +138,7 @@ class Funcionario extends CI_Controller {
 		$this->form_validation->set_rules('cidade','Cidade','trim|required');
 		$this->form_validation->set_rules('endereco','Endereço','trim|required');
 		$this->form_validation->set_rules('senha','Senha','trim|required');
-		$this->form_validation->set_rules('cooperativa','Cooperativa','trim|required');
+		$this->form_validation->set_rules('cooperativa','Cooperativa','trim');
 
 
 		if($this->form_validation->run()== FALSE):

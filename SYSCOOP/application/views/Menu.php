@@ -1,9 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 
 <html lang="pt-br">
- 
+
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="<?php echo site_url('pagina')?>">SysCoop</a>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,29 +22,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-       <li class="nav-item dropdown">
-         <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Projeto</a>       
-    </li>
+      <li class="nav-item dropdown">
+       <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Projeto</a>       
+     </li>
+
      <li class="nav-item dropdown">
-         <a class="navbar-brand" href="<?php echo site_url('entidade')?>">Entidade</a>       
-    </li>
+       <a class="navbar-brand" href="<?php echo site_url('entidade')?>">Entidade</a>       
+     </li>
+
      <li class="nav-item dropdown">
-         <a class="navbar-brand" href="<?php echo site_url('agricultor')?>">Agricultor</a>       
-    </li>
+       <a class="navbar-brand" href="<?php echo site_url('agricultor')?>">Agricultor</a>       
+     </li>
+
      <li class="nav-item dropdown">
-         <a class="navbar-brand" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>       
-    </li>
+       <a class="navbar-brand" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>       
+     </li>
+
      <li class="nav-item dropdown">
-         <a class="navbar-brand" href="<?php echo site_url('funcionario')?>">Funcionário</a>       
-    </li>
-      
-    <li class="nav-item">
+       <a class="navbar-brand" href="<?php echo site_url('funcionario')?>">Funcionário</a>       
+     </li>
+
+     <li class="nav-item">
       <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
     </li>
-    <li class="nav-item">
-      <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
-    </li>
-  </ul>
 
+    <li class="nav-item">
+     <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
+   </li>
+ </ul>
 </div>
 </nav>
+
+<!-- <body background="campo.jpg" bgproperties="fixed"> -->
+  <!-- <img src="<?php echo base_url('assets/campo.jpg')?>"> -->

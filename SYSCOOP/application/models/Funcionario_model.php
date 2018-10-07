@@ -16,7 +16,7 @@ class Funcionario_model extends CI_Model {
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
 		$data['senha'] = $this->input->post('senha');
-		$data['cooperativa'] = $this->input->post('cooperativa');
+		$data['cooperativa'] = $this->input->post('cooperativa')? $this->input->post('cooperativa') : NULL;
 
 		return $this->db->insert('funcionarios',$data);
 
