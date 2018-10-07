@@ -11,7 +11,7 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3>Agricultores <a style="width: 100px;" href="<?php echo site_url('agricultor/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+                  <tr id="title"><th colspan=3>Enditades <a style="width: 100px;" href="<?php echo site_url('entidade/novo') ?>" class="btn btn-outline-info">NOVO</a> 
 
                   </th></tr>
                </thead>
@@ -20,20 +20,20 @@ $this->load->view('Menu');
                   <!--Create rows here -->
                   <tr style="width: 80px;">
                      <th>Código</th>
-                     <th>Nome</th>
-                     <th>DAP</th>
+                     <th>Nome Fantasia</th>
+                     <th>CNPJ</th>
                      <th>Data</th>
                      <tr>
                         <tr>
-                           <?php foreach ($agricultores as $item): ?>
+                           <?php foreach ($entidades as $item): ?>
                               <tr>
                                  <td><?php echo $item->id ?></td>
-                                 <td>  <?php echo $item->nome ?></td>
-                                 <td>  <?php echo $item->dapNumero ?></td>
-                              <!--    <td>  <?php echo $item->data ?></td>   -->
-                                 <td>
-                                    <a href="<?php echo site_url('/agricultor/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
-                                    <a href="<?php echo site_url('/agricultor/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
+                                 <td>  <?php echo $item->nomeFantasia ?></td>
+                                 <td>  <?php echo $item->cnpj ?></td>
+                                <!--  <td>  <?php echo $item->data ?></td>   --> 
+                                <td>
+                                    <a href="<?php echo site_url('/entidade/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
+                                    <a href="<?php echo site_url('/entidade/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Remover</a>
                                  </td>
                               </tr>
                            <?php endforeach ?>

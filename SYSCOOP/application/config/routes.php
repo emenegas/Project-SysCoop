@@ -60,4 +60,7 @@ $route['projetopnae/(:num)/remover'] = 'projetopnae/remover/$1';
 $route['agricultor/(:num)/remover'] = 'agricultor/alterarLista/$1';
 $route['agricultor/(:num)/editar'] = 'agricultor/editar/$1';
 $route['cooperativa/(:num)/editar'] = 'cooperativa/editar/$1';
+$route['cooperativa/(:num)/remover'] = 'cooperativa/alterarLista/$1';
+$route['entidade/(:num)/editar'] = 'entidade/editar/$1';
+$route['entidade/(:num)/remover'] = 'entidade/alterarLista/$1';
 

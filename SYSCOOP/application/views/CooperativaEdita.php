@@ -1,4 +1,8 @@
-<!-- abre o formulário de edição -->
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->view('Menu');
+?>
+<body>
 <?php echo form_open('cooperativa/alterar', 'id="form-cooperativa"'); ?>
 <input type="hidden" name="id" value="<?php echo $dados_cooperativa[0]->id; ?>"/>
 <label for="nome">CNPJ:<?php echo $dados_cooperativa[0]->cnpj?></label><br/>
@@ -39,7 +43,7 @@
 	<option>Sicredi</option>
 </select>
 
-
+	
 <label for="dapNumero">DAP Numero:</label><br/>
 <input type="text" name="dapNumero" value="<?php echo $dados_cooperativa[0]->dapNumero; ?>"/>
 <div class="error"><?php echo form_error('dapNumero'); ?></div>

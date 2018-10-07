@@ -19,9 +19,9 @@ $this->load->view('Menu');
                <tbody>
                   <!--Create rows here -->
                   <tr style="width: 80px;">
-                     <th>ID</th>
+                     <th>Código</th>
                      <th>Edital</th>
-                     <th>Entidade</th>
+                     <th>Entidade Executora</th>
                      <th>Data</th>
                      <tr>
                         <tr>
@@ -30,13 +30,12 @@ $this->load->view('Menu');
                                  <td><?php echo $item->id ?></td>
                                  <td>  <?php echo $item->nomeEdital ?></td>
                                  <td>  <?php echo $item->entNomeFantasia ?></td>
+                                 <td> <?php echo $item->data ?></td>
                                  <td>
                                     <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
-                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Info</a>
+                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Visualizar</a>
                                     <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
                                    
-                             
-
                                  </td>
                               </tr>
                            <?php endforeach ?>

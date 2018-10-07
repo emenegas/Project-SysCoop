@@ -12,9 +12,102 @@ class Entidade extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function index(){
+		$dados = [
+			'entidades' => $this->Entidade_model->listar()
+		];
+		$this->load->view('EntidadeLista', $dados);
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function novo(){
 		$this->load->view('Entidade');
 	}
 	
+	//----------------------------------------------------------------------------------
+
+	public function editar($id){
+		
+		$data['dados_entidade'] = $this->Entidade_model->editar($id);
+
+		$this->load->view('EntidadeEdita', $data);
+	}
+	public function alterar(){
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+		$validations = array(
+			array(
+				'field' => 'nomeFantasia',
+				'label' => 'Nome Fantasia',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'telefone',
+				'label' => 'Telefone',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+
+			array(
+				'field' => 'representante',
+				'label' => 'Representante',
+				'rules' => 'trim|required|valid_email|max_length[45]'
+			),
+			array(
+				'field' => 'cpfRepresentante',
+				'label' => 'CPF Representante',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'cep',
+				'label' => 'Cep',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'uf',
+				'label' => 'Uf',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'cidade',
+				'label' => 'Cidade',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'endereco',
+				'label' => 'Endereço',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'status',
+				'label' => 'Status',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			)
+		);
+		$this->form_validation->set_rules($validations);
+		if ($this->form_validation->run() == FALSE) {
+			$this->editar($this->input->post('id'));
+		} else {
+			$data['id'] = $this->input->post('id');
+			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
+			// $data['cnpj'] = $this->input->post('cep');
+			$data['telefone'] = $this->input->post('telefone');
+			$data['representante'] = $this->input->post('representante');
+			$data['cpfRepresentante'] = $this->input->post('cpfRepresentante');
+			$data['cep'] = $this->input->post('cep');
+			$data['uf'] = $this->input->post('uf');
+			$data['cidade'] = $this->input->post('cidade');
+			$data['endereco'] = $this->input->post('endereco');
+			$data['status'] = $this->input->post('status');
+
+			if ($this->Entidade_model->alterar($data)) {
+				redirect('Entidade');
+			} else {
+				log_message('error', 'Erro na alteração...');
+			}
+		}
+	}
+
 	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){

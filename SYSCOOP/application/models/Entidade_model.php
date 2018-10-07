@@ -38,4 +38,27 @@ class Entidade_model extends CI_Model {
 
 		return reset($entidadesexecutoras);
 	}
+	//-----------------ALTERAR-----------------------------------------------------------------
+
+	public function editar($id) {
+		$this->db->where('id', $id);
+		return $this->db->get('entidadesexecutoras')->result();
+	}
+	public function alterar($data) {
+		$this->db->where('id', $data['id']);
+		$this->db->set($data);
+		return $this->db->update('entidadesexecutoras');
+	}
+
+	//--------------------------Ativar/Inativar-----------------------------------
+
+	public function alterarLista($id) {
+		$this->db
+		->where('id', $id);
+		
+		return $this->db->update('entidadesexecutoras');
+	}
+
+	//----------------------------------------------------------------------------------
+
 }

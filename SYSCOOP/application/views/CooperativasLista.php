@@ -28,7 +28,7 @@ $this->load->view('Menu');
                            <?php foreach ($cooperativas as $item): ?>
                               <tr>
                                  
-                                 <td><?php echo $item->id ?></td>
+                                 <td>  <?php echo $item->id ?></td>
                                  <td>  <?php echo $item->nomeFantasia ?></td>
                                  <td>  <?php echo $item->dapNumero ?></td>
                                  <td>
