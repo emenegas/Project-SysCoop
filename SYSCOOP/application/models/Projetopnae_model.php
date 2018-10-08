@@ -9,9 +9,9 @@ class Projetopnae_model extends CI_Model {
 		
 		$this->load->model('Cooperativa_model');
 		$this->load->model('itens_model');
-		$this->load->model('Funciorio_model');
+		$this->load->model('Funcionario_model');
 
-		$funcionario = $this->Funciorio_model->getById($this->input->post($cooperativa));
+		$funcionario = $this->Funcionario_model->getById($cooperativa->responsavel);
 		
 		
 		$data = [];

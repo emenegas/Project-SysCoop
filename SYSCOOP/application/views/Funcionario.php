@@ -56,7 +56,7 @@ $this->load->view('Menu');
 						<div>
 		        		<label for="cooperativa">Cooperativa:</label>
 		       			<select name="cooperativa" class="form-control">
-		       				
+		       				<option></option>
 		   	    			<?php foreach ($cooperativas as $cooperativa)
 							{
 								echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
