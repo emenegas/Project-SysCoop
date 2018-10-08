@@ -39,15 +39,7 @@ $this->load->view('Menu');
                                  </td>
                               </tr>
                            <?php endforeach ?>
-                        </tr>
-                        <td>
-                           <div class="btn-group" role="group" aria-label="Basic example">
-
-                              <button type="submit" class="btn btn-outline-primary">+</button> 
-
-                           </div>
-                        </td>
-                     </tr>
+                        
                   </tbody>
                </table>
             </div>

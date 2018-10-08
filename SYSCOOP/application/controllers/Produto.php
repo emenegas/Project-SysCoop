@@ -31,12 +31,14 @@ class Produto extends CI_Controller {
 
 	if($this->form_validation->run()== FALSE){
 		$dados['formerror'] = validation_errors();
+		$this->load->view('Produto', $dados);
 	}else{
 		$dados['formerror'] = 'Validação OK';
 		$this->Produto_model->cadastrar();
+		redirect('Agricultor');
 	}
 
-	$this->load->view('Produto', $dados);
+	
 }
 
 	//----------------------------------------------------------------------------------

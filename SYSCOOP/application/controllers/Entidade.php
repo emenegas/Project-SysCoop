@@ -43,6 +43,11 @@ class Entidade extends CI_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			),
 			array(
+				'field' => 'email',
+				'label' => 'Email',
+				'rules' => 'required|valid_email|min_length[4]|max_length[45]'
+			),
+			array(
 				'field' => 'telefone',
 				'label' => 'Telefone',
 				'rules' => 'required|min_length[4]|max_length[45]'
@@ -51,7 +56,7 @@ class Entidade extends CI_Controller {
 			array(
 				'field' => 'representante',
 				'label' => 'Representante',
-				'rules' => 'trim|required|valid_email|max_length[45]'
+				'rules' => 'trim|required|max_length[45]'
 			),
 			array(
 				'field' => 'cpfRepresentante',
@@ -83,6 +88,7 @@ class Entidade extends CI_Controller {
 				'label' => 'Status',
 				'rules' => 'required|min_length[4]|max_length[45]'
 			)
+
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
@@ -127,12 +133,14 @@ class Entidade extends CI_Controller {
 		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
+			$this->load->view('Entidade', $dados);
 		}else{
 			$dados['formerror'] = 'Validação OK';
 			$this->Entidade_model->cadastrar();
+			redirect('Entidade');
 		}
 
-		$this->load->view('Entidade', $dados);
+		
 	}
 
 	//----------------------------------------------------------------------------------

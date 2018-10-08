@@ -69,7 +69,7 @@ class Agricultor extends CI_Controller {
 			array(
 				'field' => 'uf',
 				'label' => 'Uf',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[2]|max_length[45]'
 			),
 			array(
 				'field' => 'cep',
@@ -148,15 +148,17 @@ class Agricultor extends CI_Controller {
 		if($this->form_validation->run()== FALSE):
 
 			$dados['formerror'] = validation_errors();
+			$dados['produtos'] = $this->Produto_model->listar();
+			$this->load->view('Agricultor', $dados);
 
 		else:
 			$dados['formerror'] = 'Validação OK';
 			
 			$this->Agricultor_model->cadastrar();
+			redirect('Agricultor');
 		endif;
 		
-		$dados['produtos'] = $this->Produto_model->listar();
-		$this->load->view('Agricultor', $dados);
+
 
 	}
 

@@ -9,7 +9,7 @@ class Funcionario extends CI_Controller {
 		$this->load->library('curl');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Funcionario_model');
-	
+
 
 	}
 
@@ -55,7 +55,7 @@ class Funcionario extends CI_Controller {
 			array(
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|valid_email|min_length[4]|max_length[45]'
 			),
 			array(
 				'field' => 'telefone',
@@ -66,17 +66,17 @@ class Funcionario extends CI_Controller {
 			array(
 				'field' => 'cep',
 				'label' => 'Cep',
-				'rules' => 'trim|required|valid_email|max_length[45]'
+				'rules' => 'trim|required|max_length[45]'
 			),
 			array(
 				'field' => 'uf',
 				'label' => 'Uf',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[2]|max_length[45]'
 			),
 			array(
 				'field' => 'cidade',
 				'label' => 'Cidade',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[2]|max_length[45]'
 			),
 			array(
 				'field' => 'endereco',
@@ -91,7 +91,7 @@ class Funcionario extends CI_Controller {
 			array(
 				'field' => 'cooperativa',
 				'label' => 'Cooperativa',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
 				'field' => 'status',
@@ -144,12 +144,13 @@ class Funcionario extends CI_Controller {
 		if($this->form_validation->run()== FALSE):
 
 			$dados['formerror'] = validation_errors();
-
+			$this->load->view('Funcionario', $dados);
 		else:
 			$dados['formerror'] = 'Validação OK';
 			$this->Funcionario_model->cadastrar();
+			redirect('Funcionario');
 		endif;
-		$this->load->view('Funcionario', $dados);
+		
 
 	}
 }

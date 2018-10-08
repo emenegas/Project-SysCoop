@@ -20,10 +20,10 @@ class Itens_model extends CI_Model {
 		$data['produto']             = $produto->id;
 		$data['nomeProduto']        = $produto->nome;
 		$data['unidadeMedida']      = $produto->unidadeMedida;
-		$data['agricultor']      	 = $agricultor->id;
-		$data['nomeAgricultor']     = $agricultor->nome;
-		$data['cpf']				=$agricultor->cpf;
-		$data['dapAgricultor']          = $agricultor? $agricultor->dapNumero : NULL;
+		$data['agricultor']      	 = $agricultor? $agricultor->id : NULL;
+		$data['nomeAgricultor']     = $agricultor? $agricultor->nome : NULL;
+		$data['cpf']				=$agricultor? $agricultor->cpf : NULL;
+		$data['dapAgricultor']       = $agricultor? $agricultor->dapNumero : NULL;
 		$data['quantidade'] 		= $this->input->post('quantidade');
 		$data['precoUnidade'] 		= str_replace(',','.',$this->input->post('precoUnidade'));
 		$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  

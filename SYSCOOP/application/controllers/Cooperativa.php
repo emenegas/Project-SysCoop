@@ -141,12 +141,12 @@ class Cooperativa extends CI_Controller {
 
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
+			$this->load->view('Cooperativa', $dados);
 		}else{
 			$dados['formerror'] = 'Validação OK';
 			$this->Cooperativa_model->cadastrar();
-		}
-
-		$this->load->view('Cooperativa', $dados);
+			redirect('Cooperativa');
+		}	
 	}
 
 	//----------------------------------------------------------------------------------
