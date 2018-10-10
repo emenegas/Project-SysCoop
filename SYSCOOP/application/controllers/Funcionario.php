@@ -9,10 +9,7 @@ class Funcionario extends CI_Controller {
 		$this->load->library('curl');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Funcionario_model');
-
-
 	}
-
 
 	//----------------------------------------------------------------------------------
 
@@ -37,13 +34,20 @@ class Funcionario extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function editar($id){
-		
-		$data['dados_funcionario'] = $this->Funcionario_model->editar($id);
-
+		$data = [];
+		$funcionario = $this->Funcionario_model->getById($id);
+		if(!$funcionario){
+			show_404();
+		}
+		$data['funcionario'] = $funcionario;
 		$this->load->view('FuncionarioEdita', $data);
 	}
-	public function alterar(){
-		
+	public function alterar($id){
+		$data = [];
+		$funcionario = $this->Funcionario_model->getById($id);
+		if(!$funcionario){
+			show_404();
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -101,11 +105,12 @@ class Funcionario extends CI_Controller {
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
-			$this->editar($this->input->post('id'));
+			$data['funcionario'] = $funcionario;
+			$data['formerror'] = validation_errors();
+			$this->load->view('FuncionarioEdita', $data);
 		} else {
-			$data['id'] = $this->input->post('id');
+
 			$data['nome'] = $this->input->post('nome');
-			// $data['cpf'] = $this->input->post('cpf');
 			$data['email'] = $this->input->post('email');
 			$data['telefone'] = $this->input->post('telefone');
 			$data['cep'] = $this->input->post('cep');
@@ -116,8 +121,8 @@ class Funcionario extends CI_Controller {
 			$data['cooperativa'] = $this->input->post('cooperativa');
 			$data['status'] = $this->input->post('status');
 
-			if ($this->Funcionario_model->alterar($data)) {
-				redirect('Funcionario');
+			if ($this->Funcionario_model->alterar($id,$data)) {
+				redirect('funcionario');
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -130,7 +135,7 @@ class Funcionario extends CI_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf', 'CPF' , 'trim|required');
+		$this->form_validation->set_rules('cpf', 'CPF' , 'trim|required|callback_valid_cpf');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('telefone','Telefone','trim|required');
 		$this->form_validation->set_rules('cep','CEP','trim|required');
@@ -144,7 +149,7 @@ class Funcionario extends CI_Controller {
 		if($this->form_validation->run()== FALSE):
 
 			$dados['formerror'] = validation_errors();
-			$this->load->view('Funcionario', $dados);
+			$this->load->view('funcionario', $dados);
 		else:
 			$dados['formerror'] = 'Validação OK';
 			$this->Funcionario_model->cadastrar();
@@ -153,31 +158,32 @@ class Funcionario extends CI_Controller {
 		
 
 	}
-}
-function valid_cpf($cpf)
-{
-	$CI =& get_instance();
 
-	$CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
-	$cpf = preg_replace('/[^0-9]/','',$cpf);
-	if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
+	function callback_valid_cpf($cpf)
 	{
-		return false;
-	}
-        // 9 primeiros digitos do cpf
-	$digit = substr($cpf, 0, 9);
-        // calculo dos 2 digitos verificadores
-	for($j=10; $j <= 11; $j++)
-	{
-		$sum = 0;
-		for($i=0; $i< $j-1; $i++)
+		$CI =& get_instance();
+
+		$CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
+		$cpf = preg_replace('/[^0-9]/','',$cpf);
+		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
 		{
-			$sum += ($j-$i) * ((int) $digit[$i]);
+			return false;
 		}
-		$summod11 = $sum % 11;
-		$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
+        // 9 primeiros digitos do cpf
+		$digit = substr($cpf, 0, 9);
+        // calculo dos 2 digitos verificadores
+		for($j=10; $j <= 11; $j++)
+		{
+			$sum = 0;
+			for($i=0; $i< $j-1; $i++)
+			{
+				$sum += ($j-$i) * ((int) $digit[$i]);
+			}
+			$summod11 = $sum % 11;
+			$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
+		}
+
+		return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
 	}
 
-	return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
 }
-

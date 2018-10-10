@@ -39,15 +39,22 @@ class Agricultor extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function editar($id){
-
-		$data['dados_pessoa'] = $this->Agricultor_model->editar($id);
-
+		$data = [];
+		$agricultor = $this->Agricultor_model->getById($id);
+		if(!$agricultor){
+			show_404();
+		}
+		$data['agricultor'] = $agricultor;
 		$this->load->view('AgricultorEdita', $data);
 	}
 
 
-	public function alterar(){
-		
+	public function alterar($id){
+		$data = [];
+		$agricultor = $this->Agricultor_model->getById($id);
+		if(!$agricultor){
+			show_404();
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -104,9 +111,11 @@ class Agricultor extends CI_Controller {
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
-			$this->editar($this->input->post('id'));
+			$data['funcionario'] = $funcionario;
+			$data['formerror'] = validation_errors();
+			$this->load->view('AgricultorEdita', $data);
 		} else {
-			$data['id'] = $this->input->post('id');
+			
 			$data['nome'] = $this->input->post('nome');
 			$data['telefone'] = $this->input->post('telefone');
 			$data['email'] = $this->input->post('email');
@@ -120,7 +129,7 @@ class Agricultor extends CI_Controller {
 
 			
 			if ($this->Agricultor_model->alterar($data)) {
-				redirect('Agricultor');
+				redirect('agricultor');
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -133,7 +142,7 @@ class Agricultor extends CI_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf','CPF','trim|required');
+		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf');
 		$this->form_validation->set_rules('telefone','Telefone','trim|required');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf','trim|required');
@@ -157,18 +166,36 @@ class Agricultor extends CI_Controller {
 			$this->Agricultor_model->cadastrar();
 			redirect('Agricultor');
 		endif;
-		
-
 
 	}
 
 	//----------------------------------------------------------------------------------
+	
+	function callback_valid_cpf($cpf)
+	{
+		$CI =& get_instance();
 
-	public function removerLista(){
-		echo __CLASS__, ': ', __FUNCTION__;
+		$CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
+		$cpf = preg_replace('/[^0-9]/','',$cpf);
+		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
+		{
+			return false;
+		}
+        // 9 primeiros digitos do cpf
+		$digit = substr($cpf, 0, 9);
+        // calculo dos 2 digitos verificadores
+		for($j=10; $j <= 11; $j++)
+		{
+			$sum = 0;
+			for($i=0; $i< $j-1; $i++)
+			{
+				$sum += ($j-$i) * ((int) $digit[$i]);
+			}
+			$summod11 = $sum % 11;
+			$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
+		}
 
+		return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
 	}
-
-	//----------------------------------------------------------------------------------
 	
 }

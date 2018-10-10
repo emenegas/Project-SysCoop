@@ -7,14 +7,14 @@ class Cooperativa extends CI_Controller {
 		parent:: __construct();
 		$this->load->helper('form');
 		$this->load->model('Cooperativa_model');
-		$this->load->model('Funcionario_model');
+		$this->load->model('cooperativa_model');
 	}
 
 	//----------------------------------------------------------------------------------
 
 	public function novo(){
 		$dados=[
-			'funcionarios'=>$this->Funcionario_model->listar(),
+			'cooperativas'=>$this->cooperativa_model->listar(),
 			'cooperativas'=>$this->Cooperativa_model->listar()
 		];
 		$this->load->view('Cooperativa',$dados);
@@ -34,13 +34,20 @@ class Cooperativa extends CI_Controller {
 //----------------------------------------------------------------------------------
 
 	public function editar($id){
-		
-		$data['dados_cooperativa'] = $this->Cooperativa_model->editar($id);
-
+		$data = [];
+		$cooperativa = $this->Cooperativa_model->getById($id);
+		if(!$cooperativa){
+			show_404();
+		}
+		$data['cooperativa'] = $cooperativa;
 		$this->load->view('CooperativaEdita', $data);
 	}
-	public function alterar(){
-		
+	public function alterar($id){
+		$data = [];
+		$cooperativa = $this->Cooperativa_model->getById($id);
+		if(!$cooperativa){
+			show_404();
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -98,15 +105,16 @@ class Cooperativa extends CI_Controller {
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
-			$this->editar($this->input->post('id'));
+			$data['cooperativa'] = $cooperativa;
+			$data['formerror'] = validation_errors();
+			$this->load->view('CooperativaEdita', $data);
 		} else {
-			$data['id'] = $this->input->post('id');
+			
 			$data['nomeFantasia'] = $this->input->post('nome');
 			$data['endereco'] = $this->input->post('cpf');
 			// $data['presidente'] = $this->input->post('telefone');
 			$data['responsavel'] = $this->input->post('email');
 			$data['email'] = $this->input->post('uf');
-			// $data['cnpj'] = $this->input->post('cep');
 			$data['telefone'] = $this->input->post('cidade');
 			$data['cooperativa'] = $this->input->post('endereco');
 			$data['uf'] = $this->input->post('dapNumero');
@@ -115,7 +123,7 @@ class Cooperativa extends CI_Controller {
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Cooperativa_model->alterar($data)) {
-				redirect('Cooperativa');
+				redirect('cooperativa');
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -145,12 +153,11 @@ class Cooperativa extends CI_Controller {
 		}else{
 			$dados['formerror'] = 'Validação OK';
 			$this->Cooperativa_model->cadastrar();
-			redirect('Cooperativa');
+			redirect('cooperativa');
 		}	
 	}
 
 	//----------------------------------------------------------------------------------
 
-	
 	
 }

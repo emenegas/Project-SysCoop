@@ -57,12 +57,13 @@ $route['projetopnae/(:num)/itens']['post'] = 'itens/adicionar/$1';
 $route['projetopnae/(:num)/itens/remover'] = 'itens/remover/$1';
 $route['projetopnae/(:num)/info'] = 'projetopnae/info/$1';
 $route['projetopnae/(:num)/remover'] = 'projetopnae/remover/$1';
-$route['agricultor/(:num)/remover'] = 'agricultor/alterarLista/$1';
 $route['agricultor/(:num)/editar'] = 'agricultor/editar/$1';
+$route['agricultor/(:num)/alterar'] = 'agricultor/alterar/$1';
 $route['cooperativa/(:num)/editar'] = 'cooperativa/editar/$1';
-$route['cooperativa/(:num)/remover'] = 'cooperativa/alterarLista/$1';
+$route['cooperativa/(:num)/alterar'] = 'cooperativa/alterar/$1';
 $route['entidade/(:num)/editar'] = 'entidade/editar/$1';
-$route['entidade/(:num)/remover'] = 'entidade/alterarLista/$1';
+$route['entidade/(:num)/alterar'] = 'entidade/alterar/$1';
 $route['funcionario/(:num)/editar'] = 'funcionario/editar/$1';
-// $route['login'] = 'login/login';
+$route['funcionario/(:num)/alterar'] = 'funcionario/alterar/$1';
+$route['produto/(:num)/remover'] = 'produto/remover/$1';
 

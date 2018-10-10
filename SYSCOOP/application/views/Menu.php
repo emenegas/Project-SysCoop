@@ -33,7 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <li class="nav-item dropdown">
        <a class="navbar-brand" href="<?php echo site_url('agricultor')?>">Agricultor</a>       
      </li>
-
+ <li class="nav-item dropdown">
+       <a class="navbar-brand" href="<?php echo site_url('produto')?>">Produto</a>       
+     </li>
      <li class="nav-item dropdown">
        <a class="navbar-brand" href="<?php echo site_url('cooperativa')?>">Cooperativa</a>       
      </li>

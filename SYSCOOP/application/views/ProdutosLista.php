@@ -11,7 +11,7 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3>Funcionários <a style="width: 100px;" href="<?php echo site_url('funcionario/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+                  <tr id="title"><th colspan=3>Produtos <a style="width: 100px;" href="<?php echo site_url('produto/novo') ?>" class="btn btn-outline-info">NOVO</a> 
 
                   </th></tr>
                </thead>
@@ -21,19 +21,22 @@ $this->load->view('Menu');
                   <tr style="width: 80px;">
                      <th>Código</th>
                      <th>Nome</th>
-                     <th>CPF</th>
-                     <th>Data</th>
+                     <th>Unidade de Medida</th>
+                     <th>Tipo</th>
+                     <th>Epoca</th>
                      <tr>
                         <tr>
-                           <?php foreach ($funcionarios as $item): ?>
+                           <?php foreach ($produtos as $item): ?>
                               <tr>
-                                 <td><?php echo $item->id ?></td>
+                                 
+                                 <td>  <?php echo $item->id ?></td>
                                  <td>  <?php echo $item->nome ?></td>
-                                 <td>  <?php echo $item->cpf ?></td>
-                                <!--  <td>  <?php echo $item->data ?></td>   --> 
-                                <td>
-                                    <a href="<?php echo site_url('/funcionario/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Editar</a>
-                                    <a href="<?php echo site_url('/funcionario/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Remover</a>
+                                 <td>  <?php echo $item->unidadeMedida ?></td>
+                                 <td>  <?php echo $item->tipo ?></td>
+                                 <td>  <?php echo $item->epoca ?></td>
+                                 <td>
+                                   
+                                    <a href="<?php echo site_url('/produto/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Remover</a>
                                  </td>
                               </tr>
                            <?php endforeach ?>
@@ -46,9 +49,6 @@ $this->load->view('Menu');
                <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
             <?php endif; ?>
          </div>
-      </div>
-      <div class="text-right">
-         <a href="<?php echo site_url('funcionario?status=inativo') ?>">Ver itens removidos</a>
       </div>
    </body>
    </html>

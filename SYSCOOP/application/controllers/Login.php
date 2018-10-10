@@ -10,34 +10,28 @@ class Login extends CI_Controller {
 
     function index() {
 
-        // VALIDATION RULES
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cpf', 'CPF', 'required');
         $this->form_validation->set_rules('senha', 'Senha', 'required');
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
-
-        // MODELO MEMBERSHIP
-        $this->load->model('Associacao_model');
-        $query = $this->Associacao_model->validate();
-
         if ($this->form_validation->run() == FALSE) {
 
             $this->load->view('Login_view');
         } else {
- 
-            if ($query) { // VERIFICA LOGIN E SENHA
-                $data = array(
-                     
-                    'cpf' => $this->input->post('cpf'),
-                    'logged' => true
-                );
-                $this->session->set_userdata($data);
 
-                redirect('login/Area_restrita');
-            } else {
-                redirect($this->index());
+            $this->load->model('Funcionario_model');
+            $usuario = $this->Funcionario_model->login($this->form_validation->set_value('cpf'), $this->form_validation->set_value('senha'));
+            if(!$usuario){
+                redirect('login');
             }
+
+            $data = array(
+                'cpf' => $this->input->post('cpf'),
+            );
+            $this->session->set_userdata($data);
+
+            redirect('pagina');
         }
     }
 }

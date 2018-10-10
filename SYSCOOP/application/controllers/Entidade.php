@@ -28,11 +28,15 @@ class Entidade extends CI_Controller {
 
 	public function editar($id){
 		
-		$data['dados_entidade'] = $this->Entidade_model->editar($id);
-
-		$this->load->view('EntidadeEdita', $data);
+		$data = [];
+		$entidade = $this->Entidade_model->getById($id);
+		if(!$entidade){
+			show_404();
+		}
+		$data['entidade'] = $entidade;
+		$this->load->view('EntidadeLista', $data);
 	}
-	public function alterar(){
+	public function alterar($id){
 		
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
@@ -57,46 +61,17 @@ class Entidade extends CI_Controller {
 				'field' => 'representante',
 				'label' => 'Representante',
 				'rules' => 'trim|required|max_length[45]'
-			),
-			array(
-				'field' => 'cpfRepresentante',
-				'label' => 'CPF Representante',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
-				'field' => 'cep',
-				'label' => 'Cep',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
-				'field' => 'uf',
-				'label' => 'Uf',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
-				'field' => 'cidade',
-				'label' => 'Cidade',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
-				'field' => 'endereco',
-				'label' => 'Endereço',
-				'rules' => 'required|min_length[4]|max_length[45]'
-			),
-			array(
-				'field' => 'status',
-				'label' => 'Status',
-				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
-			$this->editar($this->input->post('id'));
+			$data['entidade'] = $entidade;
+			$data['formerror'] = validation_errors();
+			$this->load->view('EntidadeEdita', $data);
 		} else {
-			$data['id'] = $this->input->post('id');
+			
 			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
-			// $data['cnpj'] = $this->input->post('cep');
 			$data['telefone'] = $this->input->post('telefone');
 			$data['representante'] = $this->input->post('representante');
 			$data['cpfRepresentante'] = $this->input->post('cpfRepresentante');
@@ -107,7 +82,7 @@ class Entidade extends CI_Controller {
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Entidade_model->alterar($data)) {
-				redirect('Entidade');
+				redirect('entidade');
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -137,7 +112,7 @@ class Entidade extends CI_Controller {
 		}else{
 			$dados['formerror'] = 'Validação OK';
 			$this->Entidade_model->cadastrar();
-			redirect('Entidade');
+			redirect('entidade');
 		}
 
 		

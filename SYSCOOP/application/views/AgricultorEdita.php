@@ -3,51 +3,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<?php echo form_open('agricultor/alterar', 'id="form-pessoas"'); ?>
-<input type="hidden" name="id" value="<?php echo $dados_pessoa[0]->id; ?>"/>
-<label for="nome">CPF:<?php echo $dados_pessoa[0]->cpf?></label><br/>
+<?php echo form_open('agricultor/' .$agricultor->id. '/alterar', 'id="form-agricultor"'); ?>
+
+<label for="nome">CPF:<?php echo $agricultor->cpf?></label><br/>
 
 <label for="nome">Nome:</label><br/>
-<input type="text" name="nome" value="<?php echo $dados_pessoa[0]->nome; ?>"/>
+<input type="text" name="nome" value="<?php echo $agricultor->nome; ?>"/>
 <div class="error"><?php echo form_error('nome'); ?></div>
 
 <label for="telefone">Telefone:</label><br/>
-<input type="text" name="telefone" value="<?php echo $dados_pessoa[0]->telefone; ?>"/>
+<input type="text" name="telefone" value="<?php echo $agricultor->telefone; ?>"/>
 <div class="error"><?php echo form_error('telefone'); ?></div>
 
 <label for="email">Email:</label><br/>
-<input type="email" name="email" value="<?php echo $dados_pessoa[0]->email; ?>"/>
+<input type="email" name="email" value="<?php echo $agricultor->email; ?>"/>
 <div class="error"><?php echo form_error('email'); ?></div>
 
 <label for="uf">Uf:</label><br/>
-<input type="text" name="uf" value="<?php echo $dados_pessoa[0]->uf; ?>"/>
+<input type="text" name="uf" value="<?php echo $agricultor->uf; ?>"/>
 <div class="error"><?php echo form_error('uf'); ?></div>
 
 <label for="cep">CEP:</label><br/>
-<input type="text" name="cep" value="<?php echo $dados_pessoa[0]->cep; ?>"/>
+<input type="text" name="cep" value="<?php echo $agricultor->cep; ?>"/>
 <div class="error"><?php echo form_error('cep'); ?></div>
 
 <label for="cidade">Cidade:</label><br/>
-<input type="text" name="cidade" value="<?php echo $dados_pessoa[0]->cidade; ?>"/>
+<input type="text" name="cidade" value="<?php echo $agricultor->cidade; ?>"/>
 <div class="error"><?php echo form_error('cidade'); ?></div>
 
 <label for="endereco">Endereço:</label><br/>
-<input type="text" name="endereco" value="<?php echo $dados_pessoa[0]->endereco; ?>"/>
+<input type="text" name="endereco" value="<?php echo $agricultor->endereco; ?>"/>
 <div class="error"><?php echo form_error('endereco'); ?></div>
 
 <label for="dapNumero">DAP Numero:</label><br/>
-<input type="text" name="dapNumero" value="<?php echo $dados_pessoa[0]->dapNumero; ?>"/>
+<input type="text" name="dapNumero" value="<?php echo $agricultor->dapNumero; ?>"/>
 <div class="error"><?php echo form_error('dapNumero'); ?></div>
 
 <label for="dapValidade">DAP Validade:</label><br/>
-<input type="date" name="dapValidade" value="<?php echo $dados_pessoa[0]->dapValidade; ?>"/>
+<input type="date" name="dapValidade" value="<?php echo $agricultor->dapValidade; ?>"/>
 <div class="error"><?php echo form_error('dapValidade'); ?></div>
 
-<label for="status">Status:</label><br/>
+<label for="status">Status:</label>
 <select name="status" class="form-control">
-					<option><a for="nome"><?php echo $dados_pessoa[0]->status?></a><br/></option>				
-				</select>
-<div class="error"><?php echo form_error('status'); ?></div>
+	<option <?php echo $agricultor->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
+	<option <?php echo $agricultor->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
+</select>
 
 <input type="submit" name="alterar" value="Alterar" />
 <?php echo form_close(); ?>

@@ -35,4 +35,16 @@ class Produto_model extends CI_Model {
 
 		return reset($produto);
 	}
+	//----------------------------------------------------------------------------------
+		
+	public function getById($idProduto){
+
+		$produto = $this->db
+		->where('id', $idProduto)
+		->get('produtos')
+		->result();
+
+		return reset($produto);
+	}
+
 }

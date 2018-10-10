@@ -15,7 +15,7 @@ class Funcionario_model extends CI_Model {
 		$data['uf'] = $this->input->post('uf');
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
-		$data['senha'] = $this->input->post('senha');
+		$data['senha'] = password_hash($this->input->post('senha'),PASSWORD_DEFAULT);
 		$data['cooperativa'] = $this->input->post('cooperativa')? $this->input->post('cooperativa') : NULL;
 
 		return $this->db->insert('funcionarios',$data);
@@ -25,8 +25,10 @@ class Funcionario_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function listar(){
-
-		return $this->db->get('funcionarios')->result();
+		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+		return $this->db
+		->where('status',$status)
+		->get('funcionarios')->result();
 	}
 
 	public function getById($id){
@@ -40,24 +42,30 @@ class Funcionario_model extends CI_Model {
 	
 	//-----------------ALTERAR-----------------------------------------------------------------
 
-	public function editar($id) {
+	public function alterar($id,$data) {
+		if(isset($data['senha']) && !empty($data['senha'])){
+			$data['senha'] = password_hash($data['senha'],PASSWORD_DEFAULT);
+		}
 		$this->db->where('id', $id);
-		return $this->db->get('funcionarios')->result();
-	}
-	public function alterar($data) {
-		$this->db->where('id', $data['id']);
 		$this->db->set($data);
 		return $this->db->update('funcionarios');
 	}
-
-	//--------------------------Ativar/Inativar-----------------------------------
-
-	public function alterarLista($id) {
-		$this->db
-		->where('id', $id);
-		
-		return $this->db->update('funcionarios');
-	}
+	
 
 	//----------------------------------------------------------------------------------
+
+	public function login($cpf, $senha) {
+		$this->db->where('cpf', $cpf); 
+		$this->db->where('status', 'ativo');
+
+		$usuario = $this->db->get('funcionarios')->result();
+		$usuario = reset($usuario);
+		if(!$usuario){
+			return FALSE;
+		}
+        if(!password_verify($senha, $usuario->senha)){
+        	return FALSE;
+        }
+		return $usuario;
+	}
 }
