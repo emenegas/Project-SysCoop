@@ -46,24 +46,10 @@ class Cooperativa_model extends CI_Model {
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
-	public function editar($id) {
+	public function alterar($id,$data) {
+		
 		$this->db->where('id', $id);
-		return $this->db->get('cooperativas')->result();
-	}
-	public function alterar($data) {
-		$this->db->where('id', $data['id']);
 		$this->db->set($data);
 		return $this->db->update('cooperativas');
 	}
-
-	//--------------------------Ativar/Inativar---------------------------------
-
-	public function alterarLista($id) {
-		$this->db
-		->where('id', $id);
-		
-		return $this->db->update('cooperativas');
-	}
-
-	//----------------------------------------------------------------------------------
 }

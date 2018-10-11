@@ -149,7 +149,7 @@ class Funcionario extends CI_Controller {
 		if($this->form_validation->run()== FALSE):
 
 			$dados['formerror'] = validation_errors();
-			$this->load->view('funcionario', $dados);
+			$this->load->view('Funcionario', $dados);
 		else:
 			$dados['formerror'] = 'Validação OK';
 			$this->Funcionario_model->cadastrar();

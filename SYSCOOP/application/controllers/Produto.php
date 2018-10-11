@@ -19,6 +19,14 @@ class Produto extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
+	public function remover($idProduto){
+
+		$this->Produto_model->remover($idProduto);
+		redirect('ProdutosLista');
+	}
+
+	//----------------------------------------------------------------------------------
+
 	public function index(){
 		$dados=[
 			'produtos'=> $this->Produto_model->listar()
@@ -46,24 +54,24 @@ class Produto extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
 			array(
-				'field' => 'nomeFantasia',
-				'label' => 'Nome Fantasia',
+				'field' => 'nome',
+				'label' => 'Nome',
 				'rules' => 'required|min_length[4]|max_length[45]'
 			),
 			array(
-				'field' => 'email',
-				'label' => 'Email',
-				'rules' => 'required|valid_email|min_length[4]|max_length[45]'
+				'field' => 'unidadeMedida',
+				'label' => 'Unidade de Medida',
+				'rules' => 'required|min_length[4]|max_length[45]'
 			),
 			array(
-				'field' => 'telefone',
-				'label' => 'Telefone',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'field' => 'tipo',
+				'label' => 'Tipo',
+				'rules' => 'required|min_length[2]|max_length[45]'
 			),
 
 			array(
-				'field' => 'representante',
-				'label' => 'Representante',
+				'field' => 'epoca',
+				'label' => 'Epoca',
 				'rules' => 'trim|required|max_length[45]'
 			)
 		);
@@ -74,10 +82,10 @@ class Produto extends CI_Controller {
 			$this->load->view('ProdutoEdita', $data);
 		} else {
 			
-			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
-			$data['cnpj'] = $this->input->post('cep');
-			$data['telefone'] = $this->input->post('telefone');
-			$data['representante'] = $this->input->post('representante');
+			$data['nome'] = $this->input->post('nome');
+			$data['unidadeMedida'] = $this->input->post('unidadeMedida');
+			$data['tipo'] = $this->input->post('tipo');
+			$data['epoca'] = $this->input->post('epoca');
 			
 
 			if ($this->Produto_model->alterar($data)) {

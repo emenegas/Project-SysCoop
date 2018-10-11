@@ -66,4 +66,5 @@ $route['entidade/(:num)/alterar'] = 'entidade/alterar/$1';
 $route['funcionario/(:num)/editar'] = 'funcionario/editar/$1';
 $route['funcionario/(:num)/alterar'] = 'funcionario/alterar/$1';
 $route['produto/(:num)/remover'] = 'produto/remover/$1';
+$route['produto/(:num)/editar'] = 'produto/editar/$1';
 

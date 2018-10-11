@@ -29,22 +29,28 @@ class Produto_model extends CI_Model {
 	public function getById($id)
 	{
 		$produto = $this->db
-			->where('id', $id)
-			->get('produtos')
-			->result();
-
-		return reset($produto);
-	}
-	//----------------------------------------------------------------------------------
-		
-	public function getById($idProduto){
-
-		$produto = $this->db
-		->where('id', $idProduto)
+		->where('id', $id)
 		->get('produtos')
 		->result();
 
 		return reset($produto);
 	}
+	
+	//-----------------ALTERAR-----------------------------------------------------------------
 
+	public function alterar($id,$data) {
+		
+		$this->db->where('id', $id);
+		$this->db->set($data);
+		return $this->db->update('prodotos');
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function remover($idProduto){
+		$this->db
+		->where('id', $idProduto)
+		->delete('produtos');
+
+	}
 }

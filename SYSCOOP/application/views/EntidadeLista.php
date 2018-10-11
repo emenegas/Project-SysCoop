@@ -33,7 +33,7 @@ $this->load->view('Menu');
                                 <!--  <td>  <?php echo $item->data ?></td>   --> 
                                 <td>
                                     <a href="<?php echo site_url('/entidade/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
-                                    <a href="<?php echo site_url('/entidade/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Remover</a>
+                                   
                                  </td>
                               </tr>
                            <?php endforeach ?>

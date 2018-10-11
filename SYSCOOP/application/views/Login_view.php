@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Área Restrita</title>
+        <title>SYSCOOP</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css">
             body {background: #FFF; font-family: Verdana; font-size: 9pt; }
@@ -15,7 +15,7 @@
     </head>
     <body>
 
-        <h1>Tela de Login</h1>
+        <h1>Sistema interno SYSCOOP</h1>
         <div id="form_login">
             <?php echo validation_errors(); ?>
             <?php
