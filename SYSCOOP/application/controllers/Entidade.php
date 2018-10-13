@@ -15,7 +15,7 @@ class Entidade extends CI_Controller {
 		$dados = [
 			'entidades' => $this->Entidade_model->listar()
 		];
-		$this->load->view('EntidadeLista', $dados);
+		$this->load->view('EntidadesLista', $dados);
 	}
 
 	//----------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class Entidade extends CI_Controller {
 			show_404();
 		}
 		$data['entidade'] = $entidade;
-		$this->load->view('EntidadeLista', $data);
+		$this->load->view('EntidadeEdita', $data);
 	}
 	public function alterar($id){
 		
@@ -81,7 +81,7 @@ class Entidade extends CI_Controller {
 			$data['endereco'] = $this->input->post('endereco');
 			$data['status'] = $this->input->post('status');
 
-			if ($this->Entidade_model->alterar($data)) {
+			if ($this->Entidade_model->alterar($id,$data)) {
 				redirect('entidade');
 			} else {
 				log_message('error', 'Erro na alteração...');

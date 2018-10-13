@@ -67,9 +67,9 @@ class Itens_model extends CI_Model {
 	}
 	//----------------------------------------------------------------------------------
 
-	public function removerProjeto($idProjeto){
+	public function removerProjeto($id){
 		$this->db
-		->where('projeto', $idProjeto)
+		->where('projeto', $id)
 		->delete('itens_do_projeto');
 
 	}

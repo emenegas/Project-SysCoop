@@ -56,8 +56,10 @@ class Agricultor_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	public function listar(){
-
-		return $this->db->get('agricultores')->result();
+		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+		return $this->db
+		->where('status',$status)
+		->get('agricultores')->result();
 	}
 
 	//----------------------------------------------------------------------------------

@@ -11,10 +11,6 @@ $this->load->view('Menu');
 <input type="text" name="nomeFantasia" value="<?php echo $cooperativa->nomeFantasia; ?>"/>
 <div class="error"><?php echo form_error('nomeFantasia'); ?></div>
 
-<label for="presidente">Presidente:</label><br/>
-<input type="text" name="presidente" value="<?php echo $cooperativa->presidente; ?>"/>
-<div class="error"><?php echo form_error('presidente'); ?></div>
-
 <label for="responsavel">Responsavel:</label><br/>
 <input type="text" name="responsavel" value="<?php echo $cooperativa->responsavel; ?>"/>
 <div class="error"><?php echo form_error('responsavel'); ?></div>

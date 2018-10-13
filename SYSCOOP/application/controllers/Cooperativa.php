@@ -7,14 +7,14 @@ class Cooperativa extends CI_Controller {
 		parent:: __construct();
 		$this->load->helper('form');
 		$this->load->model('Cooperativa_model');
-		$this->load->model('cooperativa_model');
+		
 	}
 
 	//----------------------------------------------------------------------------------
 
 	public function novo(){
 		$dados=[
-			'cooperativas'=>$this->cooperativa_model->listar(),
+			
 			'cooperativas'=>$this->Cooperativa_model->listar()
 		];
 		$this->load->view('Cooperativa',$dados);
@@ -110,15 +110,14 @@ class Cooperativa extends CI_Controller {
 			$this->load->view('CooperativaEdita', $data);
 		} else {
 			
-			$data['nomeFantasia'] = $this->input->post('nome');
-			$data['endereco'] = $this->input->post('cpf');
-			// $data['presidente'] = $this->input->post('telefone');
-			$data['responsavel'] = $this->input->post('email');
-			$data['email'] = $this->input->post('uf');
-			$data['telefone'] = $this->input->post('cidade');
-			$data['cooperativa'] = $this->input->post('endereco');
-			$data['uf'] = $this->input->post('dapNumero');
-			$data['dapNumero'] = $this->input->post('dapValidade');
+			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
+			$data['endereco'] = $this->input->post('endereco');
+			$data['responsavel'] = $this->input->post('responsavel');
+			$data['email'] = $this->input->post('email');
+			$data['telefone'] = $this->input->post('telefone');
+			$data['cooperativa'] = $this->input->post('cooperativa');
+			$data['uf'] = $this->input->post('uf');
+			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
 			$data['status'] = $this->input->post('status');
 
@@ -137,7 +136,6 @@ class Cooperativa extends CI_Controller {
 		
 		$this->form_validation->set_rules('nomeFantasia', 'Nome Fantasia', 'trim|required');
 		$this->form_validation->set_rules('endereco',     'Endereço',      'trim|required');
-		// $this->form_validation->set_rules('presidente',   'Presidente',    'trim|required');
 		$this->form_validation->set_rules('responsavel',  'Responsável Legal',   'trim|required');
 		$this->form_validation->set_rules('email',        'Email',         'trim|required|valid_email');
 		$this->form_validation->set_rules('cnpj',         'CNPJ',          'trim|required');

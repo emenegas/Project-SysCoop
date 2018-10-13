@@ -12,7 +12,6 @@ class Projetopnae extends CI_Controller {
 		$this->load->model('Entidade_model');
 		$this->load->model('Itens_model');
 
-
 	}
 
 	//--------------------Listagem Total-----------------------------------------------
@@ -26,11 +25,11 @@ class Projetopnae extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function info($idProjeto){
+	public function info($id){
 		$dados=[
-			'idProjeto' => $idProjeto,
-			'projeto'=> $this->Projetopnae_model->getById($idProjeto),
-			'itens_do_projeto' => $this->Itens_model->getByProjeto($idProjeto)
+			'idProjeto' => $id,
+			'projeto'=> $this->Projetopnae_model->getById($id),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($id)
 		];
 		$this->load->view('ProjetoPnaeInfo', $dados);
 	}
@@ -49,12 +48,57 @@ class Projetopnae extends CI_Controller {
 	
 	//----------------------------------------------------------------------------------
 
-	public function remover($idProjeto){
-		$this->Itens_model->removerProjeto($idProjeto);
-		$this->Projetopnae_model->remover($idProjeto);
+	public function remover($id){
+		$this->Itens_model->removerProjeto($id);
+		$this->Projetopnae_model->remover($id);
 		redirect('projetopnae');
 	}	
-	
+
+	//----------------------------------------------------------------------------------
+
+	// public function editar($id){
+	// 	$data = [];
+	// 	$projeto = $this->Projetopnae_model->getById($id);
+	// 	if(!$projeto){
+	// 		show_404();
+	// 	}
+	// 	$data['projeto'] = $projeto;
+	// 	$this->load->view('ProjetoPnaeInfo', $data);
+	// }
+	public function alterar($id){
+		$data = [];
+		$projeto = $this->Projetopnae_model->getById($id);
+		if(!$projeto){
+			show_404();
+		}
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+		$validations = array(
+			array(
+				'field' => 'Status',
+				'label' => 'status',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			)
+			
+		);
+		$this->form_validation->set_rules($validations);
+		if ($this->form_validation->run() == FALSE) {
+			$data['projeto'] = $projeto;
+			$data['formerror'] = validation_errors();
+			
+			$this->load->view('ProjetoPnaeInfo', $data);
+		} else {
+
+			$data['status'] = $this->input->post('status');
+
+			
+			if ($this->Projetopnae_model->alterar($id,$data)) {
+				redirect('projetopnae');
+			} else {
+				log_message('error', 'Erro na alteração...');
+			}
+		}
+	}
 	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){

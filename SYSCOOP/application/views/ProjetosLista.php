@@ -12,6 +12,7 @@ $this->load->view('Menu');
             <table class= 'table table-hover'>
                <thead>
                   <tr id="title"><th colspan=3>Projetos <a style="width: 100px;" href="<?php echo site_url('projetopnae/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+                  <a style="width: 100px;" href="<?php echo site_url('projeto?status=inativo') ?>" class="btn btn-outline-info">Concluídos</a> 
 
                   </th></tr>
                </thead>
@@ -32,14 +33,14 @@ $this->load->view('Menu');
                                  <td>  <?php echo $item->entNomeFantasia ?></td>
                                  <td> <?php echo $item->data ?></td>
                                  <td>
-                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
                                     <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Visualizar</a>
-                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
+                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
+                                    <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" onclick="return confirm('Deseja excluir esse projeto ?')" >Excluir</a>
                                    
                                  </td>
                               </tr>
                            <?php endforeach ?>
-                        
+                     </tr>   
                   </tbody>
                </table>
             </div>

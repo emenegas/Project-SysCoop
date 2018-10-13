@@ -30,17 +30,19 @@ class Cooperativa_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function listar(){
-
-		return $this->db->get('cooperativas')->result();
+		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+		return $this->db
+		->where('status',$status)
+		->get('cooperativas')->result();
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
 		$cooperativa = $this->db
-			->where('id', $id)
-			->get('cooperativas')
-			->result();
+		->where('id', $id)
+		->get('cooperativas')
+		->result();
 
 		return reset($cooperativa);
 	}

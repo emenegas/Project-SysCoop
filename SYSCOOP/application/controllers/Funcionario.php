@@ -90,7 +90,7 @@ class Funcionario extends CI_Controller {
 			array(
 				'field' => 'senha',
 				'label' => 'Senha',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'min_length[4]|max_length[45]'
 			),
 			array(
 				'field' => 'cooperativa',
@@ -153,7 +153,7 @@ class Funcionario extends CI_Controller {
 		else:
 			$dados['formerror'] = 'Validação OK';
 			$this->Funcionario_model->cadastrar();
-			redirect('Funcionario');
+			redirect('funcionario');
 		endif;
 		
 

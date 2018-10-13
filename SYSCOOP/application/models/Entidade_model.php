@@ -24,19 +24,21 @@ class Entidade_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	public function listar(){
-
-		return $this->db->get('entidadesexecutoras')->result();
+		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+		return $this->db
+		->where('status',$status)
+		->get('entidadesexecutoras')->result();
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
-		$entidadesexecutoras = $this->db
-			->where('id', $id)
-			->get('entidadesexecutoras')
-			->result();
+		$entidade = $this->db
+		->where('id', $id)
+		->get('entidadesexecutoras')
+		->result();
 
-		return reset($entidadesexecutoras);
+		return reset($entidade);
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
@@ -47,15 +49,5 @@ class Entidade_model extends CI_Model {
 		return $this->db->update('entidadesexecutoras');
 	}
 
-	//--------------------------Ativar/Inativar-----------------------------------
-
-	public function alterarLista($id) {
-		$this->db
-		->where('id', $id);
-		
-		return $this->db->update('entidadesexecutoras');
-	}
-
-	//----------------------------------------------------------------------------------
 
 }

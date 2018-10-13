@@ -42,12 +42,12 @@ class Produto_model extends CI_Model {
 		
 		$this->db->where('id', $id);
 		$this->db->set($data);
-		return $this->db->update('prodotos');
+		return $this->db->update('produtos');
 	}
 
 	//----------------------------------------------------------------------------------
 
-	public function remover($idProduto){
+	public function remover($id){
 		$this->db
 		->where('id', $idProduto)
 		->delete('produtos');

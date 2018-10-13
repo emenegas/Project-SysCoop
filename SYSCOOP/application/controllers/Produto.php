@@ -19,10 +19,10 @@ class Produto extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function remover($idProduto){
+	public function remover($id){
 
-		$this->Produto_model->remover($idProduto);
-		redirect('ProdutosLista');
+		$this->Produto_model->remover($id);
+		redirect('produtoslista');
 	}
 
 	//----------------------------------------------------------------------------------
@@ -38,15 +38,17 @@ class Produto extends CI_Controller {
 	public function editar($id){
 		$data = [];
 		$produto = $this->Produto_model->getById($id);
+
 		if(!$produto){
 			show_404();
 		}
 		$data['produto'] = $produto;
-		$this->load->view('ProdutosLista', $data);
+		$this->load->view('ProdutoEdita', $data);
 	}
 	public function alterar($id){
 		$data = [];
 		$produto = $this->Produto_model->getById($id);
+
 		if(!$produto){
 			show_404();
 		}
@@ -56,17 +58,17 @@ class Produto extends CI_Controller {
 			array(
 				'field' => 'nome',
 				'label' => 'Nome',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
 				'field' => 'unidadeMedida',
 				'label' => 'Unidade de Medida',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
 				'field' => 'tipo',
 				'label' => 'Tipo',
-				'rules' => 'required|min_length[2]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 
 			array(
@@ -88,14 +90,13 @@ class Produto extends CI_Controller {
 			$data['epoca'] = $this->input->post('epoca');
 			
 
-			if ($this->Produto_model->alterar($data)) {
+			if ($this->Produto_model->alterar($id,$data)) {
 				redirect('produto');
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
 		}
 	}
-
 
 	//----------------------------------------------------------------------------------
 

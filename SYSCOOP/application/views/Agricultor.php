@@ -73,7 +73,7 @@ $this->load->view('Menu');
 				{
 					echo '<input type="checkbox" name="produtos[]" value="' .$produto->id.'">' .$produto->nome;
 				}?>
-				<!-- <a href="<?php echo site_url('produto')?>">Adicionar</a>      -->  
+				
 			</div>
 			
 			<div class="button">

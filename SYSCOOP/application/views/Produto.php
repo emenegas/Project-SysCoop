@@ -44,8 +44,7 @@
  				<button type="submit" class="btn btn-info">Cadastrar</button>
 
  			</div>
- 			<!-- <button type="submit" name="idAgricultor" value="<?php echo $item->id ?>" formaction="<?php echo site_url('/agricultor/'.$idAgricultor.'/novoP') ?>" class="btn btn-outline-danger" >Continuar</button>
- 			-->
+
  			<?php if(isset($formerror)): ?>
  				<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
  			<?php endif; ?>

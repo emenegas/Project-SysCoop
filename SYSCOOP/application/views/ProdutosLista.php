@@ -36,7 +36,7 @@ $this->load->view('Menu');
                                  <td>  <?php echo $item->epoca ?></td>
                                  <td>
                                    
-                                    <a href="<?php echo site_url('/produto/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a>
+                                    <!-- <a href="<?php echo site_url('/produto/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" >Excluir</a> -->
                                     <a href="<?php echo site_url('/produto/'.$item->id.'/editar') ?>" class="btn btn-outline-info" >Editar</a>
                                  </td>
                               </tr>

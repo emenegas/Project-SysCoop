@@ -12,6 +12,7 @@ $this->load->view('Menu');
             <table class= 'table table-hover'>
                <thead>
                   <tr id="title"><th colspan=3>Enditades <a style="width: 100px;" href="<?php echo site_url('entidade/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+                <a style="width: 100px;" href="<?php echo site_url('funcionario?status=inativo') ?>" class="btn btn-outline-danger">Inativos</a> 
 
                   </th></tr>
                </thead>
@@ -30,7 +31,7 @@ $this->load->view('Menu');
                                  <td><?php echo $item->id ?></td>
                                  <td>  <?php echo $item->nomeFantasia ?></td>
                                  <td>  <?php echo $item->cnpj ?></td>
-                                <!--  <td>  <?php echo $item->data ?></td>   --> 
+                                   
                                 <td>
                                     <a href="<?php echo site_url('/entidade/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
                                    

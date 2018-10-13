@@ -4,7 +4,7 @@ $this->load->view('Menu');
 ?>
 
 <div>
-<?php echo form_open('entidade/' .$entidade->id. '/alterar', 'id="form-entidade"'); ?>
+	<?php echo form_open('entidade/' .$entidade->id. '/alterar', 'id="form-entidade"'); ?>
 	<label for="nome">CNPJ:<?php echo $entidade->cnpj?></label><br/>
 
 	<div>
@@ -52,12 +52,12 @@ $this->load->view('Menu');
 		<?php echo form_error('endereco'); ?>
 		<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo $entidade->endereco; ?>">
 	</div>
-
 	<label for="status">Status:</label>
-		<select name="status" class="form-control">
-			<option <?php echo $entidade->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
-			<option <?php echo $entidade->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
-		</select>
+	<select name="status" class="form-control">
+		<option <?php echo $funcionario->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
+		<option <?php echo $funcionario->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
+	</select>
+	<div class="error"><?php echo form_error('status'); ?></div>
 
 	<input type="submit" name="alterar" value="Alterar" />
 	<?php echo form_close(); ?>

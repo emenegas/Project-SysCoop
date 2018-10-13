@@ -128,7 +128,7 @@ class Agricultor extends CI_Controller {
 			$data['status'] = $this->input->post('status');
 
 			
-			if ($this->Agricultor_model->alterar($data)) {
+			if ($this->Agricultor_model->alterar($id,$data)) {
 				redirect('agricultor');
 			} else {
 				log_message('error', 'Erro na alteração...');

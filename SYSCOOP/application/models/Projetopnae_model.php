@@ -57,10 +57,9 @@ class Projetopnae_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	
-	public function getById($idProjeto){
-
+	public function getById($id){
 		$projeto = $this->db
-		->where('id', $idProjeto)
+		->where('id', $id)
 		->get('projetos')
 		->result();
 
@@ -70,22 +69,35 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function listar(){
-		$projeto = $this->db
-		->get('projetos')
-		->result();
+		// $projeto = $this->db
+		// ->get('projetos')
+		// ->result();
 
-		return ($projeto);
+		// return ($projeto);
+
+		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+		return $this->db
+		->where('status',$status)
+		->get('projetos')->result();
 	}
 
 	//----------------------------------------------------------------------------------
 	
-	public function remover($idProjeto){
+	public function remover($id){
 		$this->db
-		->where('id', $idProjeto)
+		->where('id', $id)
 		->delete('projetos');
 
 	}
 
+	//-----------------ALTERAR-----------------------------------------------------------------
+
+	public function alterar($id,$data) {
+		
+		$this->db->where('id', $id);
+		$this->db->set($data);
+		return $this->db->update('projetos');
+	}
 	//----------------------------------------------------------------------------------
 	
 	
