@@ -29,7 +29,7 @@ class Projetopnae extends CI_Controller {
 		$dados=[
 			'idProjeto' => $id,
 			'projeto'=> $this->Projetopnae_model->getById($id),
-			'itens_do_projeto' => $this->Itens_model->getByProjeto($id)
+			'itens' => $this->Itens_model->getByProjeto($id)
 		];
 		$this->load->view('ProjetoPnaeInfo', $dados);
 	}

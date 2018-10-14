@@ -46,7 +46,7 @@ class Itens_model extends CI_Model {
 		->get('itens_do_projeto')
 		->result();
 
-		return ($itens);
+		return reset($itens);
 	}
 
 	//----------------------------------------------------------------------------------
