@@ -7,6 +7,8 @@ class Cooperativa extends CI_Controller {
 		parent:: __construct();
 		$this->load->helper('form');
 		$this->load->model('Cooperativa_model');
+		$this->load->model('Funcionario_model');
+
 		
 	}
 
@@ -14,7 +16,7 @@ class Cooperativa extends CI_Controller {
 
 	public function novo(){
 		$dados=[
-			
+			'funcionarios'=>$this->Funcionario_model->listar(),
 			'cooperativas'=>$this->Cooperativa_model->listar()
 		];
 		$this->load->view('Cooperativa',$dados);
@@ -64,7 +66,7 @@ class Cooperativa extends CI_Controller {
 			array(
 				'field' => 'responsavel',
 				'label' => 'Responsável Legal',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 
 			array(
@@ -80,12 +82,12 @@ class Cooperativa extends CI_Controller {
 			array(
 				'field' => 'cooperativa',
 				'label' => 'Cooperativa',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
 				'field' => 'uf',
 				'label' => 'Uf',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
 				'field' => 'dapValidade',
@@ -121,7 +123,7 @@ class Cooperativa extends CI_Controller {
 			$data['dapValidade'] = $this->input->post('dapValidade');
 			$data['status'] = $this->input->post('status');
 
-			if ($this->Cooperativa_model->alterar($data)) {
+			if ($this->Cooperativa_model->alterar($id,$data)) {
 				redirect('cooperativa');
 			} else {
 				log_message('error', 'Erro na alteração...');

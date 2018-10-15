@@ -19,9 +19,13 @@ class Projetopnae_model extends CI_Model {
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');
 		$data['cooperativa']             = $cooperativa->id;
 		$data['coopNomeFantasia']        = $cooperativa->nomeFantasia;
-		$data['coopResponsavel']          = $cooperativa->responsavel;
-		$data['coopNomeResponsavel']         = $funcionario->nome;
-		$data['coopCpfResponsavel']         = $funcionario->cpf;
+		$data['coopRepresentante']          = $cooperativa->responsavel;
+		$data['coopNomeRepresentante']         = $funcionario->nome;
+		$data['coopCpfRepresentante']         = $funcionario->cpf;
+		$data['coopTelefoneRepresentante']         = $funcionario->telefone;
+		$data['coopEnderecoRepresentante']         = $funcionario->endereco;
+		$data['coopCidadeRepresentante']         = $funcionario->cidade;
+		$data['coopUfRepresentante']         = $funcionario->uf;
 		$data['coopEmail']               = $cooperativa->email;
 		$data['coopCnpj']                = $cooperativa->cnpj;
 		$data['coopTelefone']            = $cooperativa->telefone;
@@ -45,8 +49,10 @@ class Projetopnae_model extends CI_Model {
 		$data['entUf']                   = $entidade->uf;
 		$data['entCidade']               = $entidade->cidade;
 		$data['entEndereco']             = $entidade->endereco;
-		// $data['totalProjeto'] 			= $
+		
 		$data['data'] = date('Y-m-d H:i:s');
+		$data['dataEncerramento'] = $this->input->post('dataEncerramento');
+
 		try{
 			$this->db->insert('projetos',$data);
 			return $this->db->insert_id();

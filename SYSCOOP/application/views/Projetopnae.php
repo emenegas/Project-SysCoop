@@ -21,6 +21,11 @@ $this->load->view('Menu')
 				<input type="file" name="arquivoEdital" id="arquivoEdital">
 			</div>
 			<div>
+				<label form="dataEncerramento">Data Encerramento:</label>
+				<?php echo form_error('dataEncerramento'); ?>
+				<input type="date" name="dataEncerramento" id="dataEncerramento">
+			</div>
+			<div>
 				<label for="cooperativa">Cooperativa:</label>
 				<?php echo form_error('cooperativa'); ?>
 				<input list="cooperativa" name="cooperativa" class="form-control">

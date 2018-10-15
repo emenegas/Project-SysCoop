@@ -30,16 +30,6 @@ $this->load->view('Menu');
 					<?php endforeach ?>
 				</datalist>
 			</div>
-			<!-- <div>
-				<label form="presidente">Presidente</label>
-				<?php echo form_error('presidente'); ?>
-				<input type="text" name="presidente" id="presidente" class="form-control" value="<?php echo set_value('presidente')?>">
-			</div>
-			<div>
-				<label form="responsavel">Responsavel</label>
-				<?php echo form_error('responsavel'); ?>
-				<input type="text" name="responsavel" id="responsavel" class="form-control" value="<?php echo set_value('responsavel')?>">
-			</div> -->
 			<div>
 				<label form="email">Email</label>
 				<?php echo form_error('email'); ?>

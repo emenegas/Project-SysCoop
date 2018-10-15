@@ -78,6 +78,11 @@ class Projetopnae extends CI_Controller {
 				'field' => 'Status',
 				'label' => 'status',
 				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'Data Encerramento',
+				'label' => 'dataEncerramento',
+				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 			
 		);
@@ -108,6 +113,7 @@ class Projetopnae extends CI_Controller {
 		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim|required');
 		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
+		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
 		
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){

@@ -10,10 +10,12 @@ class Itens_model extends CI_Model {
 		$this->load->model('Produto_model');
 		$this->load->model('Agricultor_model');
 		$this->load->model('Projetopnae_model');
+
 		
 		$produto = $this->Produto_model->getById($this->input->post('produto'));
 		$agricultor = $this->Agricultor_model->getById($this->input->post('agricultor'));
-		
+		$projeto = $this->Projetopnae_model->getById($idProjeto);
+
 
 		$data = [];
 		$data['projeto']             = $idProjeto;
@@ -28,9 +30,13 @@ class Itens_model extends CI_Model {
 		$data['precoUnidade'] 		= str_replace(',','.',$this->input->post('precoUnidade'));
 		$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  
 		$data['data'] 				= date('Y-m-d H:i:s');
+		$total['totalProjeto1']	= $projeto->totalProjeto;
+		$total2['totalProjeto'] = $total['totalProjeto1'] * $data['totalItem'];  
 		try{
 			$this->db->insert('itens_do_projeto',$data);
 			return $this->db->insert_id();
+			$this->db->insert('projetos', $total2);
+			
 		}catch(Exception $e){
 			return false;
 		}
@@ -46,7 +52,7 @@ class Itens_model extends CI_Model {
 		->get('itens_do_projeto')
 		->result();
 
-		return reset($itens);
+		return ($itens);
 	}
 
 	//----------------------------------------------------------------------------------

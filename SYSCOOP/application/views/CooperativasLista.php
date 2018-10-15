@@ -12,7 +12,7 @@ $this->load->view('Menu');
             <table class= 'table table-hover'>
                <thead>
                   <tr id="title"><th colspan=3>Cooperativas <a style="width: 100px;" href="<?php echo site_url('cooperativa/novo') ?>" class="btn btn-outline-info">NOVO</a> 
-
+<a style="width: 100px;" href="<?php echo site_url('cooperativa?status=inativo') ?>" t" class="btn btn-outline-danger">Inativos</a> 
                   </th></tr>
                </thead>
 
