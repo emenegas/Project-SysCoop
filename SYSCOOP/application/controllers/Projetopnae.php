@@ -26,12 +26,20 @@ class Projetopnae extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function info($id){
-		$dados=[
-			'idProjeto' => $id,
-			'projeto'=> $this->Projetopnae_model->getById($id),
-			'itens' => $this->Itens_model->getByProjeto($id)
-		];
-		$this->load->view('ProjetoPnaeInfo', $dados);
+		$data = [];
+		$projeto = $this->Projetopnae_model->getById($id);
+		$item = $this->Itens_model->getByProjeto2($id);
+
+		if(!$projeto && !$item){
+			show_404();
+		}
+		
+		$data['projeto'] = $projeto;
+		$data['item'] = $item;
+		$data['idProjeto'] = $id;
+
+		$this->load->view('ProjetoPnaeInfo', $data);
+		
 	}
 
 	//----------------------------------------------------------------------------------
@@ -56,15 +64,6 @@ class Projetopnae extends CI_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	// public function editar($id){
-	// 	$data = [];
-	// 	$projeto = $this->Projetopnae_model->getById($id);
-	// 	if(!$projeto){
-	// 		show_404();
-	// 	}
-	// 	$data['projeto'] = $projeto;
-	// 	$this->load->view('ProjetoPnaeInfo', $data);
-	// }
 	public function alterar($id){
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
@@ -77,26 +76,24 @@ class Projetopnae extends CI_Controller {
 			array(
 				'field' => 'Status',
 				'label' => 'status',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'max_length[45]'
 			),
 			array(
 				'field' => 'Data Encerramento',
 				'label' => 'dataEncerramento',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'max_length[45]' /*erros */
 			)
-			
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
 			$data['projeto'] = $projeto;
 			$data['formerror'] = validation_errors();
-			
 			$this->load->view('ProjetoPnaeInfo', $data);
 		} else {
 
 			$data['status'] = $this->input->post('status');
-
-			
+			$data['dataEncerramento'] = $this->input->post('dataEncerramento');
+		
 			if ($this->Projetopnae_model->alterar($id,$data)) {
 				redirect('projetopnae');
 			} else {

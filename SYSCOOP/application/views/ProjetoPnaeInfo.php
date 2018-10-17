@@ -4,17 +4,18 @@ $this->load->view('Menu');
 ?>
 
 <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
-
-<label for="status">Situação:</label>
-<select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
- <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>           
- <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>           
-</select>
+<div>
+  <label for="status">Situação:</label>
+  <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
+   <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>           
+   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>           
+ </select>
+</div>
 <div class="error"><?php echo form_error('status'); ?></div>  
 <div>
   <label form="dataEncerramento">Data Encerramento:</label>
   <?php echo form_error('dataEncerramento'); ?>
-  <input type="date" name="dataEncerramento" id="dataEncerramento" value="<?php echo $projeto->dataEncerramento; ?>">
+  <input type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>">
 </div>
 <input type="submit" name="alterar" value="Alterar" />
 <?php echo form_close(); ?>
@@ -24,7 +25,7 @@ $this->load->view('Menu');
   <div id='table'>
    <table class= 'table table-hover' border="1" width="100%">
     <thead>
-     <tr id="title"><th colspan=3>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às: </th></tr>
+     <tr id="title"><th colspan=3>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às: <?php echo $projeto->dataEncerramento ?> </th></tr>
      <tr> <th colspan=3>PROJETO DE VENDA DE GÊNEROS ALIMENTÍCIOS DA AGRICULTURA FAMILIAR PARA ALIMENTAÇÃO ESCOLAR</th></tr>
      <tr> <th colspan=3>Identificação da proposta de atendimento ao edital/chamada pública n°<?php echo $projeto->nomeEdital?></th></tr>
      <tr> <th colspan=3>I - IDENTIFICAÇÃO DOS FORNECEDORES</th></tr>
@@ -203,18 +204,18 @@ $this->load->view('Menu');
       <tr>
        <tr>
         <tr>
-         <td>  <?php echo $itens->dapAgricultor ?></td>
-         <td>  <?php echo $itens->nomeAgricultor ?></td>
-         <td>  <?php echo $itens->cpf ?></td>
-         <td>  <?php echo $itens->nomeProduto ?></td>
-         <td>  <?php echo $itens->unidadeMedida ?></td>
-         <td>  <?php echo $itens->quantidade ?></td>
-         <td>  <?php echo $itens->precoUnidade ?></td>
-         <td>  <?php echo $itens->totalItem ?></td>
-       </tr>
-     </tr>
-   </tr>
- </tr>
+          <td> <?php echo $item->dapAgricultor ?></td>
+          <td>  <?php echo $item->nomeAgricultor ?></td>
+          <td>  <?php echo $item->cpf ?></td>
+          <td>  <?php echo $item->nomeProduto ?></td>
+          <td>  <?php echo $item->unidadeMedida ?></td>
+          <td>  <?php echo $item->quantidade ?></td>
+          <td>  <?php echo $item->precoUnidade ?></td>
+          <td>  <?php echo $item->totalItem ?></td>
+        </tr>
+      </tr>
+    </tr>
+  </tr>
 </tbody>
 </table>
 </div>

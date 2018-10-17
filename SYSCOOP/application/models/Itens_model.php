@@ -31,11 +31,16 @@ class Itens_model extends CI_Model {
 		$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  
 		$data['data'] 				= date('Y-m-d H:i:s');
 		$total['totalProjeto1']	= $projeto->totalProjeto;
-		$total2['totalProjeto'] = $total['totalProjeto1'] * $data['totalItem'];  
+		$total2['totalProjeto'] = $total['totalProjeto1'] + $data['totalItem'];  
+		
 		try{
 			$this->db->insert('itens_do_projeto',$data);
+			$this->db
+			->where('id', $idProjeto)
+			->update('projetos', $total2);
+
 			return $this->db->insert_id();
-			$this->db->insert('projetos', $total2);
+			
 			
 		}catch(Exception $e){
 			return false;
@@ -43,7 +48,6 @@ class Itens_model extends CI_Model {
 	}
 
 	//----------------------------------------------------------------------------------
-	
 
 	public function getByProjeto($idProjeto)
 	{
@@ -53,6 +57,18 @@ class Itens_model extends CI_Model {
 		->result();
 
 		return ($itens);
+	}
+
+	//-----------------------------CÓPIA-----------------------------------------------------
+
+	public function getByProjeto2($id)
+	{
+		$item = $this->db
+		->where('projeto', $id)
+		->get('itens_do_projeto')
+		->result();
+
+		return reset($item);
 	}
 
 	//----------------------------------------------------------------------------------
