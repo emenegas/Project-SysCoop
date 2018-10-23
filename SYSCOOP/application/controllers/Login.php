@@ -31,7 +31,7 @@ class Login extends CI_Controller {
             );
             $this->session->set_userdata($data);
 
-            redirect('pagina');
+            redirect('projetopnae');
         }
     }
 }

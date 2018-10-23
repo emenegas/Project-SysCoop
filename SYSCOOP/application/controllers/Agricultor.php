@@ -96,12 +96,12 @@ class Agricultor extends CI_Controller {
 			array(
 				'field' => 'dapNumero',
 				'label' => 'DAP Numero',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'min_length[4]|max_length[45]'
 			),
 			array(
 				'field' => 'dapValidade',
 				'label' => 'DAP Validade',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'min_length[4]|max_length[45]'
 			),
 			array(
 				'field' => 'status',
@@ -111,7 +111,7 @@ class Agricultor extends CI_Controller {
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
-			$data['funcionario'] = $funcionario;
+			$data['agricultor'] = $agricultor;
 			$data['formerror'] = validation_errors();
 			$this->load->view('AgricultorEdita', $data);
 		} else {
@@ -125,6 +125,7 @@ class Agricultor extends CI_Controller {
 			$data['endereco'] = $this->input->post('endereco');
 			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
+			// $data['dapLimite'] = $this->input->post('dapLimite');
 			$data['status'] = $this->input->post('status');
 
 			
@@ -164,7 +165,7 @@ class Agricultor extends CI_Controller {
 			$dados['formerror'] = 'Validação OK';
 			
 			$this->Agricultor_model->cadastrar();
-			redirect('Agricultor');
+			redirect('agricultor');
 		endif;
 
 	}

@@ -73,6 +73,16 @@ class Agricultor_model extends CI_Model {
 		return reset($agricultor);
 	}
 	
+	//----------------------------------------------------------------------------------
+	
+	public function getByProduto($id){
+		$agricultor = $this->db
+		->where('id', $id)
+		->get('agricultores')
+		->result();
+
+		return reset($agricultor);
+	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {

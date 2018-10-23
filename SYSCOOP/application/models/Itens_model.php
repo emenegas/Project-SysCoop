@@ -105,4 +105,50 @@ class Itens_model extends CI_Model {
 		->update('itens_do_projeto');
 
 	}
+
+	//----------------------------------------------------------------------------------
+
+	public function alterarLimite($id,$totalItem){
+		
+		$this->load->model('Agricultor_model');
+
+		$dados = $this->Agricultor_model->getById($id);
+
+		if($totalItem <= 0){
+			$limiteAtualizado = $dados->dapLimite - $totalItem;
+
+			$this->db
+			->where('id', $id)
+			->set('dapLimite', $limiteAtualizado)
+			->update('agricultores');
+		}
+		// print_r($this->db->last_query());
+		// exit;
+
+		
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function getByAgricultor($id){
+		$dados =  $this->db
+		->where('projeto', $id)
+		->get('itens_do_projeto')
+		->result_array();		
+		return ($dados);
+	}
+
+//----------------------------------------------------------------------------------
+
+	public function getAgricultorNulo($id){
+		$dadosNull =  $this->db
+		->where('projeto', $id)
+		->where('agricultor',NULL)
+
+		->get('itens_do_projeto')
+		->result_array();
+		// print_r($this->db->last_query());
+		// exit;		
+		return ($dadosNull);
+	}
 }

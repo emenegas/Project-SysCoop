@@ -65,6 +65,7 @@ class Projetopnae extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function alterar($id){
+
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
 		if(!$projeto){
@@ -91,10 +92,31 @@ class Projetopnae extends CI_Controller {
 			$this->load->view('ProjetoPnaeInfo', $data);
 		} else {
 
-			$data['status'] = $this->input->post('status');
-			$data['dataEncerramento'] = $this->input->post('dataEncerramento');
-		
-			if ($this->Projetopnae_model->alterar($id,$data)) {
+			if($this->input->post('status') == 'inativo'){
+				$data['status'] = $this->input->post('status');
+
+				$NULO = $this->Itens_model->getAgricultorNulo($id);
+				
+				if(!$NULO){
+					
+					$itensPorAgricultor = $this->Itens_model->getByAgricultor($id);
+
+					foreach ($itensPorAgricultor as $item) {
+
+						$this->Itens_model->alterarLimite($item['agricultor'],$item['totalItem']);
+					}	
+					$this->Projetopnae_model->alterar($id,$data);
+					
+
+				}else{
+					log_message('error', 'Agricultor Nulo...');
+				}
+			}
+
+
+			$dataEnc['dataEncerramento'] = $this->input->post('dataEncerramento');
+
+			if ($this->Projetopnae_model->alterar($id,$dataEnc)) {
 				redirect('projetopnae');
 			} else {
 				log_message('error', 'Erro na alteração...');
@@ -111,7 +133,7 @@ class Projetopnae extends CI_Controller {
 		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
-		
+
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
@@ -140,7 +162,7 @@ class Projetopnae extends CI_Controller {
 	//----------------------------------------------------------------------------------
 
 
-	
-	
-	
+
+
+
 }

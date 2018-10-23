@@ -8,8 +8,6 @@ class Cooperativa extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Funcionario_model');
-
-		
 	}
 
 	//----------------------------------------------------------------------------------
@@ -121,6 +119,7 @@ class Cooperativa extends CI_Controller {
 			$data['uf'] = $this->input->post('uf');
 			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
+			// $data['dapLimite'] = $this->input->post('dapLimite');
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Cooperativa_model->alterar($id,$data)) {
@@ -132,6 +131,7 @@ class Cooperativa extends CI_Controller {
 	}
 
 	//----------------------------------------------------------------------------------
+	
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
@@ -156,8 +156,4 @@ class Cooperativa extends CI_Controller {
 			redirect('cooperativa');
 		}	
 	}
-
-	//----------------------------------------------------------------------------------
-
-	
 }
