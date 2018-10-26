@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Funcionario extends CI_Controller {
+class Funcionario extends MY_Controller {
 
 	function __construct(){
 		parent:: __construct();

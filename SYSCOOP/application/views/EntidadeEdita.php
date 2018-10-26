@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div>
+
+<div style="width:50%; float:left;">
 	<?php echo form_open('entidade/' .$entidade->id. '/alterar', 'id="form-entidade"'); ?>
-	<label for="nome">CNPJ:<?php echo $entidade->cnpj?></label><br/>
+	<label for="nome">CNPJ: <?php echo $entidade->cnpj?></label><br/>
 
 	<div>
 		<label form="nomeFantasia">Nome Fantasia</label>
@@ -32,6 +33,8 @@ $this->load->view('Menu');
 		<?php echo form_error('cpfRepresentante'); ?>
 		<input type="text" name="cpfRepresentante" id="cpfRepresentante" class="form-control" value="<?php echo $entidade->cpfRepresentante; ?>">
 	</div>
+</div>
+<div style="width:50%; float:right;">
 	<div>
 		<label form="cep">CEP</label>
 		<?php echo form_error('cep'); ?>
@@ -54,11 +57,13 @@ $this->load->view('Menu');
 	</div>
 	<label for="status">Status:</label>
 	<select name="status" class="form-control">
-		<option <?php echo $funcionario->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
-		<option <?php echo $funcionario->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
+		<option <?php echo $entidade->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
+		<option <?php echo $entidade->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
 	</select>
 	<div class="error"><?php echo form_error('status'); ?></div>
 
-	<input type="submit" name="alterar" value="Alterar" />
+	<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info" />
+	<a style="width: 100px;" href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
+
 	<?php echo form_close(); ?>
 </div>

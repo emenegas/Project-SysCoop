@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="<?php echo site_url('pagina')?>">SysCoop</a>
+  
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      </li>
 
      <li class="nav-item dropdown">
-       <a class="navbar-brand" href="<?php echo site_url('entidade')?>">Entidade</a>       
+       <a class="navbar-brand" href="<?php echo site_url('entidade')?>">Entidade Executora</a>       
      </li>
 
      <li class="nav-item dropdown">
@@ -48,9 +48,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
     </li>
 
+  
+       
     <li class="nav-item">
      <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
    </li>
+   <li class="nav-item dropdown">
+       <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Ajuda</a>       
+     </li>
+   <li class="nav-item dropdown">
+       <a class="navbar-brand" href="<?php echo site_url('login/logout')?>">Sair</a>       
+     </li>
  </ul>
 </div>
 </nav>

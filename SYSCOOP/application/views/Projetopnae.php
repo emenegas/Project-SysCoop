@@ -48,6 +48,8 @@ $this->load->view('Menu')
 
 			<div class="button">
 				<button type="submit" class="btn btn-info">Continuar</button>
+		<a style="width: 100px;" href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
+
 			</div>
 		</form>
 

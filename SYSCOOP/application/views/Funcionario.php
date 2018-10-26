@@ -65,7 +65,9 @@ $this->load->view('Menu');
 		    		</div>
 				
 				<div class="button">
-					<button type="submit">Cadastrar</button>
+					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
+						<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
+
 				</div>
 				
 			</form>

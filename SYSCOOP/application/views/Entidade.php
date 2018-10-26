@@ -7,7 +7,8 @@ $this->load->view('Menu');
 		<div class="row">
 
 			<form action="<?php echo site_url('entidade/cadastrar')?>" method="post">
-					<div>
+				<div style="width:50%; float:left;">
+					<div >
 						<label form="cnpj">CNPJ</label>
 						<?php echo form_error('cnpj'); ?>
 						<input type="text" name="cnpj" id="cnpj" class="form-control" value="<?php echo set_value('cnpj')?>">
@@ -32,6 +33,8 @@ $this->load->view('Menu');
 						<?php echo form_error('representante'); ?>
 						<input type="text" name="representante" id="representante" class="form-control" value="<?php echo set_value('representante')?>">
 					</div>
+</div>
+<div style="width:50%; float:right;">
 					<div>
 						<label form="cpfRepresentante">CPF Representante</label>
 						<?php echo form_error('cpfRepresentante'); ?>
@@ -59,9 +62,10 @@ $this->load->view('Menu');
 					</div>
 
 					<div class="button">
-						<button type="submit">Cadastrar</button>
+						<button style="width: 100px;" type="submit" class="btn btn-outline-info">Cadastrar</button>
+						<a style="width: 100px;" href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
 					</div>
-		
+		</div>
 
 			</form>
 			<?php if(isset($formerror)):

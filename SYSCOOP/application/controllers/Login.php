@@ -34,4 +34,8 @@ class Login extends CI_Controller {
             redirect('projetopnae');
         }
     }
+    public function logout(){
+        $this->session->sess_destroy(); //destroi a sessao
+        redirect('/login'); // redireciona para a raiz do sistema(pagina de login)
+    }
 }

@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
->
+
 ?>
 <div class="container">
 	<div class="row">
+		<div style="width:50%; float:left;">
 		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">
 			<div>
 				<label form="nome">Nome</label>
@@ -26,6 +27,7 @@ $this->load->view('Menu');
 				<?php echo form_error('email'); ?>
 				<input type="text" name="email" id="email" class="form-control" value="<?php echo set_value('email')?>">
 			</div>
+
 			<div>
 				<label form="uf">Uf</label>
 				<?php echo form_error('uf'); ?>
@@ -36,6 +38,8 @@ $this->load->view('Menu');
 				<?php echo form_error('cep'); ?>
 				<input type="text" name="cep" id="cep" class="form-control" value="<?php echo set_value('cep')?>">
 			</div>
+						</div>
+<div style="width:50%; float:right;">
 			<div>
 				<label form="cidade">Cidade</label>
 				<?php echo form_error('cidade'); ?>
@@ -73,17 +77,18 @@ $this->load->view('Menu');
 				{
 					echo '<input type="checkbox" name="produtos[]" value="' .$produto->id.'">' .$produto->nome;
 				}?>
-				
+				<!-- ver input -->
 			</div>
 			
 			<div class="button">
 
-				<button type="submit">Cadastrar</button>
+				<button type="submit" class="btn btn-outline-info">Cadastrar</button>
+				<a style="width: 100px;" href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 			</div>
 
 		</form>
 	</div>
-
+</div>
 	<?php if(isset($formerror)):
 		echo '<p>' .$formerror. '</p';
 	endif;

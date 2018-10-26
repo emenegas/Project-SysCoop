@@ -78,6 +78,8 @@ $this->load->view('Menu');
 
 				</tbody>
 			</table>
+			<a style="width: 100px;" href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Voltar</a>
+
 		</div>
 
 

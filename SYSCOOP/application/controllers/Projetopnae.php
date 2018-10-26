@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Projetopnae extends CI_Controller {
+class Projetopnae extends MY_Controller {
 
 	function __construct(){
 		

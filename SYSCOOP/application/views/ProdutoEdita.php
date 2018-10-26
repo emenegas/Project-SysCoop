@@ -16,9 +16,11 @@ $this->load->view('Menu');
  				<label for="unidadeMedida">Unidade de medida:</label>
  				<select id="unidadeMedida" name="unidadeMedida" class="form-control" value="<?php echo $produto->unidadeMedida; ?>">
  					<option>Selecione</option>
- 					<option>Kg</option>
- 					<option>L</option>
- 					<option>grama</option>
+ 					<option>Quilograma</option>
+ 					<option>Grama</option>
+ 					<option>Litro</option>
+ 					<option>Unidade</option>
+ 					
  				</select>
  			</div>
 	<div>
@@ -37,12 +39,15 @@ $this->load->view('Menu');
  					<option>Inverno</option>
  					<option>Outono</option>
  					<option>Primavera</option>
+ 					<option>Todos</option>
  				</select>
  			</div>
 	
 	
 
-	<input type="submit" name="alterar" value="Alterar" />
+	<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
+	<a style="width: 100px;" href="<?php echo site_url('produto') ?>" class="btn btn-outline-danger">Cancelar</a>
+
 	<?php echo form_close(); ?>
 	
 </div>

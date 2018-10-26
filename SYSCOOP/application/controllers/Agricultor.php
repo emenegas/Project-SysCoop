@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Agricultor extends CI_Controller {
+class Agricultor extends MY_Controller {
 
 	function __construct(){
 		parent:: __construct();
@@ -96,7 +96,7 @@ class Agricultor extends CI_Controller {
 			array(
 				'field' => 'dapNumero',
 				'label' => 'DAP Numero',
-				'rules' => 'min_length[4]|max_length[45]'
+				'rules' => 'min_length[20]|max_length[45]'
 			),
 			array(
 				'field' => 'dapValidade',
@@ -125,7 +125,6 @@ class Agricultor extends CI_Controller {
 			$data['endereco'] = $this->input->post('endereco');
 			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
-			// $data['dapLimite'] = $this->input->post('dapLimite');
 			$data['status'] = $this->input->post('status');
 
 			
@@ -143,16 +142,16 @@ class Agricultor extends CI_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf');
+		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf|callback_cpf_existe');
 		$this->form_validation->set_rules('telefone','Telefone','trim|required');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf','trim|required');
 		$this->form_validation->set_rules('cep','CEP','trim|required');
 		$this->form_validation->set_rules('cidade','Cidade','trim|required');
 		$this->form_validation->set_rules('endereco','Endereço','trim|required');
-		$this->form_validation->set_rules('cooperativa','cooperativa','trim');
-		$this->form_validation->set_rules('produtos','Produtos','trim');
-		$this->form_validation->set_rules('dapNumero','Numero da DAP','trim');
+		$this->form_validation->set_rules('cooperativa','cooperativa','trim|required');
+		$this->form_validation->set_rules('produtos','Produtos','trim|required');
+		$this->form_validation->set_rules('dapNumero','Numero da DAP','trim|min_length[20]');
 		$this->form_validation->set_rules('dapValidade','Validade da DAP','trim');
 
 		if($this->form_validation->run()== FALSE):
@@ -171,8 +170,21 @@ class Agricultor extends CI_Controller {
 	}
 
 	//----------------------------------------------------------------------------------
-	
-	function callback_valid_cpf($cpf)
+
+	function callback_cpf_existe($cpf,$retorno){
+
+		$this->db->select('cpf');
+		$this->db->where('cpf', $this->input->post('cpf'));
+		$retorno = $this->db->get('agricultores')->num_rows();
+
+		if($retorno > 0 ){
+			echo "este cpf já está cadastrado";
+		}
+	}
+
+	//----------------------------------------------------------------------------------
+
+	function callback_valid_cpf($cpf,$CI)
 	{
 		$CI =& get_instance();
 
