@@ -142,7 +142,7 @@ class Agricultor extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf|callback_cpf_existe');
+		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf',['valid_cpf' => 'Erro no CPF']);
 		$this->form_validation->set_rules('telefone','Telefone','trim|required');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf','trim|required');
@@ -171,24 +171,22 @@ class Agricultor extends MY_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	function callback_cpf_existe($cpf,$retorno){
+	function callback_cpf_existe($cpf){
 
 		$this->db->select('cpf');
-		$this->db->where('cpf', $this->input->post('cpf'));
+		$this->db->where('cpf', $cpf);
 		$retorno = $this->db->get('agricultores')->num_rows();
 
 		if($retorno > 0 ){
-			echo "este cpf já está cadastrado";
+			return FALSE;
 		}
 	}
 
 	//----------------------------------------------------------------------------------
 
-	function callback_valid_cpf($cpf,$CI)
+	function callback_valid_cpf($cpf)
 	{
-		$CI =& get_instance();
-
-		$CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
+		
 		$cpf = preg_replace('/[^0-9]/','',$cpf);
 		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
 		{
@@ -210,5 +208,15 @@ class Agricultor extends MY_Controller {
 
 		return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
 	}
-	
+
+	//----------------------------------------------------------------------------------
+
+	public function PorProduto($id)
+	{
+		$agricultores = $this->Agricultor_model->getByProduto($id);
+		header('Content-type: text/json');
+		echo json_encode($agricultores);
+
+	}
+
 }

@@ -34,12 +34,18 @@ class Cooperativa extends MY_Controller {
 //----------------------------------------------------------------------------------
 
 	public function editar($id){
+
 		$data = [];
+
 		$cooperativa = $this->Cooperativa_model->getById($id);
+		$cooperativas = $this->Cooperativa_model->listar();
+		$funcionarios = $this->Funcionario_model->listar();
 		if(!$cooperativa){
 			show_404();
 		}
+		$data['funcionarios'] = $funcionarios;
 		$data['cooperativa'] = $cooperativa;
+		$data['cooperativas'] = $cooperativas;
 		$this->load->view('CooperativaEdita', $data);
 	}
 	public function alterar($id){

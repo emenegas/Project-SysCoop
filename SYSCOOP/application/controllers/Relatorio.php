@@ -11,13 +11,7 @@ class Relatorio extends MY_Controller {
 
 	public function index(){
 		$dados=[
-			
-			'cooperativas'=> $this->Relatorio_model->listarCooperativa(),
-			'produtos'=> $this->Relatorio_model->listarProduto(),
-			'entidadesExecutoras'=> $this->Relatorio_model->listarEntidade(),
-			'agricultores'=> $this->Relatorio_model->listarAgricultor()
-
-			
+		
 		];
 		$this->load->view('Relatorio', $dados);
 	}

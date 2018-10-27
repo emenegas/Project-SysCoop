@@ -77,11 +77,14 @@ class Agricultor_model extends CI_Model {
 	
 	public function getByProduto($id){
 		$agricultor = $this->db
-		->where('id', $id)
-		->get('agricultores')
+		->select('agricultores.id , agricultores.nome')
+		->join('agricultores', 'agricultores.id = agricultores_has_produtos.agricultor')
+		->where('produto', $id)
+		->get('agricultores_has_produtos')
 		->result();
 
-		return reset($agricultor);
+		return ($agricultor);
+
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 

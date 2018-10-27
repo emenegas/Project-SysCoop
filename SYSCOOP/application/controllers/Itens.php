@@ -26,7 +26,7 @@ class Itens extends MY_Controller {
 		$dados=[
 			'itens_do_projeto' => $this->Itens_model->getByProjeto($idProjeto),
 			'produtos'=> $this->Produto_model->listar(),
-			'agricultores' => $this->Agricultor_model->listar(),
+			 
 			'idProjeto' => $idProjeto
 		];
 		$this->load->view('Itens', $dados);

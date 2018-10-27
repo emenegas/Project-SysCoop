@@ -27,7 +27,7 @@ $this->load->view('Menu');
 						</tr>
 						<tr>
 
-							<tr  >
+							<tr>
 								<?php foreach ($itens_do_projeto as $item): ?>
 									<tr>
 										<td style="width: 15%"><?php echo $item->nomeProduto ?></td>
@@ -54,9 +54,7 @@ $this->load->view('Menu');
 						<td> 
 							<input list="agricultor" name="agricultor" class="form-control">
 							<datalist id="agricultor" >
-								<?php foreach ($agricultores as $agricultor): ?>
-									<option value="<?php echo $agricultor->id ?>"><?php echo $agricultor->nome ?></option>
-								<?php endforeach ?>
+								
 							</datalist>
 						</td>
 						<td>
@@ -95,4 +93,18 @@ $this->load->view('Menu');
 </div>
 
 
-
+<script type="text/javascript">
+	(function(){
+		agricultor = $('#agricultor')
+		$('#produto').on('change', function(){
+			$.get('<?php echo site_url('agricultor/PorProduto/') ?>' + $(this).val(), function(agricultores){
+				agricultor.html('');
+				$.each(agricultores, function(count, vivente){
+					
+					$('<option/>').attr('value',vivente.id).text(vivente.nome).appendTo(agricultor)
+					
+				})
+			})
+		})
+	})()
+</script>

@@ -69,12 +69,12 @@ class Funcionario_model extends CI_Model {
 		return $usuario;
 	}
 
-	public function logged() {
-        $logged = $this->session->userdata('logged');
+	// public function logged() {
+ //        $logged = $this->session->userdata('logged');
 
-        if (!isset($logged) || $logged != true) {
-            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="http://oficina2015/login">Efetuar Login</a>';
-            die();
-        }
-    }
+ //        if (!isset($logged) || $logged != true) {
+ //            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="http://oficina2015/login">Efetuar Login</a>';
+ //            die();
+ //        }
+ //    }
 }
