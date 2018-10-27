@@ -23,7 +23,7 @@ $this->load->view('Menu');
                      <th>Código</th>
                      <th>Nome</th>
                      <th>DAP</th>
-                     <th>Data</th>
+                     <th>Validade</th>
                      <tr>
                         <tr>
                            <?php foreach ($agricultores as $item): ?>
@@ -31,7 +31,7 @@ $this->load->view('Menu');
                                  <td><?php echo $item->id ?></td>
                                  <td>  <?php echo $item->nome ?></td>
                                  <td>  <?php echo $item->dapNumero ?></td>
-                              
+                                 <td> <?php echo $item->dapValidade ?></td>
                                  <td>
                                     <a href="<?php echo site_url('/agricultor/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>
                                    

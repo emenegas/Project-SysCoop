@@ -65,6 +65,17 @@ $this->load->view('Menu');
 							<?php echo form_error('precoUnidade'); ?>
 							<input type="text" name="precoUnidade" id="precoUnidade" class="form-control" value="<?php echo set_value('precoUnidade')?>">
 						</td>
+						
+						<tr style="width: 5000px;">
+							<td>
+								
+								<input type="text" name="descricaoProd" id="descricaoProd" class="form-control" value="<?php echo $item->descricaoProd ?>">
+							</td>
+							<td>
+								
+								<input type="text" name="cronogramaEntregaProd" id="cronogramaEntregaProd" class="form-control" value="<?php echo $item->cronogramaEntregaProd ?>">
+							</td>
+						</tr>
 						<td>
 							<div class="btn-group" role="group" aria-label="Basic example">
 
@@ -72,6 +83,7 @@ $this->load->view('Menu');
 
 							</div>
 						</td>
+
 					</tr>
 
 				</tbody>

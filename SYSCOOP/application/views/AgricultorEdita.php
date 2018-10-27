@@ -43,7 +43,14 @@ $this->load->view('Menu');
 	<label for="dapValidade">DAP Validade:</label><br/>
 	<input type="date" name="dapValidade" value="<?php echo $agricultor->dapValidade; ?>"/>
 	<div class="error"><?php echo form_error('dapValidade'); ?></div>
-
+	<div>
+		<label for="produtos">Produtos:</label>
+		<?php foreach ($produtos as $produto)
+		{
+			echo '<input type="checkbox" name="produtos[]" value="' .$produto->id.'">' .$produto->nome;
+		}?>
+		
+	</div>
 	<label for="status">Status:</label>
 	<select name="status" class="form-control">
 		<option <?php echo $agricultor->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				

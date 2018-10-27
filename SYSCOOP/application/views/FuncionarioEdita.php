@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-	<div>
-		<?php echo form_open('funcionario/' .$funcionario->id. '/alterar', 'id="form-funcionario"'); ?>
-		<label>CPF:<?php echo $funcionario->cpf?></label><br/>
-
+<div>
+	<?php echo form_open('funcionario/' .$funcionario->id. '/alterar', 'id="form-funcionario"'); ?>
+	<label class="form-control">CPF: <?php echo $funcionario->cpf?></label><br/>
+	<div style="width:50%; float:left;">
 		<div>
 			<label form="nome">Nome</label>
 			<?php echo form_error('nome'); ?>
@@ -37,6 +37,8 @@ $this->load->view('Menu');
 			<?php echo form_error('cidade'); ?>
 			<input type="text" name="cidade" id="cidade" class="form-control" value="<?php echo $funcionario->cidade; ?>">
 		</div>
+	</div>
+	<div style="width:50%; float:right;">
 		<div>
 			<label form="endereco">Endereço</label>
 			<?php echo form_error('endereco'); ?>
@@ -60,7 +62,10 @@ $this->load->view('Menu');
 		</select>
 		<div class="error"><?php echo form_error('status'); ?></div>
 
-		<input type="submit" name="alterar" value="Alterar" />
+		<input type="submit" name="alterar" value="Continuar" class="btn btn-outline-info"/>
+	<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
+
 		<?php echo form_close(); ?>
 		
 	</div>
+</div>

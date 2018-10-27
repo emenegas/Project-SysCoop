@@ -22,7 +22,7 @@ $this->load->view('Menu');
                   <th>Código</th>
                   <th>Nome Fantasia</th>
                   <th>Dap Jurídica</th>
-                  <th>Data</th>
+                  
                   <tr>
                      <tr>
                         <?php foreach ($cooperativas as $item): ?>
@@ -48,3 +48,4 @@ $this->load->view('Menu');
       </div>
    </div>
 
+</tr>

@@ -67,7 +67,7 @@ $this->load->view('Menu');
 </div>
 <div style="width:50%; float:right;">
 	<div>
-		<label form="numeroContaCorrente">Numero CC</label>
+		<label form="numeroContaCorrente">Numero Conta Corrente</label>
 		<?php echo form_error('numeroContaCorrente'); ?>
 		<input type="text" name="numeroContaCorrente" id="numeroContaCorrente" class="form-control" value="<?php echo $cooperativa->numeroContaCorrente; ?>">
 	</div>

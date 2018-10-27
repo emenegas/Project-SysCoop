@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-	<div class="container">
-		<div class="row">
-			<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post">
+<div class="container">
+	<div class="row">
+		<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post">
+			<div style="width:50%; float:left;">
 				<div>
 					<label form="nome">Nome</label>
 					<?php echo form_error('nome'); ?>
@@ -31,6 +32,8 @@ $this->load->view('Menu');
 					<?php echo form_error('cep'); ?>
 					<input type="text" name="cep" id="cep" class="form-control" value="<?php echo set_value('cep')?>">
 				</div>
+			</div>
+			<div style="width:50%; float:right;">
 				<div>
 					<label form="uf">uf</label>
 					<?php echo form_error('uf'); ?>
@@ -52,27 +55,27 @@ $this->load->view('Menu');
 					<?php echo form_error('senha'); ?>
 					<input type="text" name="senha" id="senha" class="form-control" value="<?php echo set_value('senha')?>">
 				</div>
-	
-						<div>
-		        		<label for="cooperativa">Cooperativa:</label>
-		       			<select name="cooperativa" class="form-control">
-		       				<option></option>
-		   	    			<?php foreach ($cooperativas as $cooperativa)
-							{
-								echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
-							}?>
-		       			</select>
-		    		</div>
+
+				<div>
+					<label for="cooperativa">Cooperativa:</label>
+					<select name="cooperativa" class="form-control">
+						<option></option>
+						<?php foreach ($cooperativas as $cooperativa)
+						{
+							echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
+						}?>
+					</select>
+				</div>
 				
 				<div class="button">
 					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
-						<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
+					<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
 
 				</div>
 				
 			</form>
 		</div>
-
+	</div>	
 		<?php if(isset($formerror)):
 			echo '<p>' .$formerror. '</p';
 		endif;
@@ -80,5 +83,3 @@ $this->load->view('Menu');
 		
 	</div>
 
-</body>
-</html>

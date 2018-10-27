@@ -41,9 +41,11 @@ class Agricultor extends MY_Controller {
 	public function editar($id){
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
+		$produtos = $this->Produto_model->listar();
 		if(!$agricultor){
 			show_404();
 		}
+		$data['produtos'] = $produtos;
 		$data['agricultor'] = $agricultor;
 		$this->load->view('AgricultorEdita', $data);
 	}
@@ -52,6 +54,8 @@ class Agricultor extends MY_Controller {
 	public function alterar($id){
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
+		$produtos = $this->Produto_model->listar();
+		
 		if(!$agricultor){
 			show_404();
 		}
@@ -104,6 +108,11 @@ class Agricultor extends MY_Controller {
 				'rules' => 'min_length[4]|max_length[45]'
 			),
 			array(
+				'field' => 'produtos',
+				'label' => 'Produtos',
+				'rules' => 'required|min_length[1]|max_length[45]'
+			),
+			array(
 				'field' => 'status',
 				'label' => 'Status',
 				'rules' => 'required|min_length[4]|max_length[45]'
@@ -112,6 +121,7 @@ class Agricultor extends MY_Controller {
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
 			$data['agricultor'] = $agricultor;
+			$data['produtos'] = $produtos;
 			$data['formerror'] = validation_errors();
 			$this->load->view('AgricultorEdita', $data);
 		} else {
@@ -125,6 +135,7 @@ class Agricultor extends MY_Controller {
 			$data['endereco'] = $this->input->post('endereco');
 			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
+			$data['produtos'] = $this->input->post('produtos');
 			$data['status'] = $this->input->post('status');
 
 			
@@ -141,18 +152,19 @@ class Agricultor extends MY_Controller {
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
-		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf','CPF','trim|required|callback_valid_cpf',['valid_cpf' => 'Erro no CPF']);
-		$this->form_validation->set_rules('telefone','Telefone','trim|required');
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
-		$this->form_validation->set_rules('uf','Uf','trim|required');
-		$this->form_validation->set_rules('cep','CEP','trim|required');
-		$this->form_validation->set_rules('cidade','Cidade','trim|required');
-		$this->form_validation->set_rules('endereco','Endereço','trim|required');
-		$this->form_validation->set_rules('cooperativa','cooperativa','trim|required');
-		$this->form_validation->set_rules('produtos','Produtos','trim|required');
-		$this->form_validation->set_rules('dapNumero','Numero da DAP','trim|min_length[20]');
-		$this->form_validation->set_rules('dapValidade','Validade da DAP','trim');
+		$this->form_validation->set_rules('nome','Nome',					'trim|required');
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required|');
+			// callback_valid_cpf',['valid_cpf' => 'Erro no CPF']);
+		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
+		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
+		$this->form_validation->set_rules('uf','Uf',						'trim|required');
+		$this->form_validation->set_rules('cep','CEP',						'trim|required');
+		$this->form_validation->set_rules('cidade','Cidade',				'trim|required');
+		$this->form_validation->set_rules('endereco','Endereço',			'trim|required');
+		$this->form_validation->set_rules('cooperativa','cooperativa',		'trim|required');
+		$this->form_validation->set_rules('produtos','Produtos',			'trim|required');
+		$this->form_validation->set_rules('dapNumero','Numero da DAP',		'trim|min_length[20]');
+		$this->form_validation->set_rules('dapValidade','Validade da DAP',	'trim');
 
 		if($this->form_validation->run()== FALSE):
 

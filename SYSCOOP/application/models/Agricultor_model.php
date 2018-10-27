@@ -89,9 +89,12 @@ class Agricultor_model extends CI_Model {
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
-		
+
 		$this->db->where('id', $id);
 		$this->db->set($data);
+		$this->db->update('agricultores_has_produtos', $data);
 		return $this->db->update('agricultores');
+
+
 	}
 }

@@ -50,7 +50,7 @@ class Projetopnae_model extends CI_Model {
 		$data['entCidade']               = $entidade->cidade;
 		$data['entEndereco']             = $entidade->endereco;
 		
-		$data['homologacaoCodigo']		= $this->input->post('homologacaoCodigo');
+		
 		$data['data'] = date('Y-m-d H:i:s');
 		$data['dataEncerramento'] = $this->input->post('dataEncerramento');
 

@@ -23,7 +23,7 @@ $this->load->view('Menu');
                      <th>Código</th>
                      <th>Nome Fantasia</th>
                      <th>CNPJ</th>
-                     <th>Data</th>
+                    
                      <tr>
                         <tr>
                            <?php foreach ($entidades as $item): ?>

@@ -54,15 +54,44 @@ class Entidade extends MY_Controller {
 			array(
 				'field' => 'telefone',
 				'label' => 'Telefone',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[8]|max_length[45]'
 			),
 
 			array(
 				'field' => 'representante',
 				'label' => 'Representante',
 				'rules' => 'trim|required|max_length[45]'
+			),
+			array(
+				'field' => 'cpfRepresentante',
+				'label' => 'cpfRepresentante',
+				'rules' => 'required|min_length[11]|max_length[45]'
+			),
+			array(
+				'field' => 'cep',
+				'label' => 'cep',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'uf',
+				'label' => 'uf',
+				'rules' => 'required|min_length[2]|max_length[45]'
+			),
+			array(
+				'field' => 'cidade',
+				'label' => 'cidade',
+				'rules' => 'required|min_length[2]|max_length[45]'
+			),
+			array(
+				'field' => 'endereco',
+				'label' => 'endereco',
+				'rules' => 'required|min_length[4]|max_length[45]'
+			),
+			array(
+				'field' => 'status',
+				'label' => 'status',
+				'rules' => 'required|min_length[4]|max_length[45]'
 			)
-
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
@@ -72,6 +101,7 @@ class Entidade extends MY_Controller {
 		} else {
 			
 			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
+			$data['email'] = $this->input->post('email');
 			$data['telefone'] = $this->input->post('telefone');
 			$data['representante'] = $this->input->post('representante');
 			$data['cpfRepresentante'] = $this->input->post('cpfRepresentante');

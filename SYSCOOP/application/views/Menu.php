@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <li class="nav-item dropdown">
        <a class="navbar-brand" href="<?php echo site_url('agricultor')?>">Agricultor</a>       
      </li>
- <li class="nav-item dropdown">
+     <li class="nav-item dropdown">
        <a class="navbar-brand" href="<?php echo site_url('produto')?>">Produto</a>       
      </li>
      <li class="nav-item dropdown">
@@ -47,21 +47,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <li class="nav-item">
       <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
     </li>
-
-  
-       
-    <li class="nav-item">
-     <a class="navbar-brand" target="_blank" href="http://smap14.mda.gov.br/extratodap/">Extrato DAP</a>
+    <li class="nav-item dropdown">
+     <a class="navbar-brand" href="<?php echo site_url('ajuda')?>">Ajuda</a>       
    </li>
    <li class="nav-item dropdown">
-       <a class="navbar-brand" href="<?php echo site_url('projetopnae')?>">Ajuda</a>       
-     </li>
-   <li class="nav-item dropdown">
-       <a class="navbar-brand" href="<?php echo site_url('login/logout')?>">Sair</a>       
-     </li>
+     <a class="navbar-brand" href="<?php echo site_url('login/logout')?>">Sair</a>       
+   </li>
  </ul>
 </div>
 </nav>
-
-<!-- <body background="campo.jpg" bgproperties="fixed"> -->
-  <!-- <img src="<?php echo base_url('assets/campo.jpg')?>"> -->

@@ -36,10 +36,13 @@ class Funcionario extends MY_Controller {
 	public function editar($id){
 		$data = [];
 		$funcionario = $this->Funcionario_model->getById($id);
+		$cooperativas = $this->Cooperativa_model->listar($id);
+
 		if(!$funcionario){
 			show_404();
 		}
 		$data['funcionario'] = $funcionario;
+		$data['cooperativas'] = $cooperativas;
 		$this->load->view('FuncionarioEdita', $data);
 	}
 	public function alterar($id){
@@ -134,16 +137,16 @@ class Funcionario extends MY_Controller {
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
-		$this->form_validation->set_rules('nome','Nome','trim|required');
-		$this->form_validation->set_rules('cpf', 'CPF' , 'trim|required|callback_valid_cpf');
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
-		$this->form_validation->set_rules('telefone','Telefone','trim|required');
-		$this->form_validation->set_rules('cep','CEP','trim|required');
-		$this->form_validation->set_rules('uf','Uf','trim|required');
-		$this->form_validation->set_rules('cidade','Cidade','trim|required');
-		$this->form_validation->set_rules('endereco','Endereço','trim|required');
-		$this->form_validation->set_rules('senha','Senha','trim|required');
-		$this->form_validation->set_rules('cooperativa','Cooperativa','trim');
+		$this->form_validation->set_rules('nome','Nome',				'trim|required');
+		$this->form_validation->set_rules('cpf', 'CPF' , 				'trim|required|valid_cpf');
+		$this->form_validation->set_rules('email','Email',				'trim|required|valid_email');
+		$this->form_validation->set_rules('telefone','Telefone',		'trim|required');
+		$this->form_validation->set_rules('senha','Senha',				'trim|required');
+		$this->form_validation->set_rules('cooperativa','Cooperativa',	'trim');
+		$this->form_validation->set_rules('endereco','Endereço',		'trim|required');
+		$this->form_validation->set_rules('cep','CEP',					'trim|required');
+		$this->form_validation->set_rules('uf','Uf',					'trim|required');
+		$this->form_validation->set_rules('cidade','Cidade',			'trim|required');
 
 
 		if($this->form_validation->run()== FALSE):

@@ -23,7 +23,7 @@ $this->load->view('Menu');
                   <th>Código</th>
                   <th>Nome</th>
                   <th>CPF</th>
-                  <th>Data</th>
+                  
                   <tr>
                      <tr>
                         <?php foreach ($funcionarios as $item): ?>

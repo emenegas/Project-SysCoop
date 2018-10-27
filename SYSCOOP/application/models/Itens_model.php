@@ -27,6 +27,8 @@ class Itens_model extends CI_Model {
 		$data['cpf']				=$agricultor? $agricultor->cpf : NULL;
 		$data['dapAgricultor']       = $agricultor? $agricultor->dapNumero : NULL;
 		$data['quantidade'] 		= $this->input->post('quantidade');
+		$data['cronogramaEntregaProd'] 		= $this->input->post('cronogramaEntregaProd');
+		$data['descricaoProd'] 		= $this->input->post('descricaoProd');
 		$data['precoUnidade'] 		= str_replace(',','.',$this->input->post('precoUnidade'));
 		$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  
 		$data['data'] 				= date('Y-m-d H:i:s');
@@ -49,26 +51,14 @@ class Itens_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 
-	public function getByProjeto($idProjeto)
+	public function getByProjeto($id)
 	{
 		$itens = $this->db
-		->where('projeto', $idProjeto)
-		->get('itens_do_projeto')
-		->result();
-
-		return ($itens);
-	}
-
-	//-----------------------------CÓPIA-----------------------------------------------------
-
-	public function getByProjeto2($id)
-	{
-		$item = $this->db
 		->where('projeto', $id)
 		->get('itens_do_projeto')
 		->result();
 
-		return reset($item);
+		return ($itens);
 	}
 
 	//----------------------------------------------------------------------------------
@@ -115,17 +105,14 @@ class Itens_model extends CI_Model {
 		$dados = $this->Agricultor_model->getById($id);
 
 		if($totalItem <= 0){
-			$limiteAtualizado = $dados->dapLimite - $totalItem;
+			
+			$limiteAtualizado = $dados->dapLimite + $totalItem;
 
 			$this->db
 			->where('id', $id)
 			->set('dapLimite', $limiteAtualizado)
 			->update('agricultores');
-		}
-		// print_r($this->db->last_query());
-		// exit;
-
-		
+		}	
 	}
 
 	//----------------------------------------------------------------------------------

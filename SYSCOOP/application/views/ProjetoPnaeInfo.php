@@ -91,94 +91,81 @@ $this->load->view('Menu');
  </tr>
 </tr>
 </tr>
+
 <tr style="width: 80px;">
-  <th>N. de Associados</th>
-  <th>N. de Associados Lei n. 11.326/2006</th>
-  <th>N. de Associados com Dap Física</th>
+
+ <th>Nome Representante legal</th>
+ <th>CPF Representante</th>
+ <th>Telefone</th>
+ <tr>
+  <tr>
+   <tr>
+     <td>  <?php echo $projeto->coopNomeRepresentante ?></td>
+     <td>  <?php echo $projeto->coopCpfRepresentante ?></td>
+     <td>  <?php echo $projeto->coopTelefoneRepresentante ?></td>
+   </tr>
+ </tr>
+</tr>
+</tr>
+<tr style="width: 80px;">
+  <th>Endereço</th>
+  <th>Município</th>
+  <th>UF</th>
   <tr>
    <tr>
     <tr>
-                              <!-- <td>  <?php echo $projeto->coopDapJuridica ?></td>
-                              <td>  <?php echo $projeto->coopBanco ?></td>
-                              <td>  <?php echo $projeto->coopAgencia ?></td> -->
-                            </tr>
-                          </tr>
-                        </tr>
-                      </tr>
-                      
-                      <tr>
-                       <th>Nome Representante legal</th>
-                       <th>CPF Representante</th>
-                       <th>Telefone</th>
-                       <tr>
-                        <tr>
-                         <tr>
-                           <td>  <?php echo $projeto->coopNomeRepresentante ?></td>
-                           <td>  <?php echo $projeto->coopCpfRepresentante ?></td>
-                           <td>  <?php echo $projeto->coopTelefoneRepresentante ?></td>
-                         </tr>
-                       </tr>
-                     </tr>
-                   </tr>
-                   <tr style="width: 80px;">
-                    <th>Endereço</th>
-                    <th>Município</th>
-                    <th>UF</th>
-                    <tr>
-                     <tr>
-                      <tr>
-                        <td>  <?php echo $projeto->coopEnderecoRepresentante ?></td>
-                        <td>  <?php echo $projeto->coopCidadeRepresentante ?></td>
-                        <td>  <?php echo $projeto->coopUfRepresentante ?></td>
-                      </tr>
-                    </tr>
-                  </tr>
-                </tr>
-              </tbody>
+      <td>  <?php echo $projeto->coopEnderecoRepresentante ?></td>
+      <td>  <?php echo $projeto->coopCidadeRepresentante ?></td>
+      <td>  <?php echo $projeto->coopUfRepresentante ?></td>
+    </tr>
+  </tr>
+</tr>
+</tr>
+</tbody>
 
-              <thead>
-                <tr id="title"><th colspan=3>II - IDENTIFICAÇÃO DA ENTIDADE EXECUTORA</th></tr>
-              </thead>
+<thead>
+  <tr id="title"><th colspan=3>II - IDENTIFICAÇÃO DA ENTIDADE EXECUTORA</th></tr>
+</thead>
 
-              <tbody>
+<tbody>
 
-                <tr style="width: 80px;">
-                 <th>Nome da Entidade</th>
-                 <th>CNPJ</th>
-                 <th>Município</th>
-                 <th>UF</th>
+  <tr style="width: 80px;">
+   <th>Nome da Entidade</th>
+   <th>CNPJ</th>
+   <th>Município</th>
+   <th>UF</th>
 
-                 <tr>
-                  <tr>
-                   <tr>
-                    <td>  <?php echo $projeto->entNomeFantasia ?></td>
-                    <td>  <?php echo $projeto->entCnpj ?></td>
-                    <td>  <?php echo $projeto->entCidade ?></td>
-                    <td>  <?php echo $projeto->entUf ?></td>
-                  </tr>
-                </tr>
-              </tr>
-            </tr>
-            <tr style="width: 80px;">
-             <th>Endereço</th>
-             <th>Telefone</th>
-             <th>Nome do Representante</th>
-             <th>CPF</th>
-             <tr>
-              <tr>
-               <tr>
-                <td>  <?php echo $projeto->entEndereco ?></td>
-                <td>  <?php echo $projeto->entTelefone ?></td>
-                <td>  <?php echo $projeto->entRepresentante ?></td>
-                <td>  <?php echo $projeto->entCpfRepresentante ?></td>
-              </tr>
-            </tr>
-          </tr>
-        </tr> 
+   <tr>
+    <tr>
+     <tr>
+      <td>  <?php echo $projeto->entNomeFantasia ?></td>
+      <td>  <?php echo $projeto->entCnpj ?></td>
+      <td>  <?php echo $projeto->entCidade ?></td>
+      <td>  <?php echo $projeto->entUf ?></td>
+    </tr>
+  </tr>
+</tr>
+</tr>
+<tr style="width: 80px;">
+ <th>Endereço</th>
+ <th>Telefone</th>
+ <th>Nome do Representante</th>
+ <th>CPF</th>
+ <tr>
+  <tr>
+   <tr>
+    <td>  <?php echo $projeto->entEndereco ?></td>
+    <td>  <?php echo $projeto->entTelefone ?></td>
+    <td>  <?php echo $projeto->entRepresentante ?></td>
+    <td>  <?php echo $projeto->entCpfRepresentante ?></td>
+  </tr>
+</tr>
+</tr>
+</tr> 
 
-      </tbody>
-    </table>
-  </div>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="container">
@@ -203,15 +190,54 @@ $this->load->view('Menu');
 
       <tr>
        <tr>
+        <?php foreach ($itens as $item): ?>
+          <tr>
+            <td> <?php echo $item->dapAgricultor ?></td>
+            <td>  <?php echo $item->nomeAgricultor ?></td>
+            <td>  <?php echo $item->cpf ?></td>
+            <td>  <?php echo $item->nomeProduto ?></td>
+            <td>  <?php echo $item->unidadeMedida ?></td>
+            <td>  <?php echo $item->quantidade ?></td>
+            <td>  <?php echo $item->precoUnidade ?></td>
+            <td>  <?php echo $item->totalItem ?></td>
+          </tr>
+        <?php endforeach ?>
+      </tr>
+    </tr>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="container">
+ <div class="row">
+  <div id='table'>
+   <table class= 'table table-hover' border="1" width="100%">
+    <thead>
+     <tr id="title"><th colspan=3>IV- TOTALIZAÇÃO POR PRODUTO</th></tr>
+   </thead>
+
+   <tbody>
+
+     <tr style="width: 80px;">
+      <th>Produto</th>
+      <th>Unidade</th>
+      <th>Quantidade</th>
+      <th>Preço Unitário</th>
+      <th>Total</th>
+      <th>Cronograma de Entrega</th>
+      <tr>
+       <tr>
         <tr>
-          <td> <?php echo $item->dapAgricultor ?></td>
-          <td>  <?php echo $item->nomeAgricultor ?></td>
-          <td>  <?php echo $item->cpf ?></td>
-          <td>  <?php echo $item->nomeProduto ?></td>
+          <td> <?php echo $item->descricaoProd ?></td>
           <td>  <?php echo $item->unidadeMedida ?></td>
           <td>  <?php echo $item->quantidade ?></td>
           <td>  <?php echo $item->precoUnidade ?></td>
           <td>  <?php echo $item->totalItem ?></td>
+          <td>  <?php echo $item->cronogramaEntregaProd ?></td>
+
         </tr>
       </tr>
     </tr>

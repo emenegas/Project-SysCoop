@@ -28,14 +28,14 @@ class Projetopnae extends MY_Controller {
 	public function info($id){
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
-		$item = $this->Itens_model->getByProjeto2($id);
+		$itens = $this->Itens_model->getByProjeto($id);
 
-		if(!$projeto && !$item){
+		if(!$projeto && !$itens){
 			show_404();
 		}
 		
 		$data['projeto'] = $projeto;
-		$data['item'] = $item;
+		$data['itens'] = $itens;
 		$data['idProjeto'] = $id;
 
 		$this->load->view('ProjetoPnaeInfo', $data);
@@ -68,6 +68,7 @@ class Projetopnae extends MY_Controller {
 
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
+		$itens = $this->Itens_model->getByProjeto($id);
 		if(!$projeto){
 			show_404();
 		}
@@ -82,12 +83,18 @@ class Projetopnae extends MY_Controller {
 			array(
 				'field' => 'Data Encerramento',
 				'label' => 'dataEncerramento',
+				'rules' => 'required' /*erros */
+			),
+			array(
+				'field' => 'Homologação',
+				'label' => 'homologacao',
 				'rules' => 'max_length[45]' /*erros */
 			)
 		);
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
 			$data['projeto'] = $projeto;
+			$data['itens'] = $itens;
 			$data['formerror'] = validation_errors();
 			$this->load->view('ProjetoPnaeInfo', $data);
 		} else {
@@ -115,6 +122,7 @@ class Projetopnae extends MY_Controller {
 
 
 			$dataEnc['dataEncerramento'] = $this->input->post('dataEncerramento');
+			$dataEnc['homologacao'] = $this->input->post('homologacao');
 
 			if ($this->Projetopnae_model->alterar($id,$dataEnc)) {
 				redirect('projetopnae');
