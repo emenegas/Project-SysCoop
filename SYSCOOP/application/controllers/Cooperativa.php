@@ -188,6 +188,7 @@ class Cooperativa extends MY_Controller {
 
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
+			$dados['cooperativa'] = $cooperativa;
 			$this->load->view('Cooperativa', $dados);
 		}else{
 			$dados['formerror'] = 'Validação OK';

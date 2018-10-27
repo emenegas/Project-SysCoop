@@ -36,7 +36,7 @@ class Funcionario extends MY_Controller {
 	public function editar($id){
 		$data = [];
 		$funcionario = $this->Funcionario_model->getById($id);
-		$cooperativas = $this->Cooperativa_model->listar($id);
+		$cooperativas = $this->Cooperativa_model->listar();
 
 		if(!$funcionario){
 			show_404();
@@ -150,7 +150,7 @@ class Funcionario extends MY_Controller {
 
 
 		if($this->form_validation->run()== FALSE):
-
+			$dados['cooperativa'] = $this->Cooperativa_model->listar();
 			$dados['formerror'] = validation_errors();
 			$this->load->view('Funcionario', $dados);
 		else:

@@ -19,22 +19,26 @@ $this->load->view('Menu');
 					<tbody>
 
 						<tr style="width: 80px;">
+							<th>Descrição</th>
 							<th>Produto</th>
 							<th>Agricultor</th>
 							<th>Quantidade</th>
 							<th>Preço Unitário</th>
 							<th>Total do Item</th>
+							<th>Cronograma de Entrega</th>
 						</tr>
 						<tr>
 
 							<tr>
 								<?php foreach ($itens_do_projeto as $item): ?>
 									<tr>
+										<td>	<?php echo $item->descricaoProd ?></td>
 										<td style="width: 15%"><?php echo $item->nomeProduto ?></td>
 										<td>	<?php echo $item->nomeAgricultor ?></td>
 										<td>	<?php echo $item->quantidade ?></td>
 										<td>	<?php echo $item->precoUnidade ?></td>
 										<td>	<?php echo $item->totalItem ?></td>
+										<td>	<?php echo $item->cronogramaEntregaProd ?></td>
 										<td><button type="submit" name="itemDoProjeto" value="<?php echo $item->id ?>" formaction="<?php echo site_url('/projetopnae/'.$idProjeto.'/itens/remover') ?>" class="btn btn-outline-danger" >-</button></td>
 									</tr>
 								<?php endforeach ?>
@@ -58,11 +62,11 @@ $this->load->view('Menu');
 							</datalist>
 						</td>
 						<td>
-							<?php echo form_error('quantidade'); ?>
+							
 							<input type="number" name="quantidade" id="quantidade" class="form-control" value="<?php echo set_value('quantidade')?>">
 						</td>
 						<td>
-							<?php echo form_error('precoUnidade'); ?>
+							
 							<input type="text" name="precoUnidade" id="precoUnidade" class="form-control" value="<?php echo set_value('precoUnidade')?>">
 						</td>
 						
@@ -94,9 +98,6 @@ $this->load->view('Menu');
 
 
 	</form>
-
-
-
 
 	<?php if(isset($formerror)): ?>
 		<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>

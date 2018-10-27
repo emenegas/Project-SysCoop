@@ -59,5 +59,9 @@ $this->load->view('Menu');
 
 	<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info" />
 	<a style="width: 100px;" href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
+	
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+	<?php endif; ?>
 </div>
 <?php echo form_close(); ?>

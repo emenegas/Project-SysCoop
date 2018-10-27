@@ -69,7 +69,7 @@
           <div class="col-sm-6 col-sm-offset-3">
             <h2> 
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                Sistema SYSCOOP
+                SYSCOOP
             </h2>
         </div>
 

@@ -18,15 +18,16 @@ class Itens extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function index($idProjeto){
-		$projeto = $this->Projetopnae_model->getById($idProjeto);
+		$id = $idProjeto;
+		$projeto = $this->Projetopnae_model->getById($id);
 
 		if(!$projeto)
 			show_404();
 
 		$dados=[
-			'itens_do_projeto' => $this->Itens_model->getByProjeto($idProjeto),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
 			'produtos'=> $this->Produto_model->listar(),
-			'idProjeto' => $idProjeto
+			'idProjeto' => $id
 		];
 		$this->load->view('Itens', $dados);
 
@@ -35,8 +36,17 @@ class Itens extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function adicionar($idProjeto){
-		$projeto = $this->Projetopnae_model->getById($idProjeto);
+		$id = $idProjeto;
+		$projeto = $this->Projetopnae_model->getById($id);
 
+		if(!$projeto)
+			show_404();
+
+		$dados=[
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
+			'produtos'=> $this->Produto_model->listar(),
+			'idProjeto' => $id
+		];
 		if(!$projeto)
 			show_404();
 
@@ -46,12 +56,11 @@ class Itens extends MY_Controller {
 		$this->form_validation->set_rules('quantidade',     'Quantidade',      				 'trim|required');
 		$this->form_validation->set_rules('precoUnidade',     'Preço Unitário',     		 'trim|required');
 		$this->form_validation->set_rules('descricaoProd',     'Descrição',     			 'trim|required');
-		$this->form_validation->set_rules('cronogramaEntragaProd',     'Cronograma',      	 'trim|required');
-		$this->form_validation->set_rules('totalItem',     'Total do Item',     			 'trim');
+		$this->form_validation->set_rules('cronogramaEntregaProd',     'Cronograma',      	 'trim|required');
 		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
-			
+			$this->load->view('Itens', $dados);
 		}else{
 			$this->Itens_model->Cadastrar($idProjeto);
 			redirect('/projetopnae/'.$idProjeto. '/itens');

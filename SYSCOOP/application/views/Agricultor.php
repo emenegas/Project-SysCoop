@@ -85,6 +85,9 @@ $this->load->view('Menu');
 					<a style="width: 100px;" href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 				</div>
 
+				<?php if(isset($formerror)): ?>
+					<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+				<?php endif; ?>
 			</form>
 		</div>
 	</div>

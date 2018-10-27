@@ -45,7 +45,7 @@ class Agricultor extends MY_Controller {
 		if(!$agricultor){
 			show_404();
 		}
-		$data['produtos'] = $produtos;
+		$data['produtos'] = $produtos; 
 		$data['agricultor'] = $agricultor;
 		$this->load->view('AgricultorEdita', $data);
 	}
@@ -110,7 +110,7 @@ class Agricultor extends MY_Controller {
 			array(
 				'field' => 'produtos',
 				'label' => 'Produtos',
-				'rules' => 'required|min_length[1]|max_length[45]'
+				'rules' => ''
 			),
 			array(
 				'field' => 'status',
@@ -138,7 +138,7 @@ class Agricultor extends MY_Controller {
 			$data['produtos'] = $this->input->post('produtos');
 			$data['status'] = $this->input->post('status');
 
-			
+		
 			if ($this->Agricultor_model->alterar($id,$data)) {
 				redirect('agricultor');
 			} else {
@@ -153,8 +153,7 @@ class Agricultor extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required|');
-			// callback_valid_cpf',['valid_cpf' => 'Erro no CPF']);
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -162,19 +161,19 @@ class Agricultor extends MY_Controller {
 		$this->form_validation->set_rules('cidade','Cidade',				'trim|required');
 		$this->form_validation->set_rules('endereco','Endereço',			'trim|required');
 		$this->form_validation->set_rules('cooperativa','cooperativa',		'trim|required');
-		$this->form_validation->set_rules('produtos','Produtos',			'trim|required');
+		$this->form_validation->set_rules('produtos','Produtos',			'');
 		$this->form_validation->set_rules('dapNumero','Numero da DAP',		'trim|min_length[20]');
 		$this->form_validation->set_rules('dapValidade','Validade da DAP',	'trim');
 
 		if($this->form_validation->run()== FALSE):
-
 			$dados['formerror'] = validation_errors();
 			$dados['produtos'] = $this->Produto_model->listar();
+			$dados['cooperativas'] = $this->Cooperativa_model->listar();
+			
 			$this->load->view('Agricultor', $dados);
 
 		else:
 			$dados['formerror'] = 'Validação OK';
-			
 			$this->Agricultor_model->cadastrar();
 			redirect('agricultor');
 		endif;

@@ -63,7 +63,7 @@ $this->load->view('Menu');
 		<div class="error"><?php echo form_error('status'); ?></div>
 
 		<input type="submit" name="alterar" value="Continuar" class="btn btn-outline-info"/>
-	<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
+		<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
 
 		<?php echo form_close(); ?>
 		

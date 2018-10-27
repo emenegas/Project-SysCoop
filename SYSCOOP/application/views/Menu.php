@@ -14,7 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   
-  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -43,16 +42,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <li class="nav-item dropdown">
        <a class="navbar-brand" href="<?php echo site_url('funcionario')?>">Funcionário</a>       
      </li>
+<div class="nav-item dropdown">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Relatórios
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Agricultor por Produto</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 
-     <li class="nav-item">
-      <a class="navbar-brand" href="<?php echo site_url('relatorio')?>">Relatório</a>
-    </li>
     <li class="nav-item dropdown">
      <a class="navbar-brand" href="<?php echo site_url('ajuda')?>">Ajuda</a>       
    </li>
+
    <li class="nav-item dropdown">
      <a class="navbar-brand" href="<?php echo site_url('login/logout')?>">Sair</a>       
    </li>
+ </div>
  </ul>
 </div>
 </nav>
