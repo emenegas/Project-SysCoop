@@ -16,8 +16,8 @@ class Login extends CI_Controller {
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
         if ($this->form_validation->run() == FALSE) {
-
-            $this->load->view('Login_view');
+            $data['formerror'] = validation_errors();
+            $this->load->view('Login_view', $data);
         } else {
 
             $this->load->model('Funcionario_model');

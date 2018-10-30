@@ -88,18 +88,29 @@ class Agricultor_model extends CI_Model {
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
-	public function alterar($id,$data) {
-
+	public function alterar($id,$data, $produtos) {
+		
 		$this->db->where('id', $id);
 		$this->db->set($data);
-		$this->db->update('agricultores_has_produtos', $data->produto);
-		return $this->db->update('agricultores');
+		$this->db->update('agricultores');
 
-		// $this->db
-		// ->select('agricultores.id , agricultores.nome')
-		// ->join('agricultores', 'agricultores.id = agricultores_has_produtos.agricultor')
-		// ->where('produto', $id)
-		// ->update('agricultores_has_produtos')
-		// ->result();
+		$this->db
+		->where('agricultor', $id)
+		->delete('agricultores_has_produtos');
+
+		try{
+			foreach ($produtos as $produtoId) {
+
+				$data = [];
+				$data['produto'] = $produtoId;
+				$data['agricultor'] = $id;
+
+				$this->db->set($data);
+				$this->db->replace('agricultores_has_produtos');
+			}
+			return TRUE;			
+		}catch(Exception $e){
+			return false;
+		}
 	}
 }

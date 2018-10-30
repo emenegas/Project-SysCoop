@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div class="container">
+<div class="container" style="max-width: 90%;">
 	<div class="row">
-		<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post">
-			<div style="width:50%; float:left;">
+		<form action="<?php echo site_url('funcionario/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
+			<div style="width:48%; float:left;">
 				<div>
 					<label form="nome">Nome</label>
 					<?php echo form_error('nome'); ?>
@@ -33,7 +33,7 @@ $this->load->view('Menu');
 					<input type="text" name="cep" id="cep" class="form-control" value="<?php echo set_value('cep')?>">
 				</div>
 			</div>
-			<div style="width:50%; float:right;">
+			<div style="width:48%; float:right;">
 				<div>
 					<label form="uf">uf</label>
 					<?php echo form_error('uf'); ?>
@@ -67,7 +67,8 @@ $this->load->view('Menu');
 					</select>
 				</div>
 				
-				<div class="button">
+				<div class="button" style="    margin-top: 30px;
+    float: right;">
 					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
 					<a style="width: 100px;" href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
 
@@ -82,4 +83,9 @@ $this->load->view('Menu');
 		?>	
 		
 	</div>
-
+<style type="text/css">
+	label{
+		margin-top: .5rem !important;
+		margin-bottom: 0rem !important;
+	}
+</style>

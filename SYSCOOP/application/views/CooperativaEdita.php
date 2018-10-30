@@ -10,34 +10,29 @@ $this->load->view('Menu');
 
 	<div>
 		<label form="nomeFantasia">Nome Fantasia</label>
-		<?php echo form_error('nomeFantasia'); ?>
 		<input type="text" name="nomeFantasia" id="nomeFantasia" class="form-control" value="<?php echo $cooperativa->nomeFantasia; ?>">
 	</div>
 	<div>
-		<div>
-			<label for="responsavel">Responável Legal</label>
-			<?php echo form_error('responsavel'); ?>
-			<input list="responsavel" name="responsavel" class="form-control">
-			<datalist id="responsavel" >
-				<?php foreach ($funcionarios as $item): ?>
-					<option value="<?php echo $item->id; ?>"><?php echo $item->nome ?></option>
-				<?php endforeach ?>
-			</datalist>
-		</div>
+		
+		<label for="responsavel">Responável Legal</label>
+		<input list="responsavel" name="responsavel" class="form-control">
+		<datalist id="responsavel" >
+			<?php foreach ($funcionarios as $item): ?>
+				<option value="<?php echo $item->id; ?>"><?php echo $item->nome ?></option>
+			<?php endforeach ?>
+		</datalist>
 	</div>
+
 	<div>
 		<label form="email">Email</label>
-		<?php echo form_error('email'); ?>
 		<input type="text" name="email" id="email" class="form-control" value="<?php echo $cooperativa->email; ?>">
 	</div>
 	<div>
 		<label form="telefone">Telefone</label>
-		<?php echo form_error('telefone'); ?>
 		<input type="text" name="telefone" id="telefone" class="form-control" value="<?php echo $cooperativa->telefone; ?>">
 	</div>
 	<div>
 		<label for="cooperativa">Cooperativa</label>
-		<?php echo form_error('cooperativa'); ?>
 		<input list="cooperativa" name="cooperativa" class="form-control">
 		<datalist id="cooperativa" >
 			<?php foreach ($cooperativas as $item): ?>
@@ -61,39 +56,32 @@ $this->load->view('Menu');
 	</div>
 	<div>
 		<label form="agencia">Agência</label>
-		<?php echo form_error('agencia'); ?>
 		<input type="text" name="agencia" id="agencia" class="form-control" value="<?php echo $cooperativa->agencia; ?>">
 	</div>
 </div>
 <div style="width:50%; float:right;">
 	<div>
 		<label form="numeroContaCorrente">Numero Conta Corrente</label>
-		<?php echo form_error('numeroContaCorrente'); ?>
 		<input type="text" name="numeroContaCorrente" id="numeroContaCorrente" class="form-control" value="<?php echo $cooperativa->numeroContaCorrente; ?>">
 	</div>
 	<div>
 		<label form="cep">CEP</label>
-		<?php echo form_error('cep'); ?>
 		<input type="text" name="cep" id="cep" class="form-control" value="<?php echo $cooperativa->cep; ?>">
 	</div>
 	<div>
 		<label form="uf">UF</label>
-		<?php echo form_error('uf'); ?>
 		<input type="text" name="uf" id="uf" class="form-control" value="<?php echo $cooperativa->uf; ?>">
 	</div>
 	<div>
 		<label form="cidade">Cidade</label>
-		<?php echo form_error('cidade'); ?>
 		<input type="text" name="cidade" id="cidade" class="form-control" value="<?php echo $cooperativa->cidade; ?>">
 	</div>
 	<div>
 		<label form="endereco">Endereço</label>
-		<?php echo form_error('endereco'); ?>
 		<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo $cooperativa->endereco; ?>">
 	</div>
 	<div>
 		<label form="dapNumero">DAP Jurídica</label>
-		<?php echo form_error('dapNumero'); ?>
 		<input type="text" name="dapNumero" id="dapNumero" class="form-control" value="<?php echo $cooperativa->dapNumero; ?>">
 	</div>
 	<div>
@@ -107,6 +95,9 @@ $this->load->view('Menu');
 	</select>
 </div>
 <input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
-	<a style="width: 100px;" href="<?php echo site_url('Cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
+<a style="width: 100px;" href="<?php echo site_url('Cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
 
+<?php if(isset($formerror)): ?>
+	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+<?php endif; ?>
 <?php echo form_close(); ?>

@@ -70,3 +70,4 @@ $route['produto/(:num)/remover'] = 'produto/remover/$1';
 $route['produto/(:num)/editar'] = 'produto/editar/$1';
 $route['produto/(:num)/alterar'] = 'produto/alterar/$1';
 
+

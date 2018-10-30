@@ -135,11 +135,11 @@ class Agricultor extends MY_Controller {
 			$data['endereco'] = $this->input->post('endereco');
 			$data['dapNumero'] = $this->input->post('dapNumero');
 			$data['dapValidade'] = $this->input->post('dapValidade');
-			$data['produtos'] = $this->input->post('produtos');
 			$data['status'] = $this->input->post('status');
+			$produtos = $this->input->post('produtos');
 
 		
-			if ($this->Agricultor_model->alterar($id,$data)) {
+			if ($this->Agricultor_model->alterar($id,$data,$produtos)) {
 				redirect('agricultor');
 			} else {
 				log_message('error', 'Erro na alteração...');

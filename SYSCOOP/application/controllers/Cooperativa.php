@@ -50,6 +50,9 @@ class Cooperativa extends MY_Controller {
 	public function alterar($id){
 		$data = [];
 		$cooperativa = $this->Cooperativa_model->getById($id);
+		$cooperativas = $this->Cooperativa_model->listar();
+		$funcionarios = $this->Funcionario_model->listar();
+
 		if(!$cooperativa){
 			show_404();
 		}
@@ -59,7 +62,7 @@ class Cooperativa extends MY_Controller {
 			array(
 				'field' => 'nomeFantasia',
 				'label' => 'Nome Fantasia',
-				'rules' => 'required|min_length[4]|max_length[45]'
+				'rules' => 'required|min_length[4]|max_length[200]'
 			),
 			array(
 				'field' => 'responsavel',
@@ -136,6 +139,8 @@ class Cooperativa extends MY_Controller {
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
 			$data['cooperativa'] = $cooperativa;
+			$data['cooperativas'] = $cooperativas;
+			$data['funcionarios'] = $funcionarios;
 			$data['formerror'] = validation_errors();
 			$this->load->view('CooperativaEdita', $data);
 		} else {

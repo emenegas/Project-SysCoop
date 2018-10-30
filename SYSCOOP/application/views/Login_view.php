@@ -59,12 +59,9 @@
       <div class="formBox">
         <form method="post" action="<?php echo base_url('login')?>" id="form_login">
           
-           <!--  <?php if($this->input->get('aviso')==2): ?>
-                <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <strong>Errooo!</strong> Usuário ou senha inválidos.
-              </div>
-          <?php endif ?> -->
+<?php if(isset($formerror)): ?>
+    <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+  <?php endif; ?>
 
           <div class="col-sm-6 col-sm-offset-3">
             <h2> 
@@ -76,13 +73,11 @@
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
             <div class="inputBox">
-              <div class="inputText">CPF</div>
-              <input type="text" class="input" id="cpf" name="cpf" autofocus>
+              <input type="text" class="input" id="cpf" placeholder="CPF" autocomplete="off" name="cpf" autofocus>
           </div>
 
           <div class="inputBox">
-              <div class="inputText">Senha</div>
-              <input type="password" class="input" id="senha" name="senha" autofocus>
+              <input type="password" class="input" id="senha" name="senha" placeholder="Senha" autofocus>
           </div>
       </div>
   </div>
@@ -90,14 +85,13 @@
   <div class="col-sm-6 col-sm-offset-3">
     <button type="submit"  id="cadastrar" class="btn btn-lg btn-success btn-block"> 
         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-        Login
+        Acessar
     </button>
 </div>
 
 </form>
 <div class="col-md-6 col-sm-offset-3">
-     <?php echo validation_errors(); ?>
-  <h3>Instruções de Login</h3>
+
   <p>Acesse com o seu CPF e Senha!</p>
 </div>
 </div>
@@ -116,3 +110,4 @@
 </script>
 
 </html>
+

@@ -11,7 +11,17 @@ class Funcionario extends MY_Controller {
 		$this->load->model('Funcionario_model');
 	}
 
+//----------------------------------------------------------------------------------
+	
+
+	public function ajuda(){
+		$dados=[
+
+		];
+		$this->load->view('Ajuda', $dados);
+	}
 	//----------------------------------------------------------------------------------
+
 
 	public function index(){
 		$dados=[
@@ -46,7 +56,7 @@ class Funcionario extends MY_Controller {
 		$this->load->view('FuncionarioEdita', $data);
 	}
 	public function alterar($id){
-		$data = [];
+		
 		$funcionario = $this->Funcionario_model->getById($id);
 		if(!$funcionario){
 			show_404();
@@ -93,7 +103,7 @@ class Funcionario extends MY_Controller {
 			array(
 				'field' => 'senha',
 				'label' => 'Senha',
-				'rules' => 'min_length[4]|max_length[45]'
+				'rules' => ''
 			),
 			array(
 				'field' => 'cooperativa',

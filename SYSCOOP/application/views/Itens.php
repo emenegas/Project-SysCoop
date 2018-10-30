@@ -49,25 +49,25 @@ $this->load->view('Menu');
 							</tr>
 						</tr>
 						<td>
-							<select name="produto" class="form-control" id="produto" >
+							<select name="produto" class="form-control" id="produto" autocomplete="off" >
 								<?php foreach ($produtos as $produto): ?>
 									<option value="<?php echo $produto->id ?>"><?php echo $produto->nome ?></option>
 								<?php endforeach ?>
 							</select>
 						</td>
 						<td> 
-							<input list="agricultor" name="agricultor" class="form-control">
+							<input list="agricultor" name="agricultor" class="form-control" autocomplete="off">
 							<datalist id="agricultor" >
 								
 							</datalist>
 						</td>
 						<td>
 							
-							<input type="number" name="quantidade" id="quantidade" class="form-control" value="<?php echo set_value('quantidade')?>">
+							<input type="number" name="quantidade" id="quantidade" class="form-control" autocomplete="off" value="<?php echo set_value('quantidade')?>">
 						</td>
 						<td>
 							
-							<input type="text" name="precoUnidade" id="precoUnidade" class="form-control" value="<?php echo set_value('precoUnidade')?>">
+							<input type="text" name="precoUnidade" id="precoUnidade" class="form-control" autocomplete="off" value="<?php echo set_value('precoUnidade')?>">
 						</td>
 						
 						<tr style="width: 5000px;">

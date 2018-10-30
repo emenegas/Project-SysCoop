@@ -45,6 +45,8 @@ class Funcionario_model extends CI_Model {
 	public function alterar($id,$data) {
 		if(isset($data['senha']) && !empty($data['senha'])){
 			$data['senha'] = password_hash($data['senha'],PASSWORD_DEFAULT);
+		}else{
+			unset($data['senha']);
 		}
 		$this->db->where('id', $id);
 		$this->db->set($data);

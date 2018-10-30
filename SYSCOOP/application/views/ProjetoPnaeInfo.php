@@ -4,61 +4,55 @@ $this->load->view('Menu');
 ?>
 
 <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
-<div>
-  <label for="status">Situação:</label>
-  <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
-   <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>           
-   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>           
- </select>
-</div>
-<div class="error"><?php echo form_error('status'); ?></div>  
-<div>
-  <label form="dataEncerramento">Data Encerramento:</label>
-  <?php echo form_error('dataEncerramento'); ?>
-  <input type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>">
-</div>
-<input type="submit" name="alterar" value="Alterar" />
-<?php echo form_close(); ?>
 
 <div class="container">
  <div class="row">
   <div id='table'>
    <table class= 'table table-hover' border="1" width="100%">
     <thead>
-     <tr id="title"><th colspan=3>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às: <?php echo $projeto->dataEncerramento ?> </th></tr>
-     <tr> <th colspan=3>PROJETO DE VENDA DE GÊNEROS ALIMENTÍCIOS DA AGRICULTURA FAMILIAR PARA ALIMENTAÇÃO ESCOLAR</th></tr>
-     <tr> <th colspan=3>Identificação da proposta de atendimento ao edital/chamada pública n°<?php echo $projeto->nomeEdital?></th></tr>
-     <tr> <th colspan=3>I - IDENTIFICAÇÃO DOS FORNECEDORES</th></tr>
-   </thead>
 
-   <tbody>
-     <tr style="width: 80px;">
-      <th>Código</th>
-      <th>Nome do Proponente</th>
-      <th>CNPJ</th>
       <tr>
-       <tr>
+        <label for="status">Situação:</label>
+        <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
+         <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option> </select>
+       </tr>
+
+       <tr > <th"id="title" style="border: 1px" colspan=3>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:  <input style="width: 15%;" type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> </th>
+
+       </tr>
+       <tr> <th colspan=3>PROJETO DE VENDA DE GÊNEROS ALIMENTÍCIOS DA AGRICULTURA FAMILIAR PARA ALIMENTAÇÃO ESCOLAR</th></tr>
+       <tr> <th colspan=3>Identificação da proposta de atendimento ao edital/chamada pública n°<?php echo $projeto->nomeEdital?></th></tr>
+       <tr> <th colspan=3>I - IDENTIFICAÇÃO DOS FORNECEDORES</th></tr>
+     </thead>
+
+     <tbody>
+       <tr style="width: 80px;">
+        <th>Código</th>
+        <th>Nome do Proponente</th>
+        <th>CNPJ</th>
         <tr>
-         <td>  <?php echo $projeto->id ?></td>
-         <td>  <?php echo $projeto->coopNomeFantasia ?></td>
-         <td>  <?php echo $projeto->coopCnpj ?></td>
+         <tr>
+          <tr>
+           <td>  <?php echo $projeto->id ?></td>
+           <td>  <?php echo $projeto->coopNomeFantasia ?></td>
+           <td>  <?php echo $projeto->coopCnpj ?></td>
+         </tr>
        </tr>
      </tr>
    </tr>
- </tr>
- <tr style="width: 80px;">
-  <th>Endereço do Proponente</th>
-  <th>Município</th>
-  <th>UF</th>
-  <tr>
-   <tr>
+   <tr style="width: 80px;">
+    <th>Endereço do Proponente</th>
+    <th>Município</th>
+    <th>UF</th>
     <tr>
-     <td>  <?php echo $projeto->coopEndereco ?></td>
-     <td>  <?php echo $projeto->coopCidade ?></td>
-     <td>  <?php echo $projeto->coopUf ?></td>
+     <tr>
+      <tr>
+       <td>  <?php echo $projeto->coopEndereco ?></td>
+       <td>  <?php echo $projeto->coopCidade ?></td>
+       <td>  <?php echo $projeto->coopUf ?></td>
+     </tr>
    </tr>
  </tr>
-</tr>
 </tr>
 
 <tr style="width: 80px;">
@@ -220,7 +214,6 @@ $this->load->view('Menu');
    </thead>
 
    <tbody>
-
      <tr style="width: 80px;">
       <th>Produto</th>
       <th>Unidade</th>
@@ -236,14 +229,15 @@ $this->load->view('Menu');
           <td>  <?php echo $item->quantidade ?></td>
           <td>  <?php echo $item->precoUnidade ?></td>
           <td>  <?php echo $item->totalItem ?></td>
-          <td>  <?php echo $item->cronogramaEntregaProd ?></td>
-
-        </tr>
+          <td style="width: 20%">  <?php echo $item->cronogramaEntregaProd ?></td>
+        </tr> 
       </tr>
     </tr>
+
   </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+<input type="submit" name="alterar" value="Alterar" />
