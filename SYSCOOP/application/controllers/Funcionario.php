@@ -12,6 +12,24 @@ class Funcionario extends MY_Controller {
 	}
 
 //----------------------------------------------------------------------------------
+
+	public function backup(){
+	// Carrega a classe DB utility 
+		$this->load->dbutil();
+
+	// Executa o backup do banco de dados armazenado-o em uma variável
+		$backup = $this->dbutil->backup();
+
+	// carrega o helper File e cria um arquivo com o conteúdo do backup
+		$this->load->helper('file');
+		write_file('/path/backup.gz', $backup);
+
+	// Carrega o helper Download e força o download do arquivo que foi criado com 'write_file'
+		$this->load->helper('download');
+		force_download('backup.gz', $backup);
+
+	}
+//----------------------------------------------------------------------------------
 	
 
 	public function ajuda(){

@@ -12,9 +12,9 @@ $this->load->view('Menu')
 
 		<tbody>
 
-			<tr style="width: 80px;">
-				<th>Produto</th>
-				<th>Agricultores</th> 
+			<tr style="width: 100px;">
+				<th style="border: 1px solid #dee2e6;">Produto</th>
+				<th style="border: 1px solid #dee2e6;">Agricultores</th> 
 			</tr>
 			<td>
 				<select name="produto" class="form-control" id="produto" >

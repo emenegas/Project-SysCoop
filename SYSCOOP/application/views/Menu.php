@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="text-white navbar-brand" href="<?php echo site_url('projetopnae')?>">Projeto</a>
+  <a class="text-white navbar-brand" href="<?php echo site_url('projetopnae')?>">Projetos</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,14 +24,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="text-white nav-link" href="<?php echo site_url('agricultor')?>">Agricultor<span class="sr-only">(current)</span></a>
+        <a class="text-white nav-link" href="<?php echo site_url('agricultor')?>">Agricultores<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="text-white nav-link" href="<?php echo site_url('entidade')?>">Entidade Executora</a>
+        <a class="text-white nav-link" href="<?php echo site_url('entidade')?>">Entidade Executoras</a>
       </li>
       <li class="nav-item">
-        <a class="text-white nav-link" href="<?php echo site_url('Cooperativa')?>">Cooperativa</a>
+        <a class="text-white nav-link" href="<?php echo site_url('Cooperativa')?>">Cooperativas</a>
+      </li>
+       <li class="nav-item">
+        <a class="text-white nav-link" href="<?php echo site_url('Produto')?>">Produtos</a>
+      </li>
+       <li class="nav-item">
+        <a class="text-white nav-link" href="<?php echo site_url('funcionario')?>">Funcionários</a>
       </li>
     </ul>
     <button type="button" style="background: none; border: none;" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li class="nav-item dropdown">
    <a class="text-white nav-link" href="<?php echo site_url('funcionario/ajuda')?>">Ajuda</a>       
  </li>
-
+ <li class="nav-item dropdown">
+   <a class="text-white nav-link" href="<?php echo site_url('funcionario/backup')?>">Backup</a>       
+ </li>
  <li class="nav-item dropdown">
    <a class="text-white nav-link" href="<?php echo site_url('login/logout')?>">Sair</a>       
  </li>

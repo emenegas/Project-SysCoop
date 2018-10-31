@@ -23,7 +23,6 @@ $this->load->view('Menu');
                   <th style="border: 1px solid #dee2e6 ;">Código</th>
                   <th style="border: 1px solid #dee2e6 ;">Nome</th>
                   <th style="border: 1px solid #dee2e6 ;">CPF</th>
-                  <th style="border: 1px solid #dee2e6 ;">Editar</th>
                   <tr>
                      <tr>
                         <?php foreach ($funcionarios as $item): ?>
@@ -31,12 +30,11 @@ $this->load->view('Menu');
                               <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->id ?></td>
                               <td style="border: 1px solid #dee2e6;">  <?php echo $item->nome ?></td>
                               <td style="border: 1px solid #dee2e6;">  <?php echo $item->cpf ?></td>
-
                               <td style="border: 1px solid #dee2e6;">
-                                 <a href="<?php echo site_url('/funcionario/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Editar</a>
-
-                              </td>
+                                 <a href="<?php echo site_url('/funcionario/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Editar</a>  
+                              </td> 
                            </tr>
+
                         <?php endforeach ?>
                      </tr>
                   </tr>
