@@ -9,104 +9,107 @@
 
   <style> 
   .formBox{
-      margin-top: 90px;
-      padding: 50px;
+    margin-top: 90px;
+    padding: 50px;
   }
   .formBox  h2{
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      margin-bottom: 50px;
-      text-transform: uppercase;
-      font-size: 48px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-size: 48px;
   }
   .inputBox{
-      position: relative;
-      box-sizing: border-box;
-      margin-bottom: 50px;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 50px;
   }
   .inputBox .inputText{
-      position: absolute;
-      font-size: 24px;
-      line-height: 50px;
-      transition: .5s;
-      opacity: .5;
+    position: absolute;
+    font-size: 24px;
+    line-height: 50px;
+    transition: .5s;
+    opacity: .5;
   }
   .inputBox .input{
-      position: relative;
-      width: 100%;
-      height: 50px;
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: 24px;
-      border-bottom: 1px solid rgba(0,0,0,.5);
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(0,0,0,.5);
   }
   .focus .inputText{
-      transform: translateY(-30px);
-      font-size: 18px;
-      opacity: 1;
-      color: #000;
+    transform: translateY(-30px);
+    font-size: 18px;
+    opacity: 1;
+    color: #000;
   }
+
+  
   body{
-/*    background="assets/campo.jpg"*/
-} 
+
+  } 
+
 </style>
 </head>
-<body >
+<body background="assets/campo.jpg" >
   <div class="container-fluid">
     <div class="container">
       <div class="formBox">
         <form method="post" action="<?php echo base_url('login')?>" id="form_login">
           
-<?php if(isset($formerror)): ?>
-    <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-  <?php endif; ?>
+          <?php if(isset($formerror)): ?>
+            <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+          <?php endif; ?>
 
           <div class="col-sm-6 col-sm-offset-3">
             <h2> 
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                SYSCOOP
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              SYSCOOP
             </h2>
-        </div>
+          </div>
 
-        <div class="row">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="inputBox">
+                <input type="text" class="input" id="cpf" placeholder="CPF" autocomplete="off" name="cpf" autofocus>
+              </div>
+
+              <div class="inputBox">
+                <input type="password" class="input" id="senha" name="senha" placeholder="Senha" autofocus>
+              </div>
+            </div>
+          </div>
+
           <div class="col-sm-6 col-sm-offset-3">
-            <div class="inputBox">
-              <input type="text" class="input" id="cpf" placeholder="CPF" autocomplete="off" name="cpf" autofocus>
+            <button type="submit"  id="cadastrar" class="btn btn-lg btn-success btn-block"> 
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+              Acessar
+            </button>
           </div>
 
-          <div class="inputBox">
-              <input type="password" class="input" id="senha" name="senha" placeholder="Senha" autofocus>
-          </div>
+        </form>
+        <div class="col-md-6 col-sm-offset-3">
+
+          <p>Acesse com o seu CPF e Senha!</p>
+        </div>
       </div>
+    </div>
   </div>
-
-  <div class="col-sm-6 col-sm-offset-3">
-    <button type="submit"  id="cadastrar" class="btn btn-lg btn-success btn-block"> 
-        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-        Acessar
-    </button>
-</div>
-
-</form>
-<div class="col-md-6 col-sm-offset-3">
-
-  <p>Acesse com o seu CPF e Senha!</p>
-</div>
-</div>
-</div>
-</div>
 </body>
 <script>
   setTimeout(function(){
     $('button.close').click()
-},2000)
+  },2000)
   
 
   $(".input").focus(function() {
     $(this).parent().addClass("focus");
-})
+  })
 </script>
 
 </html>

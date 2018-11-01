@@ -6,8 +6,8 @@ $this->load->view('Menu');
 <div class="container">
 	<div class="row">
 
-		<form action="<?php echo site_url('entidade/cadastrar')?>" method="post">
-			<div style="width:50%; float:left;">
+		<form action="<?php echo site_url('entidade/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
+			<div style="width:48%; float:left;">
 				<div >
 					<label form="cnpj">CNPJ</label>
 					<?php echo form_error('cnpj'); ?>
@@ -34,7 +34,7 @@ $this->load->view('Menu');
 					<input type="text" name="representante" id="representante" class="form-control" value="<?php echo set_value('representante')?>">
 				</div>
 			</div>
-			<div style="width:50%; float:right;">
+			<div style="width:48%; float:right;">
 				<div>
 					<label form="cpfRepresentante">CPF Representante</label>
 					<?php echo form_error('cpfRepresentante'); ?>
@@ -61,12 +61,19 @@ $this->load->view('Menu');
 					<input type="text" name="cidade" id="cidade" class="form-control" value="<?php echo set_value('cidade')?>">
 				</div>
 
-				<div class="button">
+				<div class="button" style="    margin-top: 30px;
+    float: right;">
 					<button style="width: 100px;" type="submit" class="btn btn-outline-info">Cadastrar</button>
 					<a style="width: 100px;" href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
 				</div>
 			</div>
 
-		</form>
+		</form> 
 	</div>
 </div>
+<style type="text/css">
+	label{
+		margin-top: .5rem !important;
+		margin-bottom: 0rem !important;
+	}
+</style>

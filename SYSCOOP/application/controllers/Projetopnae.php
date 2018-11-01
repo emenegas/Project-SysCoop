@@ -142,6 +142,8 @@ class Projetopnae extends MY_Controller {
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
 
+
+
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();

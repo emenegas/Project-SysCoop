@@ -60,12 +60,12 @@ $this->load->view('Menu');
 		</div>
 	</div>
 	
-	<div class="button" style="    margin-top: 30px;
-	float: right;">
+	<div class="button" style="margin-top: 30px;float: right;">
 	<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"  />
-	<a style="width: 100px;" href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
+	<a href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 </div>
 </div>
+
 <style type="text/css">
 label{
 	margin-top: .5rem !important;

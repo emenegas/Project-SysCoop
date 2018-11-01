@@ -15,11 +15,14 @@ $this->load->view('Menu')
 				<?php echo form_error('nomeEdital'); ?>
 				<input type="text" name="nomeEdital" id="nomeEdital" class="form-control" value="<?php echo set_value('nomeEdital')?>">
 			</div>
+
 			<div style="width:48%; float:left;">
 				<label  form="arquivoEdital">Arquivo Edital</label>
 				<?php echo form_error('arquivoEdital'); ?>
 				<input type="file" name="arquivoEdital" id="arquivoEdital">
 			</div>
+
+
 			<div style="width:48%; float:right;" > 
 				<label form="dataEncerramento">Data de Encerramento:</label>
 				<?php echo form_error('dataEncerramento'); ?>
@@ -45,23 +48,23 @@ $this->load->view('Menu')
 			</div>
 
 			<div class="button" style="    margin-top: 30px;
-    float: right;">
-				<button type="submit" class="btn btn-info">Continuar</button>
-				<a style="width: 100px;" href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
+			float: right;">
+			<button type="submit" class="btn btn-info">Continuar</button>
+			<a style="width: 100px;" href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
 
-			</div>
-		</form>
+		</div>
+	</form>
 
-		<?php if(isset($formerror)): ?>
-			<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-		<?php endif; ?>
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+	<?php endif; ?>
 
-	</div>
+</div>
 </div>
 
 <style type="text/css">
-	label{
-		margin-top: .5rem !important;
-		margin-bottom: 0rem !important;
-	}
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
 </style>

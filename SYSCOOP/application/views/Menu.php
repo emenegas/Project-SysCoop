@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
 
       <li class="nav-item">
-        <a class="text-white nav-link" href="<?php echo site_url('entidade')?>">Entidade Executoras</a>
+        <a class="text-white nav-link" href="<?php echo site_url('entidade')?>">Entidades Executoras</a>
       </li>
       <li class="nav-item">
         <a class="text-white nav-link" href="<?php echo site_url('Cooperativa')?>">Cooperativas</a>

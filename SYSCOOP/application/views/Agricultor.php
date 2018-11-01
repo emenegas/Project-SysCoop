@@ -3,10 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div class="container">
-	<div class="row">
-		<div style="width:50%; float:left;">
-			<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post">
+<div class="container" >
+	<div class="row" style="width: 100%;">
+		
+		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
+			<div style="width:48%; float:left;">
+
 				<div>
 					<label form="nome">Nome</label>
 					<input type="text" name="nome" id="nome" class="form-control"  autocomplete="off" value="<?php echo set_value('nome')?>">
@@ -33,7 +35,7 @@ $this->load->view('Menu');
 					<input type="text" name="cep" id="cep" class="form-control cep-mask" placeholder="Ex.: 00000-000"	  autocomplete="off" value="<?php echo set_value('cep')?>">
 				</div>
 			</div>
-			<div style="width:50%; float:right;">
+			<div style="width:48%; float:right;">
 				<div>
 					<label form="cidade">Cidade</label>
 					<input type="text" name="cidade" id="cidade" class="form-control"  autocomplete="off" value="<?php echo set_value('cidade')?>">
@@ -61,7 +63,7 @@ $this->load->view('Menu');
 						}?>
 					</select>
 				</div>
-				<div>
+				<div >
 					<label for="produtos">Produtos:</label>
 					<?php foreach ($produtos as $produto)
 					{
@@ -69,17 +71,25 @@ $this->load->view('Menu');
 					}?>
 				</div>
 				
-				<div class="button">
+				<div class="button" style="margin-top: 30px;float: right;">
 
 					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
-					<a style="width: 100px;" href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
+					<a href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 				</div>
 
-				<?php if(isset($formerror)): ?>
-					<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-				<?php endif; ?>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
-
 </div>
+
+
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
+</style>
+
+<?php if(isset($formerror)): ?>
+	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+	<?php endif; ?>

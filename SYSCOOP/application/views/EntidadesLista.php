@@ -11,7 +11,7 @@ $this->load->view('Menu');
          <div id='table'>
             <table class= 'table table-hover'>
                <thead>
-                  <tr id="title"><th colspan=3 style="border: none;">Entitades Executoras <a style="width: 100px;" href="<?php echo site_url('entidade/novo') ?>" class="btn btn-outline-info">NOVA</a> 
+                  <tr id="title"><th colspan=3 style="border: none;">Entidades Executoras <a style="width: 100px;" href="<?php echo site_url('entidade/novo') ?>" class="btn btn-outline-info">NOVA</a> 
                 <a style="width: 100px;" href="<?php echo site_url('entidade?status=inativo') ?>" class="btn btn-outline-danger">Inativas</a> 
 
                   </th></tr>

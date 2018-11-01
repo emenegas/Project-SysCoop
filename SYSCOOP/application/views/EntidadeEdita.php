@@ -2,10 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>	
-<div style="width:50%; float:left;">
+<div style="width:48%; float:left;">
 	<?php echo form_open('entidade/' .$entidade->id. '/alterar', 'id="form-entidade"'); ?>
-	<label for="nome">CNPJ: <?php echo $entidade->cnpj?></label><br/>
-
+	<div>
+		<label for="nome" class="form-control">CNPJ: <?php echo $entidade->cnpj?></label><br/>
+	</div>
 	<div>
 		<label form="nomeFantasia">Nome Fantasia</label>
 		<?php echo form_error('nomeFantasia'); ?>
@@ -32,7 +33,8 @@ $this->load->view('Menu');
 		<input type="text" name="cpfRepresentante" id="cpfRepresentante" class="form-control" autocomplete="off" value="<?php echo $entidade->cpfRepresentante; ?>">
 	</div>
 </div>
-<div style="width:50%; float:right;">
+<div style="width:48%; float:right;">
+
 	<div>
 		<label form="cep">CEP</label>
 		<?php echo form_error('cep'); ?>
@@ -58,9 +60,15 @@ $this->load->view('Menu');
 		<option <?php echo $entidade->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>			
 		<option <?php echo $entidade->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
 	</select>
-
-	<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info" />
-	<a style="width: 100px;" href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
-
-	<?php echo form_close(); ?>
+	<div class="button" style="   margin-top: 30px;float: right;">
+		<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info" />
+		<a  href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
 </div>
+<?php echo form_close(); ?>
+</div>
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
+</style>
