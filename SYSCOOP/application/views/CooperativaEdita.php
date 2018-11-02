@@ -6,7 +6,7 @@ $this->load->view('Menu');
 <?php echo form_open('cooperativa/' .$cooperativa->id. '/alterar', 'id="form-cooperativa"'); ?>
 
 <label for="nome" class="form-control">CNPJ: <?php echo $cooperativa->cnpj?></label><br/>
-<div style="width:50%; float:left;">
+<div style="width:48%; float:left;">
 
 	<div>
 		<label form="nomeFantasia">Nome Fantasia</label>
@@ -58,8 +58,12 @@ $this->load->view('Menu');
 		<label form="agencia">Agência</label>
 		<input type="text" name="agencia" id="agencia" class="form-control" value="<?php echo $cooperativa->agencia; ?>">
 	</div>
+	<div>
+		<label form="caracteristicasCoop">Características Fornecedor</label>
+		<input type="text" name="caracteristicasCoop" id="caracteristicasCoop" class="form-control" value="<?php echo $cooperativa->caracteristicasCoop; ?>">
+	</div>
 </div>
-<div style="width:50%; float:right;">
+<div style="width:48%; float:right;">
 	<div>
 		<label form="numeroContaCorrente">Numero Conta Corrente</label>
 		<input type="text" name="numeroContaCorrente" id="numeroContaCorrente" class="form-control" value="<?php echo $cooperativa->numeroContaCorrente; ?>">
@@ -88,16 +92,23 @@ $this->load->view('Menu');
 		<label form="dapValidade">Validade DAP</label>
 		<input type="date" name="dapValidade" id="dapValidade" class="form-control" value="<?php echo $cooperativa->dapValidade; ?>">
 	</div>
-
+<label form="status">Status</label>
 	<select name="status" class="form-control">
 		<option <?php echo $cooperativa->status == 'ativo'?'selected':''; ?> value="ativo">Ativo</option>				
 		<option <?php echo $cooperativa->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
 	</select>
 </div>
+<div class="button" style="margin-top: 30px;float: right;">
 <input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
 <a style="width: 100px;" href="<?php echo site_url('Cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
-
+</div>
 <?php if(isset($formerror)): ?>
 	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
 <?php endif; ?>
 <?php echo form_close(); ?>
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
+</style>

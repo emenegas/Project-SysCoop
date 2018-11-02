@@ -3,50 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
-
 <div class="container">
-  <table class="table table-bordered">
+  <table class="table table">
     <thead class="thead-dark">
       <tr>
         <th><?php echo $projeto->coopNomeFantasia ?></th>
 
-
         <th> <?php echo $projeto->coopEndereco ?> <?php echo $projeto->coopCidade?>/<?php echo $projeto->coopUf ?></th>
         <th>
-         <?php echo $projeto->coopEmail?>
-       </th>
-     </tr>
-     <tr>
-      <th>
-        <?php echo $projeto->coopCnpj?>
-      </th>
-      <th>
-        Fone: <?php echo $projeto->coopTelefone?>
-      </th>
-      <th> 
-       <input type="submit" name="alterar" value="Alterar" />
+          <?php echo $projeto->coopEmail?>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          CNPJ: <?php echo $projeto->coopCnpj?>
+        </th>
+        <th>
+          Fone: <?php echo $projeto->coopTelefone?>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+  <table class="table table">
+    <thead >
+     <tr class="thead-light">
+      <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
+      <th style="width: 30%"> Situação:
+        <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
+         <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>
+       </select>
+     </th>
+     <th>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:
+       <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
+     </th>
+     <th >Homologação n°
+       <input type="text" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
+     </th>
+     <th> 
+       <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
      </th>
    </tr>
- </thead>
-</table>
-<table class="table table">
-  <thead >
-   <tr class="thead-light">
-    <th style="width: 30%"> Situação:
-      <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
-       <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>
-     </select>
-   </th>
-   <th>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:
-     <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
-   </th>
-   <th >Homologação n°
-     <input type="text" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
-   </th>
- </tr>
-</table>
-<table class="table table-bordered">
+ </table>
+ <table class="table table-bordered">
   <thead class="thead-light">
    <tr> 
     <th>PROJETO DE VENDA DE GÊNEROS ALIMENTÍCIOS DA AGRICULTURA FAMILIAR PARA ALIMENTAÇÃO ESCOLAR</th>
@@ -99,7 +98,7 @@ $this->load->view('Menu');
 <table class="table table-bordered">
  <thead class="thead-light">
    <tr>
-    <th>N. DAP Jurídica</th>
+    <th>Numero da DAP Jurídica</th>
     <th >Banco</th>
     <th >N. Agência</th>
     <th >N. Conta Corrente</th>
@@ -176,7 +175,7 @@ $this->load->view('Menu');
       <th>Produto</th>
       <th>Unidade</th>
       <th>Quantidade</th>
-      <th>Preço Unidade</th>
+      <th>Preço Unitário</th>
       <th>Valor Total</th>
     </tr>
   </thead>
@@ -205,6 +204,7 @@ $this->load->view('Menu');
     <th>Cronograma de Entrega</th>
   </tr>
 </thead>
+ <?php foreach ($itens as $item): ?>
 <tr>
   <td> <?php echo $item->descricaoProd ?></td>
   <td>  <?php echo $item->unidadeMedida ?></td>
@@ -213,18 +213,82 @@ $this->load->view('Menu');
   <td>  <?php echo $item->totalItem ?></td>
   <td style="width: 20%">  <?php echo $item->cronogramaEntregaProd ?></td>
 </tr> 
+ <?php endforeach ?>
 <tbody>
 </table>
 
-<table>
-  <thead>
+<table class="table table-bordered" >
+  <thead  class="table-sm">
+    <tr>
     <th>
-      
+      Total do Projeto: R$ <?php echo $projeto->totalProjeto ?>
     </th>
+  </tr>
   </thead>
 </table>
-
-
+<table class="table table-sm table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>V - OBSERVAÇÕES
+      </th>
+    </tr>
+  </thead>
+  <thead class="thead-light">
+    <tr>
+      <th>Os mecanismos de acompanhamento das entregas dos produtos se dão através do controle de Notas Fiscais.
+      </th>
+    </tr>
+  </thead>
+  <thead class="thead-dark">
+   <tr>
+    <th>VI - CARACTERÍSTICAS DO FORNECEDOR PROPONENTE
+    </th>
+  </tr>
+</thead>
+<thead>
+  <tr>
+    <?php echo $projeto->caracteristicasCoop ?>
+    </th>
+  </tr>
+</thead>
+<thead>
+  <tr>
+    <th>Declaro estar de acordo com as condições estabelecidas neste projeto e que as informações acima conferem com as condições de fornecimento.
+    </th>
+  </tr>
+</thead>
+</table>
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Local
+      </th>
+      <th>Data
+      </th>
+      <th>Presidente <?php echo $projeto->coopNomeRepresentante ?>
+    </th>
+    <th>CPF
+    </th>
+    <th>Fone
+    </th>
+  </tr>
+</thead>
+<thead>
+  <tr>
+    <th><?php echo $projeto->coopCidade ?>(<?php echo $projeto->coopUf ?>)
+    </th>
+    <th><?php echo date('d/m/y') . '<br />';?>
+  </th>
+  <th>
+  </th>
+  <th>
+    <?php echo $projeto->coopCpfRepresentante ?>
+  </th>
+  
+    <th><?php echo $projeto->coopTelefoneRepresentante ?>
+</tr>
+</thead>
+</table>
 </div>
 
 

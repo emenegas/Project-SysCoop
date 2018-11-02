@@ -21,6 +21,7 @@ class Cooperativa_model extends CI_Model {
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
 		$data['dapNumero'] = $this->input->post('dapNumero');
+		$data['caracteristicasCoop'] = $this->input->post('caracteristicasCoop');
 		$data['dapValidade'] = $this->input->post('dapValidade');
 		
 		return $this->db->insert('cooperativas',$data);

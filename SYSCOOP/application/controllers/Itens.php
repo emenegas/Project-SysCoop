@@ -25,13 +25,14 @@ class Itens extends MY_Controller {
 			show_404();
 
 		$dados=[
-			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
 			'produtos'=> $this->Produto_model->listar(),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
 			'idProjeto' => $id
 		];
+
 		$this->load->view('Itens', $dados);
 
-	}
+	} 
 	
 	//----------------------------------------------------------------------------------
 
@@ -43,23 +44,20 @@ class Itens extends MY_Controller {
 			show_404();
 
 		$dados=[
-			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
 			'produtos'=> $this->Produto_model->listar(),
+			'itens_do_projeto' => $this->Itens_model->getByProjeto($id),
 			'idProjeto' => $id
 		];
-		if(!$projeto)
-			show_404();
 
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_rules('produto',     'Cod Produto',          			 'trim|required|is_natural');
 		$this->form_validation->set_rules('agricultor',     'Cod Agricultor',     			 'trim|is_natural');
-		$this->form_validation->set_rules('quantidade',     'Quantidade',      				 'trim|required	');
+		$this->form_validation->set_rules('quantidade',     'Quantidade',      				 'trim|required');
 		$this->form_validation->set_rules('precoUnidade',     'Preço Unitário',     		 'trim|required');
 		$this->form_validation->set_rules('descricaoProd',     'Descrição',     			 'trim|required');
 		$this->form_validation->set_rules('cronogramaEntregaProd',     'Cronograma',      	 'trim|required');
 		
 		
-
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
 			$this->load->view('Itens', $dados);

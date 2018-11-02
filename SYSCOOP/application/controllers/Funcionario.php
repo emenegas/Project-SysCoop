@@ -166,7 +166,7 @@ class Funcionario extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',				'trim|required');
-		$this->form_validation->set_rules('cpf', 'CPF' , 				'trim|required|valid_cpf');
+		$this->form_validation->set_rules('cpf', 'CPF' , 				'trim|required');
 		$this->form_validation->set_rules('email','Email',				'trim|required|valid_email');
 		$this->form_validation->set_rules('telefone','Telefone',		'trim|required');
 		$this->form_validation->set_rules('senha','Senha',				'trim|required');

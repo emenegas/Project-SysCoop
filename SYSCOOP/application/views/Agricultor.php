@@ -4,7 +4,7 @@ $this->load->view('Menu');
 ?>
 
 <div class="container" >
-	<div class="row" style="width: 100%;">
+	<div class="row" >
 		
 		<form action="<?php echo site_url('agricultor/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
 			<div style="width:48%; float:left;">

@@ -6,8 +6,8 @@ $this->load->view('Menu');
 
 <div class="container">
 	<div class="row">
-		<div style="width:50%; float:left;">
-			<form action="<?php echo site_url('cooperativa/cadastrar')?>" method="post">
+		<div style="width:48%; float:left;">
+			<form action="<?php echo site_url('cooperativa/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
 				<div>
 					<label form="cnpj">CNPJ</label>
 					<input type="text" name="cnpj" id="cnpj" class="form-control" value="<?php echo set_value('cnpj')?>">
@@ -64,7 +64,7 @@ $this->load->view('Menu');
 					<input type="text" name="agencia" id="agencia" class="form-control" value="<?php echo set_value('agencia')?>">
 				</div>
 					</div>
-			<div style="width:50%; float:right;">
+			<div style="width:48%; float:right;">
 				<div>
 					<label form="numeroContaCorrente">Numero Conta Corrente</label>
 					<input type="text" name="numeroContaCorrente" id="numeroContaCorrente" class="form-control" value="<?php echo set_value('numeroContaCorrente')?>">
@@ -86,6 +86,10 @@ $this->load->view('Menu');
 					<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo set_value('endereco')?>">
 				</div>
 				<div>
+					<label form="caracteristicasCoop">Características Fornecedor</label>
+					<input type="text" name="caracteristicasCoop" id="caracteristicasCoop" class="form-control" value="<?php echo set_value('caracteristicasCoop')?>">
+				</div>
+				<div>
 					<label form="dapNumero">DAP Jurídica</label>
 					<input type="text" name="dapNumero" id="dapNumero" class="form-control" value="<?php echo set_value('dapNumero')?>">
 				</div>
@@ -94,7 +98,7 @@ $this->load->view('Menu');
 					<input type="date" name="dapValidade" id="dapValidade" class="form-control">
 				</div>
 
-				<div class="button">
+				<div class="button" style="margin-top: 30px;float: right;">
 					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
 					<a style="width: 100px;" href="<?php echo site_url('cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
 
@@ -108,3 +112,9 @@ $this->load->view('Menu');
 
 	</div>
 </div>
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
+</style>
