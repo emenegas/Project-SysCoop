@@ -42,6 +42,7 @@ $this->load->view('Menu');
      </th>
      <th> 
        <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
+       <?php echo form_close(); ?>
      </th>
    </tr>
  </table>

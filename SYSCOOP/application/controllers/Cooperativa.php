@@ -133,7 +133,7 @@ class Cooperativa extends MY_Controller {
 			array(
 				'field' => 'caracteristicasCoop',
 				'label' => 'caracteristicasCoop',
-				'rules' => 'min_length[1]|max_length[40000]'
+				'rules' => 'trim'
 			),
 			array(
 				'field' => 'status',

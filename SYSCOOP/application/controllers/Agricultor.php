@@ -42,11 +42,13 @@ class Agricultor extends MY_Controller {
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
 		$produtos = $this->Produto_model->listar();
+		$cooperativas = $this->Cooperativa_model->listar();
 		if(!$agricultor){
 			show_404();
 		}
 		$data['produtos'] = $produtos; 
 		$data['agricultor'] = $agricultor;
+		$data['cooperativas'] = $cooperativas;
 		$this->load->view('AgricultorEdita', $data);
 	}
 
@@ -112,6 +114,12 @@ class Agricultor extends MY_Controller {
 				'label' => 'Produtos',
 				'rules' => ''
 			),
+
+			array(
+				'field' => 'cooperativa',
+				'label' => 'Cooperativa',
+				'rules' => ''
+			),
 			array(
 				'field' => 'status',
 				'label' => 'Status',
@@ -122,6 +130,7 @@ class Agricultor extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['agricultor'] = $agricultor;
 			$data['produtos'] = $produtos;
+			$data['cooperativas'] = $cooperativas;
 			$data['formerror'] = validation_errors();
 			$this->load->view('AgricultorEdita', $data);
 		} else {

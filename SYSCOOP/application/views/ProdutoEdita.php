@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div>
 	<?php echo form_open('produto/' .$produto->id. '/alterar', 'id="form-produto"'); ?>
-	<label class="form-control">Código: <?php echo $produto->id?></label><br/>
+<div style="width:50%;">
+	<label >Código</label>
+	<input  class="form-control" type="codigo" disabled="on" name="codigo" value="<?php echo $produto->id?>">
 
 	<div>
 		<label form="nome">Nome</label>
@@ -15,8 +16,7 @@ $this->load->view('Menu');
 		<label for="unidadeMedida">Unidade de medida</label>
 		<select id="unidadeMedida" name="unidadeMedida" class="form-control" value="<?php echo $produto->unidadeMedida; ?>">
 			<option>Pacote</option>
-			<option>Quilograma</option>
-			<option>Grama</option>
+			<option>KG</option>
 			<option>Litro</option>
 			<option>Unidade</option>
 

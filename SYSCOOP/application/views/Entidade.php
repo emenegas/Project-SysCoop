@@ -3,8 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div class="container">
-	<div class="row">
+<div class="container"style="width: 100%; margin-top: 30px;	">
 
 		<form action="<?php echo site_url('entidade/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
 			<div style="width:48%; float:left;">
