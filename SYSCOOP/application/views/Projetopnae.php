@@ -27,6 +27,7 @@ $this->load->view('Menu')
 				<label form="dataEncerramento">Data de Encerramento:</label>
 				<?php echo form_error('dataEncerramento'); ?>
 				<input type="date" name="dataEncerramento" id="dataEncerramento">
+
 			</div>
 			<div>
 				<label for="cooperativa">Cooperativa:</label>
@@ -68,3 +69,13 @@ label{
 	margin-bottom: 0rem !important;
 }
 </style>
+<script type="text/javascript">var input = document.getElementById('dataEncerramento');
+input.addEventListener('change', function() {
+	var agora = new Date();
+	var escolhida = new Date(this.value);
+	if (escolhida < agora) {
+		this.value = [agora.getFullYear(), agora.getMonth() + 1, agora.getDate()].map(v => v < 10 ? '0' + v : v).join('-');
+		alert("Não é permitida data retroativa!");
+	}
+});
+</script>

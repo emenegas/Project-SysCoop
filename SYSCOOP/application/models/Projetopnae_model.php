@@ -13,7 +13,6 @@ class Projetopnae_model extends CI_Model {
 
 		$funcionario = $this->Funcionario_model->getById($cooperativa->responsavel);
 		
-		
 		$data = [];
 		$data['nomeEdital']              = $this->input->post('nomeEdital');
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');

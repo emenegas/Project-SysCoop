@@ -3,12 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<?php echo form_error(); ?>
-  <?php if(isset($formerror)): ?>
-    <tr>
+<?php if(isset($formerror)): ?>
   <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-</tr>
-  <?php endif; ?>
+<?php endif; ?>
+
 
 <div class="container">
   <table class="table table">
@@ -49,14 +47,24 @@ $this->load->view('Menu');
      <th >Homologação n°
        <input type="text" name="homologacaoCodigo" id="homologacaoCodigo" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
      </th>
-     <th> 
-       <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
-       <?php echo form_close(); ?>
-       
-     </th>
-   </tr>
- </table>
- <table class="table table-bordered">
+     <script type="text/javascript">var input = document.getElementById('dataEncerramento');
+     input.addEventListener('change', function() {
+      var agora = new Date();
+      var escolhida = new Date(this.value);
+      if (escolhida < agora) {
+        this.value = [agora.getFullYear(), agora.getMonth() + 1, agora.getDate()].map(v => v < 10 ? '0' + v : v).join('-');
+        alert("Não é permitida data retroativa!");
+      }
+    });
+  </script>
+  <th> 
+   <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
+   <?php echo form_close(); ?>
+
+ </th>
+</tr>
+</table>
+<table class="table table-bordered">
   <thead class="thead-light">
    <tr> 
     <th>PROJETO DE VENDA DE GÊNEROS ALIMENTÍCIOS DA AGRICULTURA FAMILIAR PARA ALIMENTAÇÃO ESCOLAR</th>
@@ -215,26 +223,26 @@ $this->load->view('Menu');
     <th>Cronograma de Entrega</th>
   </tr>
 </thead>
- <?php foreach ($itens as $item): ?>
-<tr>
-  <td> <?php echo $item->descricaoProd ?></td>
-  <td>  <?php echo $item->unidadeMedida ?></td>
-  <td>  <?php echo $item->quantidade ?></td>
-  <td>  <?php echo $item->precoUnidade ?></td>
-  <td>  <?php echo $item->totalItem ?></td>
-  <td style="width: 20%">  <?php echo $item->cronogramaEntregaProd ?></td>
-</tr> 
- <?php endforeach ?>
+<?php foreach ($itens as $item): ?>
+  <tr>
+    <td> <?php echo $item->descricaoProd ?></td>
+    <td>  <?php echo $item->unidadeMedida ?></td>
+    <td>  <?php echo $item->quantidade ?></td>
+    <td>  <?php echo $item->precoUnidade ?></td>
+    <td>  <?php echo $item->totalItem ?></td>
+    <td style="width: 20%">  <?php echo $item->cronogramaEntregaProd ?></td>
+  </tr> 
+<?php endforeach ?>
 <tbody>
 </table>
 
 <table class="table table-bordered" >
   <thead  class="table-sm">
     <tr>
-    <th>
-      Total do Projeto: R$ <?php echo $projeto->totalProjeto ?>
-    </th>
-  </tr>
+      <th>
+        Total do Projeto: R$ <?php echo $projeto->totalProjeto ?>
+      </th>
+    </tr>
   </thead>
 </table>
 <table class="table table-sm table-bordered">
@@ -259,7 +267,7 @@ $this->load->view('Menu');
 <thead>
   <tr>
     <th>
-    <?php echo $projeto->caracteristicasCoop ?>
+      <?php echo $projeto->caracteristicasCoop ?>
     </th>
   </tr>
 </thead>
@@ -297,7 +305,7 @@ $this->load->view('Menu');
     <?php echo $projeto->coopCpfRepresentante ?>
   </th>
   
-    <th><?php echo $projeto->coopTelefoneRepresentante ?>
+  <th><?php echo $projeto->coopTelefoneRepresentante ?>
 </tr>
 </thead>
 </table>

@@ -11,6 +11,7 @@ class Projetopnae extends MY_Controller {
 		$this->load->model('Cooperativa_model');
 		$this->load->model('Entidade_model');
 		$this->load->model('Itens_model');
+		$this->load->model('Funcionario_model');
 
 	}
 
@@ -21,6 +22,7 @@ class Projetopnae extends MY_Controller {
 			'projetos'=> $this->Projetopnae_model->listar()
 		];
 		$this->load->view('ProjetosLista', $dados);
+		
 	}
 
 	//----------------------------------------------------------------------------------
@@ -52,14 +54,25 @@ class Projetopnae extends MY_Controller {
 			'entidadesExecutoras' => $this->Entidade_model->listar()
 		];
 		$this->load->view('Projetopnae', $dados);
+
 	}
 	
 	//----------------------------------------------------------------------------------
 
 	public function remover($id){
-		$this->Itens_model->removerProjeto($id);
-		$this->Projetopnae_model->remover($id);
-		redirect('projetopnae');
+
+		$projeto = $this->Projetopnae_model->getById($id);
+		if($projeto->status == 'ativo'){
+
+			$this->Itens_model->removerProjeto($id);
+			$this->Projetopnae_model->remover($id);
+			redirect('projetopnae');
+		}else{
+			$data['formerror'] = 'Esse projeto não pode ser excluido depois de concluido';
+			$data['projetos'] = $this->Projetopnae_model->listar();
+			$this->load->view('ProjetosLista', $data);
+		}
+
 	}	
 
 	//----------------------------------------------------------------------------------
@@ -123,25 +136,27 @@ class Projetopnae extends MY_Controller {
 					$this->Projetopnae_model->alterar($id,$data);
 				}
 			}else{
-
-				$data['formerror'] = validation_errors();
-				$this->load->view('ProjetoPnaeInfo', $data);
+				$data['formerror'] = 'A Homologação e o Status concluido são necessários!';
+				$data['projetos'] = $this->Projetopnae_model->listar();
+				$this->load->view('ProjetosLista', $data);
 
 			}
 			$dataEnc['dataEncerramento'] = $this->input->post('dataEncerramento');
 
-			if ($this->Projetopnae_model->alterar($id,$dataEnc)) {
-				
+			if ($this->Projetopnae_model->alterar($id,$dataEnc)) {	
 				redirect('projetopnae');
 			} else {
-				$data['formerror'] .= '<p>Erro na alteração!</p>';
+				$data['formerror'] = 'Não pode ser cadastrado';
+				$data['projetos'] = $this->Projetopnae_model->listar();
+				$this->load->view('ProjetosLista', $data);
 			}
 
 		}
+
 	}
 	
 
-//----------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
@@ -152,15 +167,15 @@ class Projetopnae extends MY_Controller {
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
 
-
-
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 		}else{
 			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
+			
 			if(!$cooperativa){
 				$dados['formerror'] .= '<p>Esta cooperativa não existe</p>';
+				
 			}
 			$entidadeExecutora = $this->Entidade_model->getById(set_value('entidadeExecutora'));
 			if(!$entidadeExecutora){
@@ -178,11 +193,6 @@ class Projetopnae extends MY_Controller {
 
 		$this->load->view('Projetopnae', $dados);
 	}
-
-//----------------------------------------------------------------------------------
-
-
-
 
 
 }
