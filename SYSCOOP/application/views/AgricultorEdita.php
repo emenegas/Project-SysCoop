@@ -87,15 +87,13 @@ $this->load->view('Menu');
 		</div>
 	</div>
 
-	<style type="text/css">
-	label{
-		margin-top: .5rem !important;
-		margin-bottom: 0rem !important;
-	}
-</style>
+</div>
 
-<?php if(isset($formerror)): ?>
-	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-<?php endif; ?>
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
+</style>
 
 <?php echo form_close(); ?>

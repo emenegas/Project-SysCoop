@@ -37,6 +37,7 @@ class Projetopnae_model extends CI_Model {
 		$data['coopUf']                  = $cooperativa->uf;
 		$data['coopCidade']              = $cooperativa->cidade;
 		$data['coopEndereco']            = $cooperativa->endereco;
+		$data['caracteristicasCoop']            = $cooperativa->caracteristicasCoop;
 
 		$data['entidadeExecutora']       = $entidade->id;
 		$data['entNomeFantasia']         = $entidade->nomeFantasia;

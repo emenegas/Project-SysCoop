@@ -104,7 +104,6 @@ class Itens_model extends CI_Model {
 
 		$dados = $this->Agricultor_model->getById($id);
 
-		if($totalItem <= 0){
 			
 			$limiteAtualizado = $dados->dapLimite + $totalItem;
 
@@ -112,7 +111,7 @@ class Itens_model extends CI_Model {
 			->where('id', $id)
 			->set('dapLimite', $limiteAtualizado)
 			->update('agricultores');
-		}	
+		
 	}
 
 	//----------------------------------------------------------------------------------
@@ -134,8 +133,7 @@ class Itens_model extends CI_Model {
 
 		->get('itens_do_projeto')
 		->result_array();
-		// print_r($this->db->last_query());
-		// exit;		
+		
 		return ($dadosNull);
 	}
 

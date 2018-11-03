@@ -57,6 +57,7 @@ class Agricultor extends MY_Controller {
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
 		$produtos = $this->Produto_model->listar();
+		$cooperativas = $this->Cooperativa_model->listar();
 		
 		if(!$agricultor){
 			show_404();

@@ -69,28 +69,32 @@ class Projetopnae extends MY_Controller {
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
 		$itens = $this->Itens_model->getByProjeto($id);
+
 		if(!$projeto){
 			show_404();
 		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
 			array(
 				'field' => 'Status',
 				'label' => 'status',
-				'rules' => 'max_length[45]'
+				'rules' => '|max_length[45]'
 			),
 			array(
 				'field' => 'Data Encerramento',
 				'label' => 'dataEncerramento',
-				'rules' => 'required' /*erros */
+				'rules' => '' /*erros */
 			),
 			array(
 				'field' => 'Homologação',
-				'label' => 'homologacao',
-				'rules' => 'max_length[45]' /*erros */
+				'label' => 'homologacaoCodigo',
+				'rules' => 'trim|max_length[45]' /*erros */
 			)
 		);
+		
+		$dados = ['formerror' => ''];
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
 			$data['projeto'] = $projeto;
@@ -98,40 +102,46 @@ class Projetopnae extends MY_Controller {
 			$data['formerror'] = validation_errors();
 			$this->load->view('ProjetoPnaeInfo', $data);
 		} else {
+			
+			$homologacaoCodigo = $this->input->post('homologacaoCodigo');
 
-			if($this->input->post('status') == 'inativo'){
+			if(($this->input->post('status') == 'inativo')&&(!empty($homologacaoCodigo))){
 				$data['status'] = $this->input->post('status');
+				$data['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
 
 				$NULO = $this->Itens_model->getAgricultorNulo($id);
-				
+
 				if(!$NULO){
-					
+
 					$itensPorAgricultor = $this->Itens_model->getByAgricultor($id);
 
 					foreach ($itensPorAgricultor as $item) {
 
 						$this->Itens_model->alterarLimite($item['agricultor'],$item['totalItem']);
-					}	
+					}
+
 					$this->Projetopnae_model->alterar($id,$data);
-					
-
-				}else{
-					log_message('error', 'Agricultor Nulo...');
 				}
+			}else{
+
+				$data['formerror'] = validation_errors();
+				$this->load->view('ProjetoPnaeInfo', $data);
+
 			}
-
-
 			$dataEnc['dataEncerramento'] = $this->input->post('dataEncerramento');
-			$dataEnc['homologacao'] = $this->input->post('homologacao');
 
 			if ($this->Projetopnae_model->alterar($id,$dataEnc)) {
+				
 				redirect('projetopnae');
 			} else {
-				log_message('error', 'Erro na alteração...');
+				$data['formerror'] .= '<p>Erro na alteração!</p>';
 			}
+
 		}
 	}
-	//----------------------------------------------------------------------------------
+	
+
+//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
@@ -169,7 +179,7 @@ class Projetopnae extends MY_Controller {
 		$this->load->view('Projetopnae', $dados);
 	}
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 
 

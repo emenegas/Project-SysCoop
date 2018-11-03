@@ -48,6 +48,7 @@ class Cooperativa extends MY_Controller {
 		$this->load->view('CooperativaEdita', $data);
 	}
 	public function alterar($id){
+
 		$data = [];
 		$cooperativa = $this->Cooperativa_model->getById($id);
 		$cooperativas = $this->Cooperativa_model->listar();
@@ -56,6 +57,7 @@ class Cooperativa extends MY_Controller {
 		if(!$cooperativa){
 			show_404();
 		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -69,7 +71,6 @@ class Cooperativa extends MY_Controller {
 				'label' => 'Responsável Legal',
 				'rules' => 'required|min_length[1]|max_length[45]'
 			),
-
 			array(
 				'field' => 'email',
 				'label' => 'E-mail',
@@ -83,7 +84,7 @@ class Cooperativa extends MY_Controller {
 			array(
 				'field' => 'cooperativa',
 				'label' => 'Cooperativa',
-				'rules' => 'min_length[1]|max_length[45]'
+				'rules' => 'trim|required'
 			),
 			array(
 				'field' => 'dapValidade',
@@ -166,7 +167,7 @@ class Cooperativa extends MY_Controller {
 			$data['caracteristicasCoop'] = $this->input->post('caracteristicasCoop');
 			$data['numeroContaCorrente'] = $this->input->post('numeroContaCorrente');
 			$data['status'] = $this->input->post('status');
-
+	
 			if ($this->Cooperativa_model->alterar($id,$data)) {
 				redirect('cooperativa');
 			} else {
@@ -202,6 +203,7 @@ class Cooperativa extends MY_Controller {
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] = validation_errors();
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
+			$dados['funcionarios'] = $this->Funcionario_model->listar();
 			$this->load->view('Cooperativa', $dados);
 		}else{
 			$dados['formerror'] = 'Validação OK';

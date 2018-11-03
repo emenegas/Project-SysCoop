@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
+<?php echo form_error(); ?>
+  <?php if(isset($formerror)): ?>
+    <tr>
+  <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+</tr>
+  <?php endif; ?>
+
 <div class="container">
   <table class="table table">
     <thead class="thead-dark">
@@ -26,8 +33,10 @@ $this->load->view('Menu');
     </thead>
   </table>
   <table class="table table">
+
     <thead >
      <tr class="thead-light">
+
       <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
       <th style="width: 30%"> Situação:
         <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
@@ -38,11 +47,12 @@ $this->load->view('Menu');
        <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
      </th>
      <th >Homologação n°
-       <input type="text" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
+       <input type="text" name="homologacaoCodigo" id="homologacaoCodigo" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
      </th>
      <th> 
        <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
        <?php echo form_close(); ?>
+       
      </th>
    </tr>
  </table>
@@ -248,11 +258,12 @@ $this->load->view('Menu');
 </thead>
 <thead>
   <tr>
+    <th>
     <?php echo $projeto->caracteristicasCoop ?>
     </th>
   </tr>
 </thead>
-<thead>
+<thead class="thead-light">
   <tr>
     <th>Declaro estar de acordo com as condições estabelecidas neste projeto e que as informações acima conferem com as condições de fornecimento.
     </th>
@@ -293,12 +304,3 @@ $this->load->view('Menu');
 </div>
 
 
-
-<script type="text/javascript">
-  var input = document.getElementById('dataEncerramento');
-  input.addEventListener('change', function() {
-    var agora = new Date();
-    var escolhida = new Date(this.value);
-    if (escolhida < agora) this.value = [agora.getFullYear(), agora.getMonth() + 1, agora.getDate()].map(v => v < 10 ? '0' + v : v).join('-');
-  });
-</script>

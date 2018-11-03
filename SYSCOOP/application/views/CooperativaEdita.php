@@ -106,19 +106,13 @@ $this->load->view('Menu');
 		<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
 		<a style="width: 100px;" href="<?php echo site_url('Cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
 	</div>
+</div>
 
-	<div>
-		<?php if(isset($formerror)): ?>
-			<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-		<?php endif; ?>
-		<?php echo form_close(); ?>
-	</div>
-
-	<style type="text/css">
-	label{
-		margin-top: .5rem !important;
-		margin-bottom: 0rem !important;
-	}
+<style type="text/css">
+label{
+	margin-top: .5rem !important;
+	margin-bottom: 0rem !important;
+}
 </style>
 
 <?php $this->load->view('Footer'); ?>
