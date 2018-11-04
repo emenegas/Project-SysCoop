@@ -14,7 +14,8 @@ $this->load->view('Menu');
 			<div>
 				<label for="unidadeMedida">Unidade de medida</label>
 				<select id="unidadeMedida" name="unidadeMedida" class="form-control">
-					<option>Pacote</option>
+					<option>Pacote 1KG</option>
+					<option>Pacote 5KG</option>
 					<option>KG</option>
 					<option>Litro</option>
 					<option>Unidade</option>

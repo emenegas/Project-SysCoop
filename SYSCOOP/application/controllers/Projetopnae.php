@@ -164,6 +164,7 @@ class Projetopnae extends MY_Controller {
 		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim|required');
 		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim|required');
 		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
+		$this->form_validation->set_rules('caracteristicasCoop',  		  'caracteristicasCoop',   		'trim');
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
 

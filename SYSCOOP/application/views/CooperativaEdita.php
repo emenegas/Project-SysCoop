@@ -59,10 +59,7 @@ $this->load->view('Menu');
 			<label form="agencia">Agência</label>
 			<input type="text" name="agencia" id="agencia" class="form-control" value="<?php echo $cooperativa->agencia; ?>">
 		</div>
-		<div>
-			<label form="caracteristicasCoop">Características Fornecedor</label>
-			<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" class="form-control" value="<?php echo $cooperativa->caracteristicasCoop; ?>"><?php echo $cooperativa->caracteristicasCoop; ?></textarea>
-		</div>
+		
 	</div>
 	<div style="width:48%; float:right;">
 		<div>

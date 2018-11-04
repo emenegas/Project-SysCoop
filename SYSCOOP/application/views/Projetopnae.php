@@ -39,6 +39,10 @@ $this->load->view('Menu')
 				</datalist>
 			</div>
 			<div>
+				<label form="caracteristicasCoop">Características Cooperativa Fornecedora</label>
+				<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" class="form-control" >Digite aqui os detalhes de comercialização e entrega dos produtos!</textarea>
+			</div>
+			<div>
 				<label for="entidadeExecutora">Entidade Executora:</label>
 				<input list="entidadeExecutora" name="entidadeExecutora" class="form-control">
 				<datalist id="entidadeExecutora" >

@@ -16,6 +16,8 @@ class Projetopnae_model extends CI_Model {
 		$data = [];
 		$data['nomeEdital']              = $this->input->post('nomeEdital');
 		$data['arquivoEdital']           = $this->input->post('arquivoEdital');
+		$data['caracteristicasCoop'] 	= $this->input->post('caracteristicasCoop');
+
 		$data['cooperativa']             = $cooperativa->id;
 		$data['coopNomeFantasia']        = $cooperativa->nomeFantasia;
 		$data['coopRepresentante']          = $cooperativa->responsavel;
@@ -36,7 +38,7 @@ class Projetopnae_model extends CI_Model {
 		$data['coopUf']                  = $cooperativa->uf;
 		$data['coopCidade']              = $cooperativa->cidade;
 		$data['coopEndereco']            = $cooperativa->endereco;
-		$data['caracteristicasCoop']            = $cooperativa->caracteristicasCoop;
+		
 
 		$data['entidadeExecutora']       = $entidade->id;
 		$data['entNomeFantasia']         = $entidade->nomeFantasia;

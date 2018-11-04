@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Login</title>
+  <title>SYSCOOP</title>
 
   <style> 
   .formBox{
@@ -56,7 +56,7 @@
 
 </style>
 </head>
-<body background="assets/campo.jpg" >
+<body >
   <div class="container-fluid">
     <div class="container">
       <div class="formBox">
@@ -66,13 +66,7 @@
             <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
           <?php endif; ?>
 
-          <div class="col-sm-6 col-sm-offset-3">
-            <h2> 
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              SYSCOOP
-            </h2>
-          </div>
-
+        
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
               <div class="inputBox">
@@ -93,10 +87,7 @@
           </div>
 
         </form>
-        <div class="col-md-6 col-sm-offset-3">
-
-          <p>Acesse com o seu CPF e Senha!</p>
-        </div>
+        
       </div>
     </div>
   </div>

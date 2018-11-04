@@ -84,7 +84,7 @@ class Cooperativa extends MY_Controller {
 			array(
 				'field' => 'cooperativa',
 				'label' => 'Cooperativa',
-				'rules' => 'trim|required'
+				'rules' => 'trim'
 			),
 			array(
 				'field' => 'dapValidade',
@@ -132,11 +132,6 @@ class Cooperativa extends MY_Controller {
 				'rules' => 'required|min_length[1]|max_length[45]'
 			),
 			array(
-				'field' => 'caracteristicasCoop',
-				'label' => 'caracteristicasCoop',
-				'rules' => 'trim'
-			),
-			array(
 				'field' => 'status',
 				'label' => 'Status',
 				'rules' => 'required|min_length[4]|max_length[45]'
@@ -164,7 +159,6 @@ class Cooperativa extends MY_Controller {
 			$data['cep'] = $this->input->post('cep');
 			$data['banco'] = $this->input->post('banco');
 			$data['agencia'] = $this->input->post('agencia');
-			$data['caracteristicasCoop'] = $this->input->post('caracteristicasCoop');
 			$data['numeroContaCorrente'] = $this->input->post('numeroContaCorrente');
 			$data['status'] = $this->input->post('status');
 	
@@ -196,7 +190,6 @@ class Cooperativa extends MY_Controller {
 		$this->form_validation->set_rules('endereco',     'Endereço',      		'trim|required');
 		$this->form_validation->set_rules('uf',  		  'UF',   				'trim|required');
 		$this->form_validation->set_rules('cidade',  		  'cidade',   		'trim|required');
-		$this->form_validation->set_rules('caracteristicasCoop',  		  'caracteristicasCoop',   		'trim');
 		$this->form_validation->set_rules('cep',  		  'cep',   				'trim|required');
 
 
