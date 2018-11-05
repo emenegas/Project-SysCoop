@@ -4,8 +4,8 @@ $this->load->view('Menu')
 ?>
 
 
-<div id='table'>
-	<table class= 'table table-hover'>
+<div class="container">
+	<table class="table">
 		<thead>
 			<tr id="title"><th colspan=3>Relatório de Agricultores por Produto</th></tr>
 		</thead>
@@ -13,10 +13,7 @@ $this->load->view('Menu')
 		<tbody>
 
 			<tr style="width: 100px;">
-				<th style="border: 1px solid #dee2e6;">Produto</th>
-				<th style="border: 1px solid #dee2e6;">Agricultores</th> 
-			</tr>
-			<td>
+				<th style="border: 1px solid #dee2e6; width: 50%;">Produto
 				<select name="produto" class="form-control" id="produto" >
 					<?php foreach ($produtos as $produto): ?>
 
@@ -24,13 +21,12 @@ $this->load->view('Menu')
 
 					<?php endforeach ?>
 				</select>
-			</td>
+				</th>
+			</tr>
 			<td>
-				<label id="agricultor" class="form-control"> </label>
+				<label id="agricultor" > </label>
 
 			</td>
-
-
 		</tbody>
 	</table>
 </div>
@@ -49,3 +45,4 @@ $this->load->view('Menu')
 		})
 	})()
 </script>
+<?php $this->load->view('Footer');?>

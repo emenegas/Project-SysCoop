@@ -51,3 +51,4 @@ $this->load->view('Menu');
 	<?php echo form_close(); ?>
 	
 </div>
+<?php $this->load->view('Footer');?>

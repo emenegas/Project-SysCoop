@@ -85,3 +85,4 @@ label{
 	margin-bottom: 0rem !important;
 }
 </style>
+<?php $this->load->view('Footer');?>

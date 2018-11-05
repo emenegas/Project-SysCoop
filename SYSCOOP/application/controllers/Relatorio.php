@@ -44,8 +44,7 @@ class Relatorio extends MY_Controller {
 
 	public function PorCooperativa($id)
 	{
-			print_r('RJEIOR	');
-		exit;
+	
 		$agricultores = $this->Relatorio_model->getByCoopAgri($id);
 		header('Content-type: text/json');
 		echo json_encode($agricultores);

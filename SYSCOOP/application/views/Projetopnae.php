@@ -66,7 +66,7 @@ $this->load->view('Menu')
 
 </div>
 </div>
-
+</div>
 <style type="text/css">
 label{
 	margin-top: .5rem !important;
@@ -83,3 +83,4 @@ input.addEventListener('change', function() {
 	}
 });
 </script>
+<?php $this->load->view('Footer');?>

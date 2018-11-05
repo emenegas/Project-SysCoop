@@ -76,3 +76,4 @@ $this->load->view('Menu');
 		margin-bottom: 0rem !important;
 	}
 </style>
+<?php $this->load->view('Footer');?>

@@ -91,7 +91,7 @@
       </div>
     </div>
   </div>
-</body>
+
 <script>
   setTimeout(function(){
     $('button.close').click()
@@ -103,5 +103,5 @@
   })
 </script>
 
-</html>
+<?php $this->load->view('Footer');?>
 

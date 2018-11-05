@@ -48,4 +48,5 @@ $this->load->view('Menu');
       </div>
    </div>
 
-</tr>
+</div>
+<?php $this->load->view('Footer');?>

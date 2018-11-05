@@ -97,3 +97,4 @@ label{
 </style>
 
 <?php echo form_close(); ?>
+<?php $this->load->view('Footer');?>

@@ -93,3 +93,4 @@ label{
 <?php if(isset($formerror)): ?>
 	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
 	<?php endif; ?>
+	<?php $this->load->view('Footer');?>

@@ -49,5 +49,5 @@ $this->load->view('Menu');
          <?php endif; ?>
       </div>
    </div>
-</body>
-</html>
+</div>
+<?php $this->load->view('Footer');?>
