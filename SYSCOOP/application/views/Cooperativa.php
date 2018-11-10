@@ -4,10 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div class="container"style="width: 100%; margin-top: 30px;	">
-	
-	<form action="<?php echo site_url('cooperativa/cadastrar')?>" method="post" style="width: 100%; margin-top: 30px;">
-		<div style="width:48%; float:left;">
+<div class="container-fluid">
+	<?php if(isset($formerror)): ?>
+		<script type="text/javascript">alert(<?php echo $formerror ?>)</script>
+	<?php endif; ?>
+
+	<form class="row" action="<?php echo site_url('cooperativa/cadastrar')?>" method="post">
+		<div class="col-md-6">
 			<div>
 				<label form="cnpj">CNPJ</label>
 				<input type="text" name="cnpj" id="cnpj" class="form-control" value="<?php echo set_value('cnpj')?>">
@@ -62,9 +65,7 @@ $this->load->view('Menu');
 				<input type="text" name="agencia" id="agencia" class="form-control" value="<?php echo set_value('agencia')?>">
 			</div>
 		</div>
-		<div style="width:48%; float:right;">
-			
-			
+		<div class="col-md-6">
 			<div>
 				<label form="numeroContaCorrente">Numero Conta Corrente</label>
 				<input type="text" name="numeroContaCorrente" id="numeroContaCorrente" class="form-control" value="<?php echo set_value('numeroContaCorrente')?>">
@@ -99,19 +100,8 @@ $this->load->view('Menu');
 				<a style="width: 100px;" href="<?php echo site_url('cooperativa') ?>" class="btn btn-outline-danger">Cancelar</a>
 
 			</div>
-		</form>
-	</div>
-
-	<?php if(isset($formerror)): ?>
-		<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-	<?php endif; ?>
-
+		</div>
+	</form>
 </div>
-</div>
-<style type="text/css">
-label{
-	margin-top: .5rem !important;
-	margin-bottom: 0rem !important;
-}
-</style>
+
 <?php $this->load->view('Footer');?>

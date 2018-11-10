@@ -163,7 +163,7 @@ class Agricultor extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required');	
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required|callback_cpf_existe');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -201,6 +201,7 @@ class Agricultor extends MY_Controller {
 		if($retorno > 0 ){
 			return FALSE;
 		}
+		return $cpf;
 	}
 
 	//----------------------------------------------------------------------------------
@@ -227,7 +228,10 @@ class Agricultor extends MY_Controller {
 			$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
 		}
 
-		return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
+		if( $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10])){
+			return $cpf;
+		}
+		return FALSE;
 	}
 
 	//----------------------------------------------------------------------------------

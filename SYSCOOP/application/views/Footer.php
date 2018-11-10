@@ -1,20 +1,7 @@
-<footer class="container-fluid text-center">
-	<div class="row">
-		<div class="col-lg-12">
-			<a>Todos os direitos reservados FAE-Faculdade Anglicana de Erechim</a>
-		</div>
-	</div>
+
+<footer class="py-3 bg-info position">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Todos os direitos reservados FAE-Faculdade Anglicana de Erechim 2015</p>
+</div>
+<!-- /.container -->
 </footer>
-</body>
-</html>
-<style type="text/css">
-
-footer {
-	position:absolute;
-	 bottom:0;
-	background-color: #555;
-	color: white;
-	padding: 15px;
-
-}
-</style>

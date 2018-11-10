@@ -104,26 +104,55 @@ class Itens_model extends CI_Model {
 
 		$dados = $this->Agricultor_model->getById($id);
 
-			
-			$limiteAtualizado = $dados->dapLimite + $totalItem;
 
-			$this->db
-			->where('id', $id)
-			->set('dapLimite', $limiteAtualizado)
-			->update('agricultores');
+		$limiteAtualizado = $dados->dapLimite + $totalItem;
+
+		$this->db
+		->where('id', $id)
+		->set('dapLimite', $limiteAtualizado)
+		->update('agricultores');
 		
 	}
 
 	//----------------------------------------------------------------------------------
+	public function reporLimite($agricultor,$totalItem,$idProjeto){
+		
+		$this->load->model('Agricultor_model');
+		try{
+			$agricultor = $this->Agricultor_model->getById($agricultor);
+			
+			$itens = $this->Itens_model->getByAgricultorPorProjetoInfo($idProjeto);
+			$dapLimite = $agricultor->dapLimite - $itens['totalItem'];
 
-	public function getByAgricultor($id){
+			$this->db
+			->where('id', $id)
+			->set('dapLimite', $dapLimite)
+			->update('agricultores');
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
+	}
+
+	//----------------------------------------------------------------------------------
+
+	public function getByAgricultorPorProjetoInfo($id){
+		$dados =  $this->db
+		->where('projeto', $id)
+		->get('itens_do_projeto')
+		->result_array();		
+		return reset($dados);
+	}
+	//----------------------------------------------------------------------------------
+
+	public function getByAgricultorPorProjeto($id){
 		$dados =  $this->db
 		->where('projeto', $id)
 		->get('itens_do_projeto')
 		->result_array();		
 		return ($dados);
 	}
-
 //----------------------------------------------------------------------------------
 
 	public function getAgricultorNulo($id){

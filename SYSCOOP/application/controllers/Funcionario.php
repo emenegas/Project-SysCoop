@@ -14,20 +14,23 @@ class Funcionario extends MY_Controller {
 //----------------------------------------------------------------------------------
 
 	public function backup(){
-	// Carrega a classe DB utility 
+
+		$this->load->helper('url');
+		$this->load->helper('file');
+		$this->load->library('zip');
 		$this->load->dbutil();
 
-	// Executa o backup do banco de dados armazenado-o em uma variável
-		$backup = $this->dbutil->backup();
-
-	// carrega o helper File e cria um arquivo com o conteúdo do backup
-		$this->load->helper('file');
-		write_file('/path/backup.gz', $backup);
-
-	// Carrega o helper Download e força o download do arquivo que foi criado com 'write_file'
-		$this->load->helper('download');
-		force_download('backup.gz', $backup);
-
+		$db_format = array(
+		        'format'        => 'txt',                       // gzip, zip, txt
+		        'add_drop'      => TRUE,                        // Whether to add DROP TABLE statements to backup file
+		        'add_insert'    => TRUE,                        // Whether to add INSERT data to backup file
+		    );
+		$backup = $this->dbutil->backup($db_format);
+		$dbname ='backup-'.date('Y-m-d H.i.s').'.sql';
+		$save='application/backups/'.$dbname;
+		write_file($save,$backup);
+		redirect('projetopnae');
+		
 	}
 //----------------------------------------------------------------------------------
 	

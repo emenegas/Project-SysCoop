@@ -97,10 +97,15 @@ class Projetopnae_model extends CI_Model {
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
-		
+		try{
 		$this->db->where('id', $id);
 		$this->db->set($data);
 		return $this->db->update('projetos');
+	}
+		catch(Exception $e){
+		return FALSE;
+	}
+	
 	}
 	//----------------------------------------------------------------------------------
 	

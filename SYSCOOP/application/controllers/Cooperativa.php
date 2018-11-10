@@ -59,7 +59,7 @@ class Cooperativa extends MY_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_error_delimiters(' -', "\n");
 		$validations = array(
 			array(
 				'field' => 'nomeFantasia',
@@ -194,7 +194,8 @@ class Cooperativa extends MY_Controller {
 
 
 		if($this->form_validation->run()== FALSE){
-			$dados['formerror'] = validation_errors();
+			$this->form_validation->set_error_delimiters('', "");
+			$dados['formerror'] = json_encode(validation_errors());
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
 			$dados['funcionarios'] = $this->Funcionario_model->listar();
 			$this->load->view('Cooperativa', $dados);

@@ -91,6 +91,14 @@ label{
 </style>
 
 <?php if(isset($formerror)): ?>
-	<div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+	<div class="alert alert-danger" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<?php echo $formerror ?></div>
 	<?php endif; ?>
 	<?php $this->load->view('Footer');?>
+
+<script type="text/javascript">
+	setTimeout(function(){
+            $('button.close').click()
+        },2000);
+</script>

@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   
   <title>SYSCOOP</title>
 
@@ -60,11 +63,11 @@
   <div class="container-fluid">
     <div class="container">
       <div class="formBox">
-        <form method="post" action="<?php echo base_url('login')?>" id="form_login">
           
           <?php if(isset($formerror)): ?>
             <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
           <?php endif; ?>
+        <form method="post" action="<?php echo base_url('login')?>" id="form_login">
 
         
           <div class="row">
