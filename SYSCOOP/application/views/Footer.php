@@ -1,7 +1,18 @@
 
-<footer class="py-3 bg-info position">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Todos os direitos reservados FAE-Faculdade Anglicana de Erechim 2015</p>
-</div>
-<!-- /.container -->
+<!DOCTYPE html>
+</body>
+</html>
+
+
+
+
+<!-- Footer -->
+<footer class="fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="http://www.legiaodacruz.com.br/"> IABRB - FAE</a>
+  </div>
+  <!-- Copyright -->
+
 </footer>

@@ -115,7 +115,6 @@ class Agricultor extends MY_Controller {
 				'label' => 'Produtos',
 				'rules' => ''
 			),
-
 			array(
 				'field' => 'cooperativa',
 				'label' => 'Cooperativa',
@@ -147,7 +146,6 @@ class Agricultor extends MY_Controller {
 			$data['dapValidade'] = $this->input->post('dapValidade');
 			$data['status'] = $this->input->post('status');
 			$produtos = $this->input->post('produtos');
-
 		
 			if ($this->Agricultor_model->alterar($id,$data,$produtos)) {
 				redirect('agricultor');
@@ -157,13 +155,15 @@ class Agricultor extends MY_Controller {
 		}
 	}
 
+
+
 	//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required|callback_cpf_existe');	
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -179,7 +179,7 @@ class Agricultor extends MY_Controller {
 			$dados['formerror'] = validation_errors();
 			$dados['produtos'] = $this->Produto_model->listar();
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
-			
+
 			$this->load->view('Agricultor', $dados);
 
 		else:
@@ -208,7 +208,7 @@ class Agricultor extends MY_Controller {
 
 	function callback_valid_cpf($cpf)
 	{
-		
+
 		$cpf = preg_replace('/[^0-9]/','',$cpf);
 		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
 		{

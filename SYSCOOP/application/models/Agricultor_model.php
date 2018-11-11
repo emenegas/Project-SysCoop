@@ -88,10 +88,10 @@ class Agricultor_model extends CI_Model {
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
-	public function alterar($id,$data, $produtos) {
+	public function alterar($id,$dados, $produtos) {
 		
 		$this->db->where('id', $id);
-		$this->db->set($data);
+		$this->db->set($dados);
 		$this->db->update('agricultores');
 
 		$this->db
@@ -101,11 +101,11 @@ class Agricultor_model extends CI_Model {
 		try{
 			foreach ($produtos as $produtoId) {
 
-				$data = [];
-				$data['produto'] = $produtoId;
-				$data['agricultor'] = $id;
+				$dados = [];
+				$dados['produto'] = $produtoId;
+				$dados['agricultor'] = $id;
 
-				$this->db->set($data);
+				$this->db->set($dados);
 				$this->db->replace('agricultores_has_produtos');
 			}
 			return TRUE;			

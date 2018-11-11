@@ -29,6 +29,7 @@ class Funcionario extends MY_Controller {
 		$dbname ='backup-'.date('Y-m-d H.i.s').'.sql';
 		$save='application/backups/'.$dbname;
 		write_file($save,$backup);
+		
 		redirect('projetopnae');
 		
 	}

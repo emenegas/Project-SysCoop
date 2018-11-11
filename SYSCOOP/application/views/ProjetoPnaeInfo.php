@@ -310,5 +310,4 @@ $this->load->view('Menu');
 </thead>
 </table>
 </div>
-
-
+<?php $this->load->view('Footer');?>

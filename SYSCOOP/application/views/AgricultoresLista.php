@@ -3,17 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
-<div class="container"> 
-   <div class="row">
-      <div class="col-md-6  col-md-offset-3 "style="margin: 0 auto; flex: 0 0 100%;
-      max-width: 100%;">
-
+<div class="container-fluid"> 
       <div id='table'>
          <table class= 'table table-hover'>
             <thead>
-               <tr id="title"><th colspan=3 style="border: none;">Agricultores <a style="width: 100px;" href="<?php echo site_url('agricultor/novo') ?>" class="btn btn-outline-info">NOVO</a> 
+               <tr id="title"><th colspan=3 style="border: none;">Agricultores <a href="<?php echo site_url('agricultor/novo') ?>" class="btn btn-outline-info">NOVO</a> 
 
-                  <a style="width: 100px;" href="<?php echo site_url('agricultor?status=inativo') ?>" class="btn btn-outline-danger">Inativos</a> 
+                  <a href="<?php echo site_url('agricultor?status=inativo') ?>" class="btn btn-outline-danger">Inativos</a> 
 
                </th></tr>
             </thead>

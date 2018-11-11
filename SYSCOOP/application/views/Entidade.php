@@ -70,10 +70,5 @@ $this->load->view('Menu');
 		</form> 
 	</div>
 </div>
-<style type="text/css">
-	label{
-		margin-top: .5rem !important;
-		margin-bottom: 0rem !important;
-	}
-</style>
+
 <?php $this->load->view('Footer');?>

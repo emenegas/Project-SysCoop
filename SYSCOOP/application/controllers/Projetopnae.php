@@ -165,6 +165,8 @@ class Projetopnae extends MY_Controller {
 		$dados = ['formerror' => ''];		
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
+			$dados['cooperativas'] = $this->Cooperativa_model->listar();
+			$dados['entidadesExecutoras'] = $this->Entidade_model->listar();
 		}else{
 			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
 
