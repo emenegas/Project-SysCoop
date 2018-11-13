@@ -56,34 +56,52 @@ class Agricultor_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	public function listar(){
-		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
-		return $this->db
-		->where('status',$status)
-		->get('agricultores')->result();
+		try{
+			$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+			return $this->db
+			->where('status',$status)
+			->get('agricultores')->result();
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
-		$agricultor = $this->db
-		->where('id', $id)
-		->get('agricultores')
-		->result();
+		try{
+			$agricultor = $this->db
+			->where('id', $id)
+			->get('agricultores')
+			->result();
 
-		return reset($agricultor);
+			return reset($agricultor);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 	
 	//----------------------------------------------------------------------------------
 	
 	public function getByProduto($id){
-		$agricultor = $this->db
-		->select('agricultores.id , agricultores.nome')
-		->join('agricultores', 'agricultores.id = agricultores_has_produtos.agricultor')
-		->where('produto', $id)
-		->get('agricultores_has_produtos')
-		->result();
+		try{
+			$agricultor = $this->db
+			->select('agricultores.id , agricultores.nome')
+			->join('agricultores', 'agricultores.id = agricultores_has_produtos.agricultor')
+			->where('produto', $id)
+			->get('agricultores_has_produtos')
+			->result();
 
-		return ($agricultor);
+			return ($agricultor);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------

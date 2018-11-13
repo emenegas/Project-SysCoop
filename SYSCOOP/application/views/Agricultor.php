@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu');
+$this->load->view('Menu'); 
 ?>
+ <?php if(isset($formerror)): ?>
+            <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+         <?php endif; ?>
 <div class="container-fluid">
 	<form class="needs-validation" action="<?php echo site_url('agricultor/cadastrar')?>" method="post"  novalidate>
 		<div class="form-row">

@@ -108,7 +108,7 @@ class Projetopnae extends MY_Controller {
 			$dados['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
 
 			$NULO = $this->Itens_model->getAgricultorNulo($id);
-
+	
 			if(!$NULO){
 
 				$itensPorAgricultor = $this->Itens_model->getByAgricultorPorProjeto($idProjeto);

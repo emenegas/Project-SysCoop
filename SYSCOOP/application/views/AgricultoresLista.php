@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-
+ <?php if(isset($formerror)): ?>
+            <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
+         <?php endif; ?>
 <div class="container-fluid"> 
       <div id='table'>
          <table class= 'table table-hover'>
@@ -40,9 +42,7 @@ $this->load->view('Menu');
                </tbody>
             </table>
          </div>
-         <?php if(isset($formerror)): ?>
-            <div class="alert alert-danger" role="alert"><?php echo $formerror ?></div>
-         <?php endif; ?>
+        
       </div>
    </div>
 </div>

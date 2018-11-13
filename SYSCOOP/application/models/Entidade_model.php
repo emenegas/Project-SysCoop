@@ -18,36 +18,56 @@ class Entidade_model extends CI_Model {
 		$data['cidade'] = $this->input->post('cidade');
 		$data['endereco'] = $this->input->post('endereco');
 
+		try{
+			return $this->db->insert('entidadesexecutoras',$data);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
 
-		return $this->db->insert('entidadesexecutoras',$data);
 	}
 
 	//----------------------------------------------------------------------------------
 	public function listar(){
-		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
-		return $this->db
-		->where('status',$status)
-		->get('entidadesexecutoras')->result();
+		try{
+			$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+			return $this->db
+			->where('status',$status)
+			->get('entidadesexecutoras')->result();
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
-		$entidade = $this->db
-		->where('id', $id)
-		->get('entidadesexecutoras')
-		->result();
+		try{
+			$entidade = $this->db
+			->where('id', $id)
+			->get('entidadesexecutoras')
+			->result();
 
-		return reset($entidade);
+			return reset($entidade);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
-		
-		$this->db->where('id', $id);
-		$this->db->set($data);
-		return $this->db->update('entidadesexecutoras');
+		try{
+			$this->db->where('id', $id);
+			$this->db->set($data);
+			return $this->db->update('entidadesexecutoras');
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
-
-
 }

@@ -17,7 +17,7 @@ $this->load->view('Menu')
 			
 			<div class="col-md-2 mb-3">
 				<label for="dataEncerramento">Data de Encerramento</label>
-				<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento" required>
+				<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento"  required>
 			</div>
 			<div class="custom-file col-md-12 mb-4">
 				<input type="file" class="custom-file-input" id="arquivoEdital" name="arquivoEdital">

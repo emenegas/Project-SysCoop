@@ -6,51 +6,70 @@ class Produto_model extends CI_Model {
 	
 	public function cadastrar()
 	{
-		$data = [];
-		$data['nome'] = $this->input->post('nome');
-		$data['unidadeMedida'] = $this->input->post('unidadeMedida');
-		$data['tipo'] = $this->input->post('tipo');
-		$data['epoca'] = $this->input->post('epoca');
+		try{
+			$data = [];
+			$data['nome'] = $this->input->post('nome');
+			$data['unidadeMedida'] = $this->input->post('unidadeMedida');
+			$data['tipo'] = $this->input->post('tipo');
+			$data['epoca'] = $this->input->post('epoca');
 
-		return $this->db->insert('produtos',$data);
-
+			return $this->db->insert('produtos',$data);
+		}catch(Exception $e){
+			return false;
+		}
 	}
 
 	//----------------------------------------------------------------------------------
-	
+
 	public function listar()
 	{
-
-		return $this->db->get('produtos')->result();
+		try{
+			return $this->db->get('produtos')->result();
+		}catch(Exception $e){
+			return false;
+		}
 	}
+
 
 	//----------------------------------------------------------------------------------
-	
+
 	public function getById($id)
 	{
-		$produto = $this->db
-		->where('id', $id)
-		->get('produtos')
-		->result();
+		try{
+			$produto = $this->db
+			->where('id', $id)
+			->get('produtos')
+			->result();
 
-		return reset($produto);
+			return reset($produto);
+		}catch(Exception $e){
+			return false;
+		}
+
 	}
-	
+
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
-		
-		$this->db->where('id', $id);
-		$this->db->set($data);
-		return $this->db->update('produtos');
+		try{
+			$this->db->where('id', $id);
+			$this->db->set($data);
+			return $this->db->update('produtos');
+		}catch(Exception $e){
+			return false;
+		}
 	}
 
 	//----------------------------------------------------------------------------------
 
 	public function remover($id){
-		$this->db
-		->where('id', $idProduto)
-		->delete('produtos');
+		try{
+			$this->db
+			->where('id', $idProduto)
+			->delete('produtos');
+		}catch(Exception $e){
+			return false;
+		}
 
 	}
 }

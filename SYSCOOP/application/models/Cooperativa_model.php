@@ -22,36 +22,58 @@ class Cooperativa_model extends CI_Model {
 		$data['endereco'] = $this->input->post('endereco');
 		$data['dapNumero'] = $this->input->post('dapNumero');
 		$data['dapValidade'] = $this->input->post('dapValidade');
-		
-		return $this->db->insert('cooperativas',$data);
+		try{
+			return $this->db->insert('cooperativas',$data);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
 
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function listar(){
-		$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
-		return $this->db
-		->where('status',$status)
-		->get('cooperativas')->result();
+		try{
+			$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
+			return $this->db
+			->where('status',$status)
+			->get('cooperativas')->result();
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
-		$cooperativa = $this->db
-		->where('id', $id)
-		->get('cooperativas')
-		->result();
+		try{
+			$cooperativa = $this->db
+			->where('id', $id)
+			->get('cooperativas')
+			->result();
 
-		return reset($cooperativa);
+			return reset($cooperativa);
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
-		
-		$this->db->where('id', $id);
-		$this->db->set($data);
-		return $this->db->update('cooperativas');
+		try{
+			
+			$this->db->where('id', $id);
+			$this->db->set($data);
+			return $this->db->update('cooperativas');
+		}
+		catch(Exception $e){
+			return FALSE;
+		}
+
 	}
 }
