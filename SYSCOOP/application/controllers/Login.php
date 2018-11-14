@@ -4,11 +4,10 @@ if (!defined('BASEPATH'))
 
 class Login extends CI_Controller {
 
-    function __construct() {
-        parent::__construct();
+    function index(){
+        $this->load->view('Login_view');
     }
-
-    function index() {
+    function entrar() {
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cpf', 'CPF', 'required');
@@ -23,18 +22,19 @@ class Login extends CI_Controller {
             $this->load->model('Funcionario_model');
             $usuario = $this->Funcionario_model->login($this->form_validation->set_value('cpf'), $this->form_validation->set_value('senha'));
             if(!$usuario){
-                redirect('login');
+                $data['formerror'] = 'CPF ou Senha inválidos!';
+                $this->load->view('Login_view', $data);
+            }else{
+                $data = array(
+                    'cpf' => $this->input->post('cpf'),
+                );
+                $this->session->set_userdata($data);
+
+                redirect('projetopnae');
             }
-
-            $data = array(
-                'cpf' => $this->input->post('cpf'),
-            );
-            $this->session->set_userdata($data);
-
-            redirect('projetopnae');
         }
     }
-    public function logout(){
+    public function sair(){
         $this->session->sess_destroy(); //destroi a sessao
         redirect('/login'); // redireciona para a raiz do sistema(pagina de login)
     }

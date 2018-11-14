@@ -2,9 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
+  
+  <meta charset="UTF-8">
 <title>SYSCOOP</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>  
@@ -68,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        <a class="text-white nav-link" href="<?php echo site_url('funcionario/backup')?>" onclick="return confirm('Fazer Backup? Você sera redirecionando para Projetos...')">Backup</a>       
      </li>
      <li class="nav-item navbar-right">
-       <a class="text-white nav-link" href="<?php echo site_url('login/logout')?>">Sair</a>       
+       <a class="text-white nav-link" href="<?php echo site_url('login/sair')?>">Sair</a>       
      </li>
    </ul>
  </div>

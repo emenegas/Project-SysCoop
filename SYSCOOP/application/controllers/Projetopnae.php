@@ -77,13 +77,13 @@ class Projetopnae extends MY_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	public function alterar($id){
+	public function alterar($idProjeto){
 
 		$data = [];
 		$dados = [];
-		$projeto = $this->Projetopnae_model->getById($id);
-		$itens = $this->Itens_model->getByProjeto($id);
-		$idProjeto = $id;
+		$projeto = $this->Projetopnae_model->getById($idProjeto);
+		$itens = $this->Itens_model->getByProjeto($idProjeto);
+		
 		if(!$projeto){
 			show_404();
 		}
@@ -109,7 +109,7 @@ class Projetopnae extends MY_Controller {
 
 			$NULO = $this->Itens_model->getAgricultorNulo($id);
 	
-			if(!$NULO){
+			if(empty($NULO){
 
 				$itensPorAgricultor = $this->Itens_model->getByAgricultorPorProjeto($idProjeto);
 
