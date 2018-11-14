@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Projetopnae extends MY_Controller {
 
 	function __construct(){
-		
+
 		parent:: __construct();
 		$this->load->helper('form');
 		$this->load->model('Projetopnae_model');
@@ -22,7 +22,7 @@ class Projetopnae extends MY_Controller {
 			'projetos'=> $this->Projetopnae_model->listar()
 		];
 		$this->load->view('ProjetosLista', $dados);
-		
+
 	}
 
 	//----------------------------------------------------------------------------------
@@ -35,13 +35,13 @@ class Projetopnae extends MY_Controller {
 		if(!$projeto && !$itens){
 			show_404();
 		}
-		
+
 		$data['projeto'] = $projeto;
 		$data['itens'] = $itens;
 		$data['idProjeto'] = $id;
 
 		$this->load->view('ProjetoPnaeInfo', $data);
-		
+
 	}
 
 	//----------------------------------------------------------------------------------
@@ -49,14 +49,14 @@ class Projetopnae extends MY_Controller {
 
 	public function novo(){
 		$dados=[
-			
+
 			'cooperativas'=> $this->Cooperativa_model->listar(),
 			'entidadesExecutoras' => $this->Entidade_model->listar()
 		];
 		$this->load->view('Projetopnae', $dados);
 
 	}
-	
+
 	//----------------------------------------------------------------------------------
 
 	public function remover($id){
@@ -73,11 +73,12 @@ class Projetopnae extends MY_Controller {
 			$this->load->view('ProjetosLista', $data);
 		}
 
-	}	
+	}
 
 	//----------------------------------------------------------------------------------
 
 	public function alterar($idProjeto){
+
 
 		$data = [];
 		$dados = [];
@@ -85,68 +86,87 @@ class Projetopnae extends MY_Controller {
 		$itens = $this->Itens_model->getByProjeto($idProjeto);
 		
 		if(!$projeto){
+
+		$projeto = $this->Projetopnae_model->getById($idProjeto);
+		$itens   = $this->Itens_model->getByProjeto($idProjeto);
+
+		if (!$projeto) {
+
 			show_404();
 		}
 
-		$this->load->library(array('form_validation'));
+		$data = [
+			'projeto' => $projeto,
+			'itens'   => $itens,
+		];
 
-		$this->form_validation->set_rules('status', 		'Status',         'trim|required');
-		$this->form_validation->set_rules('homologacaoCodigo', 		'Código Homologação',         'trim');
-		$this->form_validation->set_rules('dataEncerramento',    	 'Data de Encerramento',           'trim|required');
+		$this->load->library('form_validation');
 
-		
-		$data = ['formerror' => ''];
-		if($this->form_validation->run()== FALSE){
-			$data['formerror'] .= validation_errors();
-			$data['projeto'] = $projeto;
-			$data['itens'] = $itens;
-			$this->load->view('ProjetoPnaeInfo', $data);
+		$this->form_validation->set_rules('status',            'Status',               'trim|required');
+		$this->form_validation->set_rules('homologacaoCodigo', 'Código Homologação',   'trim');
+		$this->form_validation->set_rules('dataEncerramento',  'Data de Encerramento', 'trim|required');
 
-		}elseif(($this->input->post('status') == 'inativo')&&($this->input->post('homologacaoCodigo'))) {
+		if ( !$this->form_validation->run() ) {
+			$data['formerror'] = validation_errors();
 
-			$dados['status'] = $this->input->post('status');
-			$dados['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
+			exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
+		}
+
+
 
 			$NULO = $this->Itens_model->getAgricultorNulo($id);
 	
 			if(empty($NULO){
 
-				$itensPorAgricultor = $this->Itens_model->getByAgricultorPorProjeto($idProjeto);
+		if ( $this->input->post('homologacaoCodigo') && $this->input->post('status') == 'ativo') {
+			$data['formerror'] = 'Com homologaçã é necessário marcar projeto como "Concluído".';
 
-				foreach ($itensPorAgricultor as $item) {
 
-					$this->Itens_model->alterarLimite($item['agricultor'],$item['totalItem']);
-				}
-
-				$this->Projetopnae_model->alterar($idProjeto,$dados);
-			}else{
-
-				$dados['formerror'] = 'A Homologação e o Status concluido são necessários!';
-			}
-		}elseif($this->input->post('status') == 'ativo'){
-			
-			$dados['status'] = $this->input->post('status');
-			$dados['homologacaoCodigo'] = '';
-
-			$itensPorAgricultor = $this->Itens_model->getByAgricultorPorProjeto($idProjeto);
-			foreach ($itensPorAgricultor as $item) {
-				// print_r($item);
-				// exit;
-				$this->Itens_model->reporLimite($item['agricultor'],$item['totalItem'], $idProjeto);
-				
-			}
-			$this->Projetopnae_model->alterar($idProjeto,$dados);
+			exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 		}
-		else {
-			$data['formerror'] = 'Não pode ser alterado';
-			$data['projeto'] = $projeto;
-			$data['itens'] = $itens;
-			$this->load->view('ProjetoPnaeInfo', $data);
 
+
+		if ( ($this->input->post('status') == 'inativo') ) {
+
+			if ( !$this->input->post('homologacaoCodigo') ) {
+				$data['formerror'] = 'Faltou código de homologação.';
+
+				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
+			}
+
+			if ( $this->Itens_model->existeItensSemAgricultor($idProjeto) ) {
+				$data['formerror'] = 'Exitem produtos sem agricultor.';
+
+				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
+			}
+
+			if ( !$this->Itens_model->incrementaGasto($itens) ) {
+				$data['formerror'] = 'Não foi possível finalizar a ação, chame o suporte.';
+
+				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
+			}
+
+			$dados['status']            = $this->input->post('status');
+			$dados['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
+
+			if ( !$this->Projetopnae_model->alterar($idProjeto, $dados) ) {
+				$data['formerror'] = 'Não foi possível finalizar a ação, chame o suporte.';
+
+				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
+			}
+
+		} else
+		if ($this->input->post('status') == 'ativo' && $projeto->status == 'inativo') {
+
+			$this->Itens_model->decrementaGasto($itens);
+
+			$dados['status']            = $this->input->post('status');
+			$dados['homologacaoCodigo'] = NULL;
+
+			$this->Projetopnae_model->alterar($idProjeto,$dados);
 		}
 
 		redirect('projetopnae');
-
 	}
 
 
@@ -162,7 +182,7 @@ class Projetopnae extends MY_Controller {
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
 
-		$dados = ['formerror' => ''];		
+		$dados = ['formerror' => ''];
 		if($this->form_validation->run()== FALSE){
 			$dados['formerror'] .= validation_errors();
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
@@ -182,7 +202,7 @@ class Projetopnae extends MY_Controller {
 			if(empty($dados['formerror']) ){
 				$id = $this->Projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
 				if($id){
-					redirect('projetopnae/'.$id.'/itens');	
+					redirect('projetopnae/'.$id.'/itens');
 				}
 				$dados['formerror'] .= '<p>Não foi possivel cadastrar este projeto!</p>';
 			}
