@@ -3,20 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Itens_model extends CI_Model {
 
-	
+
 	public function cadastrar($idProjeto)
 	{
-		
+
 		$this->load->model('Produto_model');
 		$this->load->model('Agricultor_model');
 		$this->load->model('Projetopnae_model');
 
-		
+
 		$produto = $this->Produto_model->getById($this->input->post('produto'));
 		$agricultor = $this->Agricultor_model->getById($this->input->post('agricultor'));
 		$projeto = $this->Projetopnae_model->getById($idProjeto);
 
-	
+
 			$data = [];
 			$data['projeto']             = $idProjeto;
 			$data['produto']             = $produto->id;
@@ -30,10 +30,10 @@ class Itens_model extends CI_Model {
 			$data['cronogramaEntregaProd'] 		= $this->input->post('cronogramaEntregaProd');
 			$data['descricaoProd'] 		= $this->input->post('descricaoProd');
 			$data['precoUnidade'] 		= str_replace(',','.',$this->input->post('precoUnidade'));
-			$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];  
+			$data['totalItem']			= $data['precoUnidade'] * $data['quantidade'];
 			$data['data'] 				= date('Y-m-d H:i:s');
 			$total['totalProjeto1']	= $projeto->totalProjeto;
-			$total2['totalProjeto'] = $total['totalProjeto1'] + $data['totalItem'];  
+			$total2['totalProjeto'] = $total['totalProjeto1'] + $data['totalItem'];
 
 			try{
 				$this->db->insert('itens_do_projeto',$data);
@@ -42,7 +42,7 @@ class Itens_model extends CI_Model {
 				->update('projetos', $total2);
 
 				return $this->db->insert_id();
-					
+
 			}catch(Exception $e){
 				return false;
 			}
@@ -123,40 +123,33 @@ class Itens_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 
-		public function alterarLimite($id,$totalItem){
+		public function incrementaGasto($itens){
+
 			try{
-				$this->load->model('Agricultor_model');
-
-				$dados = $this->Agricultor_model->getById($id);
-
-
-				$limiteAtualizado = $dados->dapLimite + $totalItem;
-
-				$this->db
-				->where('id', $id)
-				->set('dapLimite', $limiteAtualizado)
-				->update('agricultores');
+				foreach ($itens as $item) {
+					$this->db
+						->where('id', $item->agricultor)
+						->set('dapLimite', 'dapLimite + ' . $item->totalItem, FALSE)
+						->update('agricultores');
+				}
+				return TRUE;
 			}
 			catch(Exception $e){
 				return FALSE;
 			}
-
 		}
 
-	//----------------------------------------------------------------------------------
-		public function reporLimite($agricultor,$totalItem,$idProjeto){
 
-			$this->load->model('Agricultor_model');
+		public function decrementaGasto($itens){
+
 			try{
-				$id = $agricultor;
-				$agricultor = $this->Agricultor_model->getById($agricultor);
-				$itens = $this->Itens_model->getByAgricultorPorProjetoInfo($idProjeto);
-				$dapLimite1 = $agricultor->dapLimite - $itens['totalItem'];
-
-				$this->db
-				->where('id', $id)
-				->set('dapLimite', $dapLimite1)
-				->update('agricultores');
+				foreach ($itens as $item) {
+					$this->db
+						->where('id', $item->agricultor)
+						->set('dapLimite', 'dapLimite - ' . $item->totalItem, FALSE)
+						->update('agricultores');
+				}
+				return TRUE;
 			}
 			catch(Exception $e){
 				return FALSE;
@@ -171,7 +164,7 @@ class Itens_model extends CI_Model {
 				$dados =  $this->db
 				->where('projeto', $id)
 				->get('itens_do_projeto')
-				->result_array();		
+				->result_array();
 				return reset($dados);
 			}
 			catch(Exception $e){
@@ -186,7 +179,7 @@ class Itens_model extends CI_Model {
 				$dados =  $this->db
 				->where('projeto', $id)
 				->get('itens_do_projeto')
-				->result_array();		
+				->result_array();
 				return ($dados);
 			}
 			catch(Exception $e){
@@ -196,19 +189,18 @@ class Itens_model extends CI_Model {
 		}
 //----------------------------------------------------------------------------------
 
-		public function getAgricultorNulo($id){
+		public function existeItensSemAgricultor($id){
 			try{
-				$dadosNull =  $this->db
-				->where('projeto', $id)
-				->where('agricultor',NULL)
+				$itens = $this->db
+					->where('projeto', $id)
+					->where('agricultor',NULL)
+					->get('itens_do_projeto')
+					->result_array();
 
-				->get('itens_do_projeto')
-				->result_array();
-
-				return ($dadosNull);
+				return !empty($itens);
 			}
 			catch(Exception $e){
-				return FALSE;
+				return TRUE;
 			}
 
 		}
