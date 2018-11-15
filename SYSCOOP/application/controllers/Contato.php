@@ -6,6 +6,7 @@ class Contato extends My_Controller {
   public function __construct() {
     parent:: __construct();
     $this->load->helper('Form');
+    $this->load->helper('url');
     $this->load->library('curl');
   }
 
@@ -34,8 +35,8 @@ class Contato extends My_Controller {
       Assunto:    ' . $assunto . ' <br />
       Mensagem:   ' . $mensagem . ' <br />
       </body></html>');
-
     $em = $this->email->send();
+
     if ($em) {
       $data['email_enviado'] = 'E-mail enviado com sucesso. Aguarde contato.';
     } else {
