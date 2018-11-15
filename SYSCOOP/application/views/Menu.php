@@ -50,9 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <ul class="nav justify-content-end">
 
       <div class="dropdown">
+        
         <a class="nav-item text-white nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Relatórios
         </a>
+
         <div class="dropdown-menu">
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores por Produto</a>
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorCooperativa')?>">Agricultores por Cooperativa</a>
@@ -60,9 +62,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores por Limite</a>
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Funcionários por Cooperativa</a>
         </div>
+
       </div>
 
-
+ 
       <li class="nav-item">
        <a class="text-white nav-link" href="<?php echo site_url('funcionario/ajuda')?>">Ajuda</a>       
      </li>

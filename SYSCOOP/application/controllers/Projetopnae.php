@@ -68,7 +68,7 @@ class Projetopnae extends MY_Controller {
 			$this->Projetopnae_model->remover($id);
 			redirect('projetopnae');
 		}else{
-			$data['formerror'] = 'Esse projeto não pode ser excluido depois de concluido';
+			$data['formerror'] = 'Esse projeto nÃ£o pode ser excluido depois de concluido';
 			$data['projetos'] = $this->Projetopnae_model->listar();
 			$this->load->view('ProjetosLista', $data);
 		}
@@ -78,20 +78,10 @@ class Projetopnae extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function alterar($idProjeto){
-
-
-		$data = [];
-		$dados = [];
-		$projeto = $this->Projetopnae_model->getById($idProjeto);
-		$itens = $this->Itens_model->getByProjeto($idProjeto);
-		
-		if(!$projeto){
-
 		$projeto = $this->Projetopnae_model->getById($idProjeto);
 		$itens   = $this->Itens_model->getByProjeto($idProjeto);
 
 		if (!$projeto) {
-
 			show_404();
 		}
 
@@ -103,7 +93,7 @@ class Projetopnae extends MY_Controller {
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('status',            'Status',               'trim|required');
-		$this->form_validation->set_rules('homologacaoCodigo', 'Código Homologação',   'trim');
+		$this->form_validation->set_rules('homologacaoCodigo', 'CÃ³digo HomologaÃ§Ã£o',   'trim');
 		$this->form_validation->set_rules('dataEncerramento',  'Data de Encerramento', 'trim|required');
 
 		if ( !$this->form_validation->run() ) {
@@ -113,23 +103,17 @@ class Projetopnae extends MY_Controller {
 		}
 
 
-
-			$NULO = $this->Itens_model->getAgricultorNulo($id);
-	
-			if(empty($NULO){
-
-		if ( $this->input->post('homologacaoCodigo') && $this->input->post('status') == 'ativo') {
-			$data['formerror'] = 'Com homologaçã é necessário marcar projeto como "Concluído".';
-
+		if ( $this->input->post('homologacaoCodigo') && $this->input->post('status') == 'ativo' && $projeto->status == 'ativo' ) {
+			$data['formerror'] = 'Com Homologação é necessário marcar projeto como "Concluído".';
 
 			exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 		}
 
 
-		if ( ($this->input->post('status') == 'inativo') ) {
+		if ( $this->input->post('status') == 'inativo' && $projeto->status == 'ativo' ) {
 
 			if ( !$this->input->post('homologacaoCodigo') ) {
-				$data['formerror'] = 'Faltou código de homologação.';
+				$data['formerror'] = 'Faltou código de homogação.';
 
 				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 			}
@@ -141,7 +125,7 @@ class Projetopnae extends MY_Controller {
 			}
 
 			if ( !$this->Itens_model->incrementaGasto($itens) ) {
-				$data['formerror'] = 'Não foi possível finalizar a ação, chame o suporte.';
+				$data['formerror'] = 'Não foi possivel incrementar o gastos, chame o suporte.';
 
 				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 			}
@@ -150,7 +134,7 @@ class Projetopnae extends MY_Controller {
 			$dados['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
 
 			if ( !$this->Projetopnae_model->alterar($idProjeto, $dados) ) {
-				$data['formerror'] = 'Não foi possível finalizar a ação, chame o suporte.';
+				$data['formerror'] = 'Não foi possivel alterar o Projeto, chame o suporte.';
 
 				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 			}
@@ -191,12 +175,12 @@ class Projetopnae extends MY_Controller {
 			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
 
 			if(!$cooperativa){
-				$dados['formerror'] .= '<p>Esta cooperativa não existe</p>';
+				$dados['formerror'] .= '<p>Esta cooperativa nÃ£o existe</p>';
 
 			}
 			$entidadeExecutora = $this->Entidade_model->getById(set_value('entidadeExecutora'));
 			if(!$entidadeExecutora){
-				$dados['formerror'] .= '<p>Esta entidadeExecutora não existe</p>';
+				$dados['formerror'] .= '<p>Esta entidadeExecutora nÃ£o existe</p>';
 			}
 
 			if(empty($dados['formerror']) ){
@@ -204,7 +188,7 @@ class Projetopnae extends MY_Controller {
 				if($id){
 					redirect('projetopnae/'.$id.'/itens');
 				}
-				$dados['formerror'] .= '<p>Não foi possivel cadastrar este projeto!</p>';
+				$dados['formerror'] .= '<p>NÃ£o foi possivel cadastrar este projeto!</p>';
 			}
 		}
 
