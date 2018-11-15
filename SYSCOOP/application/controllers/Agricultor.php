@@ -163,7 +163,7 @@ class Agricultor extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required|valid_cpf');	
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -206,33 +206,6 @@ class Agricultor extends MY_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	function callback_valid_cpf($cpf)
-	{
-
-		$cpf = preg_replace('/[^0-9]/','',$cpf);
-		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
-		{
-			return false;
-		}
-        // 9 primeiros digitos do cpf
-		$digit = substr($cpf, 0, 9);
-        // calculo dos 2 digitos verificadores
-		for($j=10; $j <= 11; $j++)
-		{
-			$sum = 0;
-			for($i=0; $i< $j-1; $i++)
-			{
-				$sum += ($j-$i) * ((int) $digit[$i]);
-			}
-			$summod11 = $sum % 11;
-			$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
-		}
-
-		if( $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10])){
-			return $cpf;
-		}
-		return FALSE;
-	}
 
 	//----------------------------------------------------------------------------------
 

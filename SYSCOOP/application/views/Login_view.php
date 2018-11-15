@@ -40,14 +40,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="tel" id="cpf" name="cpf" class="form-control" placeholder="CPF: 000.000.000-00">
+            <input type="tel" id="cpf" name="cpf" class="form-control" placeholder="CPF 000.000.000-00">
 
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            <input type="password" id="senha" name="senha" class="form-control" placeholder="senha">
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
           </div>
 
           <div class="form-group">

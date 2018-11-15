@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu'); 
 ?>
+
   <?php if(isset($formerror)): ?>
    <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>Aviso!</strong>
@@ -23,8 +24,8 @@ $this->load->view('Menu');
 			</div>
 			<div class="col-md-4 mb-3">
 				<label for="cpf">CPF</label>
-				<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" value="<?php echo set_value('cpf')?>" required>
-				<div class="invalid-feedback">
+				<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" value"<?php echo set_value('cpf')?>" required>
+					<div class="invalid-feedback">
 					Campo obrigatório!
 				</div>
 			</div>
@@ -139,6 +140,7 @@ input.addEventListener('change', function() {
 	}
 });
 </script>
+
 <script type="text/javascript">
   setTimeout(function(){
     $('button.close').click()
