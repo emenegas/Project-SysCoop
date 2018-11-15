@@ -4,7 +4,7 @@ $this->load->view('Menu')
 ?>
 
 
-<div class="container">
+<div class="container-fluid">
 	<table class="table">
 		<thead>
 			<tr id="title"><th colspan=3>Relatório de Agricultores por Produto</th></tr>

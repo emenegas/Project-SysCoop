@@ -2,6 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
+  <?php if(isset($formerror)): ?>
+   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Aviso!</strong>
+    <div><?php echo $formerror ?></div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span> 
+    </button>
+  </div>
+  <?php endif; ?>
 <div class="container-fluid">
 	<form action="<?php echo site_url('agricultor/' .$agricultor->id. '/alterar')?>" method="post" class="needs-validation" novalidate>
 		<div class="form-row">
@@ -140,5 +149,10 @@ input.addEventListener('change', function() {
 		alert("Não é permitida data retroativa!");
 	}
 });
+</script>
+<script type="text/javascript">
+  setTimeout(function(){
+    $('button.close').click()
+  },5000);
 </script>
 <?php $this->load->view('Footer');?>

@@ -2,33 +2,45 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-
-
-
+  <?php if(isset($formerror)): ?>
+   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Aviso!</strong>
+    <div><?php echo $formerror ?></div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span> 
+    </button>
+  </div>
+  <?php endif; ?>
+  <?php if(isset($email_enviado)) { ?>
+    <div id="mensagem_enviada"><?php echo $email_enviado ?></div>
+<?php } ?>
 <div class="container contact-form">
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
-            <form method="post">
+            <form id="form_contato" action="<?php echo $action ?>" method="post">
                 <h3>Envie a sua sugestão</h3>
                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="txtName" class="form-control" placeholder="Seu nome completo *" value="" />
+                            <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="txtEmail" class="form-control" placeholder="Seu email *" value="" />
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Seu email *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="txtPhone" class="form-control" placeholder="Numero do seu telefone *" value="" />
+                            <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Numero do seu telefone *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Enviar Mensagem" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea name="txtMsg" class="form-control" placeholder="Sua mensagem *" style="width: 100%; height: 150px;"></textarea>
+                            <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Assunto *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <textarea name="mensagem" id="mensagem" class="form-control" placeholder="Sua mensagem *" style="width: 100%; height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -90,3 +102,8 @@ $this->load->view('Menu');
     cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+  setTimeout(function(){
+    $('button.close').click()
+  },5000);
+</script>
