@@ -2,7 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-
+  <?php if(isset($formerror)): ?>
+   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Aviso!</strong>
+    <div><?php echo $formerror ?></div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span> 
+    </button>
+  </div>
+  <?php endif; ?>
 <div class="container-fluid">
 	<form action="<?php echo site_url('produto/' .$produto->id. '/alterar')?>" method="post" class="needs-validation" novalidate>
 		<div class="form-row">
@@ -44,15 +52,12 @@ $this->load->view('Menu');
 					<option>Todos</option>
 				</select>
 			</div>
-
-
 		</div>
 		<div class="button">
 			<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
 			<a href="<?php echo site_url('produto') ?>" class="btn btn-outline-danger">Cancelar</a>
 		</div>
 	</form>
-
 </div>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
