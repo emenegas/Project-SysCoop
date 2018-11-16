@@ -106,17 +106,24 @@ class Agricultor_model extends CI_Model {
 	}
 	//-----------------ALTERAR-----------------------------------------------------------------
 
-	public function alterar($id,$dados, $produtos) {
-		
-		$this->db->where('id', $id);
-		$this->db->set($dados);
-		$this->db->update('agricultores');
-
-		$this->db
-		->where('agricultor', $id)
-		->delete('agricultores_has_produtos');
+	public function alterar($id,$dados, $produtos, $cooperativa) {
 
 		try{
+
+			
+			$this->db->where('id', $id);
+			$this->db->set($dados);
+			$this->db->update('agricultores');
+
+			$this->db
+			->where('agricultor', $id)
+			->delete('agricultores_has_produtos');
+
+			
+			$this->db
+			->where('agricultor', $id)
+			->delete('agricultores_has_cooperativas');
+
 			foreach ($produtos as $produtoId) {
 
 				$dados = [];
@@ -125,6 +132,17 @@ class Agricultor_model extends CI_Model {
 
 				$this->db->set($dados);
 				$this->db->replace('agricultores_has_produtos');
+			}
+
+			if(!empty($cooperativa)){
+				
+
+				$dados = [];
+				$dados['cooperativa'] = $cooperativa ? $this->input->post('cooperativa') : NULL;
+				$dados['agricultor'] = $id;
+
+				$this->db->set($dados);
+				$this->db->replace('agricultores_has_cooperativas');
 			}
 			return TRUE;			
 		}catch(Exception $e){

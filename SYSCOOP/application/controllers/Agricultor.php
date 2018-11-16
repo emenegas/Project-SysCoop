@@ -143,11 +143,12 @@ class Agricultor extends MY_Controller {
 			$data['cidade'] = $this->input->post('cidade');
 			$data['endereco'] = $this->input->post('endereco');
 			$data['dapNumero'] = $this->input->post('dapNumero');
+			$cooperativa = $this->input->post('cooperativa');
 			$data['dapValidade'] = $this->input->post('dapValidade');
 			$data['status'] = $this->input->post('status');
 			$produtos = $this->input->post('produtos');
 
-			if ($this->Agricultor_model->alterar($id,$data,$produtos)) {
+			if ($this->Agricultor_model->alterar($id,$data,$produtos,$cooperativa)) {
 				redirect('agricultor');
 			} else {
 				log_message('error', 'Erro na alteração...');
@@ -170,7 +171,7 @@ class Agricultor extends MY_Controller {
 		$this->form_validation->set_rules('cep','CEP',						'trim|required');
 		$this->form_validation->set_rules('cidade','Cidade',				'trim|required');
 		$this->form_validation->set_rules('endereco','Endereço',			'trim|required');
-		$this->form_validation->set_rules('cooperativa','cooperativa',		'trim|required');
+		$this->form_validation->set_rules('cooperativa','cooperativa',		'trim');
 		$this->form_validation->set_rules('produtos','Produtos',			'');
 		$this->form_validation->set_rules('dapNumero','Numero da DAP',		'trim|min_length[20]');
 		$this->form_validation->set_rules('dapValidade','Validade da DAP',	'trim');

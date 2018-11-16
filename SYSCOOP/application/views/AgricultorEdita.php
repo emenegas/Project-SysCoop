@@ -2,15 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
-  <?php if(isset($formerror)): ?>
-   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $formerror ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-    </button>
-  </div>
-  <?php endif; ?>
+<?php if(isset($formerror)): ?>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Aviso!</strong>
+		<div><?php echo $formerror ?></div>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span> 
+		</button>
+	</div>
+<?php endif; ?>
 <div class="container-fluid">
 	<form action="<?php echo site_url('agricultor/' .$agricultor->id. '/alterar')?>" method="post" class="needs-validation" novalidate>
 		<div class="form-row">
@@ -72,7 +72,7 @@ $this->load->view('Menu');
 			<div class="col-md-8 mb-3">
 				<label for="cooperativa">Cooperativa</label>
 				<select name="cooperativa" class="custom-select custom-select mb-3">
-
+					<option value=""></option>
 					<?php foreach ($cooperativas as $cooperativa)
 					{
 						echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
@@ -151,8 +151,8 @@ input.addEventListener('change', function() {
 });
 </script>
 <script type="text/javascript">
-  setTimeout(function(){
-    $('button.close').click()
-  },5000);
+	setTimeout(function(){
+		$('button.close').click()
+	},5000);
 </script>
 <?php $this->load->view('Footer');?>

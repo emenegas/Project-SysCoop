@@ -66,7 +66,7 @@ class Cooperativa_model extends CI_Model {
 
 	public function alterar($id,$data) {
 		try{
-			
+			$data['cooperativa'] = $this->input->post('cooperativa') ? $this->input->post('cooperativa') : NULL;
 			$this->db->where('id', $id);
 			$this->db->set($data);
 			return $this->db->update('cooperativas');
