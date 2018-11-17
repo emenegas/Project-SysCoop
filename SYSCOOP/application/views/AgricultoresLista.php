@@ -57,4 +57,3 @@ $this->load->view('Menu');
     $('button.close').click()
   },5000);
 </script>
-<?php $this->load->view('Footer');?>

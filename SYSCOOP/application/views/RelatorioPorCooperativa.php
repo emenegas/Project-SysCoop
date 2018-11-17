@@ -58,4 +58,3 @@ $this->load->view('Menu')
 		$('button.close').click()
 	},2000);
 </script>
-<?php $this->load->view('Footer');?>

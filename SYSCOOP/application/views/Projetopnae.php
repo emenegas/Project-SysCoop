@@ -98,4 +98,3 @@ input.addEventListener('change', function() {
 		$('button.close').click()
 	},2000);
 </script>
-<?php $this->load->view('Footer');?>

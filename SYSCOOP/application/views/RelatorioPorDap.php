@@ -17,19 +17,13 @@ $this->load->view('Menu')
 		<thead>
 			<tr id="title"><th colspan=3>Relatório de Agricultores por Produto</th></tr>
 		</thead>
-
 		<tbody>
-
 			<tr style="width: 100px;">
 				<th style="border: 1px solid #dee2e6; width: 50%;">Produto
-				<select name="produto" class="form-control" id="produto" >
-					<option>Selecione um Produto</option>
-					<?php foreach ($produtos as $produto): ?>
-
-						<option value="<?php echo $produto->id ?>"><?php echo $produto->nome ?></option>
-
-					<?php endforeach ?>
-				</select>
+					<label>Digite o intervalo de valor da DAP</label>
+					
+				<input type="number" name="valor1">
+				<input type="number" name="valor2">
 				</th>
 			</tr>
 			<td>
@@ -42,9 +36,8 @@ $this->load->view('Menu')
 	(function(){
 		agricultor = $('#agricultor')
 		$('#produto').on('change', function(){
-			$.get('<?php echo site_url('relatorio/PorProduto/') ?>' + $(this).val(), function(agricultores){
+			$.get('<?php echo site_url('relatorio/PorDAp/') ?>' + $(this).val(), function(agricultores){
 				agricultor.html('');
-				console.log(agricultores);
 				$.each(agricultores, function(count, vivente){
 					tr = $('<tr/>');
 					$('<td/>').text(vivente.nome).appendTo(tr);

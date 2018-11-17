@@ -101,7 +101,11 @@ class Projetopnae extends MY_Controller {
 
 			exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 		}
+		if($this->input->post('dataEncerramento')){
 
+			$dados['dataEncerramento'] = $this->input->post('dataEncerramento');
+			$this->Projetopnae_model->alterar($idProjeto, $dados);
+		}
 
 		if ( $this->input->post('homologacaoCodigo') && $this->input->post('status') == 'ativo' && $projeto->status == 'ativo' ) {
 			$data['formerror'] = 'Com Homologação é necessário marcar projeto como "Concluído".';

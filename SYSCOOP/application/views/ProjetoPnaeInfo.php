@@ -64,6 +64,7 @@ $this->load->view('Menu');
     });
   </script>
   <th> 
+    <a onclink="window.print();" class="btn btn-primary no-print">Imprimir</a>
    <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
    <?php echo form_close(); ?>
 
