@@ -3,74 +3,75 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 <body>
-  <?php if(isset($formerror)): ?>
-   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $formerror ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-    </button>
-  </div>
-  <?php endif; ?>
-
-<div class="container-fluid">
-
-	<form enctype="multipart/form-data" class="needs-validation" action="<?php echo site_url('projetopnae/cadastrar') ?>"  method="post" novalidate>
-
-		<div class="form-row">
-			<div class="col-md-10 mb-3">	
-				<label for="nomeEdital">Identificação da proposta de atendimento ao edital/chamada pública N°</label>
-				<input type="text" class="form-control" id="nomeEdital" name="nomeEdital" required>
-				<div class="invalid-feedback">
-				Numero obrigatório!</div>
-			</div>
-			
-			<div class="col-md-2 mb-3">
-				<label for="dataEncerramento">Data de Encerramento</label>
-				<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento"  required>
-			</div>
-		
-			<div class="custom-file col-md-12 mb-4">
-				<input type="file" class="custom-file-input" id="arquivoEdital" name="arquivoEdital" value="" required>
-				<label class="custom-file-label" for="customFile">Escolher arquivo</label>
-				<div class="invalid-feedback">
-				O Arquivo do Edital é obrigatório!</div>
-			</div>
-
-			<div class="col-md-12 mb-3">
-				<label for="cooperativa">Cooperativa:</label>
-				<input list="cooperativa" name="cooperativa" class="form-control" required>
-				<datalist id="cooperativa" >
-					<?php foreach ($cooperativas as $cooperativa): ?>
-						<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
-					<?php endforeach ?>
-				</datalist>
-			</div>
-			<div class="col-md-12 mb-4">
-				<label form="caracteristicasCoop">Características Cooperativa Fornecedora</label>
-				<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" placeholder="Digite aqui os detalhes de comercialização e entrega dos produtos!" class="form-control" required></textarea>
-			<div class="invalid-feedback">
-				Campo obrigatório!</div>
-			</div>
-			</div>
-			<div class="col-md-12 mb-3"> 
-				<label for="entidadeExecutora">Entidade Executora:</label>
-				<input list="entidadeExecutora" name="entidadeExecutora" class="form-control" required>
-				<datalist id="entidadeExecutora" >
-					<?php foreach ($entidadesExecutoras as $entidadeExecutora): ?>
-						<option value="<?php echo $entidadeExecutora->id ?>"><?php echo $entidadeExecutora->nomeFantasia ?></option>
-					<?php endforeach ?>
-				</datalist>
-			</div>
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Aviso!</strong>
+			<div><?php echo $formerror ?></div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span> 
+			</button>
 		</div>
+	<?php endif; ?>
 
-		<div class="button">
-			<button type="submit" class="btn btn-info">Continuar</button>
-			<a href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
+	<div class="container-fluid">
 
-		</div>
-	</form>
-</div>
+		<form enctype="multipart/form-data" class="needs-validation" action="<?php echo site_url('projetopnae/cadastrar') ?>"  method="post" novalidate>
+
+			<div class="form-row">
+				<div class="col-md-10 mb-3">	
+					<label for="nomeEdital">Identificação da proposta de atendimento ao edital/chamada pública N°</label>
+					<input type="text" class="form-control" id="nomeEdital" name="nomeEdital" required>
+					<div class="invalid-feedback">
+					Numero obrigatório!</div>
+				</div>
+
+				<div class="col-md-2 mb-3">
+					<label for="dataEncerramento">Data de Encerramento</label>
+					<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento"  required>
+				</div>
+
+				<div class="custom-file col-md-12 mb-4">
+					<input type="file" class="custom-file-input" id="arquivoEdital" name="arquivoEdital" value="" required>
+					<label class="custom-file-label" for="customFile">Escolher arquivo</label>
+					<div class="invalid-feedback">
+					O Arquivo do Edital é obrigatório!</div>
+				</div>
+
+				<div class="col-md-12 mb-3">
+					<label for="cooperativa">Cooperativa:</label>
+					<input list="cooperativa" name="cooperativa" class="form-control" required>
+					<datalist id="cooperativa" >
+						<?php foreach ($cooperativas as $cooperativa): ?>
+							<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
+						<?php endforeach ?>
+					</datalist>
+				</div>
+				<div class="col-md-12 mb-4">
+					<label form="caracteristicasCoop">Características Cooperativa Fornecedora</label>
+					<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" placeholder="Digite aqui os detalhes de comercialização e entrega dos produtos!" class="form-control" required></textarea>
+					<div class="invalid-feedback">
+					Campo obrigatório!</div>
+				</div>
+
+				<div class="col-md-12 mb-4"> 
+					<label for="entidadeExecutora">Entidade Executora:</label>
+					<input list="entidadeExecutora" name="entidadeExecutora" class="form-control" required>
+					<datalist id="entidadeExecutora" >
+						<?php foreach ($entidadesExecutoras as $entidadeExecutora): ?>
+							<option value="<?php echo $entidadeExecutora->id ?>"><?php echo $entidadeExecutora->nomeFantasia ?></option>
+						<?php endforeach ?>
+					</datalist>
+				</div>
+			</div>
+
+			<div class="button">
+				<button type="submit" class="btn btn-info">Continuar</button>
+				<a href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
+
+			</div>
+		</form>
+	</div>
+</body>
 
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields

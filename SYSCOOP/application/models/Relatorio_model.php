@@ -6,7 +6,9 @@ class Relatorio_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function getByProduto($id){
+
 		try{
+
 			$agricultor = $this->db
 			->join('agricultores', 'agricultores.id = agricultores_has_produtos.agricultor')
 			->where('produto', $id)
@@ -20,10 +22,12 @@ class Relatorio_model extends CI_Model {
 		}
 	}	
 
-//----------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------
 	
 	public function getByDap($id){ 
+
 		try{
+
 			$agricultor = $this->db
 			->where('id', $id)
 			->where('id', 'dapLimite')
@@ -36,12 +40,14 @@ class Relatorio_model extends CI_Model {
 			return false;
 		}
 	}	
+
 	//----------------------------------------------------------------------------------
 	
 	public function getByCoopAgri($id){
+
 		try{
+			
 			$agricultor = $this->db
-			->select('agricultores.id , agricultores.nome')
 			->join('agricultores', 'agricultores.id = agricultores_has_cooperativas.agricultor')
 			->where('cooperativa', $id)
 			->get('agricultores_has_cooperativas')

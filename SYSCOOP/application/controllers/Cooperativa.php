@@ -14,8 +14,10 @@ class Cooperativa extends MY_Controller {
 
 	public function novo(){
 		$dados=[
+
 			'funcionarios'=>$this->Funcionario_model->listar(),
 			'cooperativas'=>$this->Cooperativa_model->listar()
+
 		];
 		$this->load->view('Cooperativa',$dados);
 	}
@@ -31,22 +33,28 @@ class Cooperativa extends MY_Controller {
 		$this->load->view('CooperativasLista', $dados);
 	}
 
-//----------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------
 
 	public function editar($id){
 
 		$cooperativa = $this->Cooperativa_model->getById($id);
 		$cooperativas = $this->Cooperativa_model->listar();
 		$funcionarios = $this->Funcionario_model->listar();
+
 		if(!$cooperativa){
 			show_404();
 		}
+
 		$data = [];
 		$data['funcionarios'] = $funcionarios;
 		$data['cooperativa'] = $cooperativa;
 		$data['cooperativas'] = $cooperativas;
+
 		$this->load->view('CooperativaEdita', $data);
 	}
+
+	//----------------------------------------------------------------------------------
+
 	public function alterar($id){
 
 		$data = [];
@@ -137,13 +145,17 @@ class Cooperativa extends MY_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 		);
+
 		$this->form_validation->set_rules($validations);
+
 		if ($this->form_validation->run() == FALSE) {
+
 			$data['cooperativa'] = $cooperativa;
 			$data['cooperativas'] = $cooperativas;
 			$data['funcionarios'] = $funcionarios;
 			$data['formerror'] = validation_errors();
 			$this->load->view('CooperativaEdita', $data);
+
 		} else {
 			
 			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
@@ -163,7 +175,9 @@ class Cooperativa extends MY_Controller {
 			$data['status'] = $this->input->post('status');
 	
 			if ($this->Cooperativa_model->alterar($id,$data)) {
+
 				redirect('cooperativa');
+				
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -176,7 +190,7 @@ class Cooperativa extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		
-		$this->form_validation->set_rules('cnpj',         'CNPJ',         		 'trim|required');
+		$this->form_validation->set_rules('cnpj',         'CNPJ',         		 'trim|required|is_unique[cooperativas.cnpj]');
 		$this->form_validation->set_rules('nomeFantasia', 'Nome Fantasia', 		'trim|required');
 		$this->form_validation->set_rules('responsavel',  'Responsável Legal',   'trim|required');
 		$this->form_validation->set_rules('email',        'Email',        		 'trim|required|valid_email');
@@ -194,66 +208,18 @@ class Cooperativa extends MY_Controller {
 
 
 		if($this->form_validation->run()== FALSE){
+
 			$this->form_validation->set_error_delimiters('', "");
 			$dados['formerror'] = json_encode(validation_errors());
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
 			$dados['funcionarios'] = $this->Funcionario_model->listar();
+
 			$this->load->view('Cooperativa', $dados);
+
 		}else{
-			$dados['formerror'] = 'Validação OK';
+
 			$this->Cooperativa_model->cadastrar();
 			redirect('cooperativa');
 		}	
 	}
-
-	//----------------------------------------------------------------------------------
-
-	function callback_cnpj_existe($cnpj){
-
-		$this->db->select('cnpj');
-		$this->db->where('cnpj', $cnpj);
-		$retorno = $this->db->get('cooperativas')->num_rows();
-
-		if($retorno > 0 ){
-			return FALSE;
-		}
-	}
-
-	//----------------------------------------------------------------------------------
-
-	 function valid_cnpj($cnpj)
-    {
-        if (strlen($str) <> 18) return FALSE;
-        $soma1 = ($str[0] * 5) +
-                ($str[1] * 4) +
-                ($str[3] * 3) +
-                ($str[4] * 2) +
-                ($str[5] * 9) +
-                ($str[7] * 8) +
-                ($str[8] * 7) +
-                ($str[9] * 6) +
-                ($str[11] * 5) +
-                ($str[12] * 4) +
-                ($str[13] * 3) +
-                ($str[14] * 2);
-        $resto = $soma1 % 11;
-        $digito1 = $resto < 2 ? 0 : 11 - $resto;
-        $soma2 = ($str[0] * 6) +
-                ($str[1] * 5) +
-                ($str[3] * 4) +
-                ($str[4] * 3) +
-                ($str[5] * 2) +
-                ($str[7] * 9) +
-                ($str[8] * 8) +
-                ($str[9] * 7) +
-                ($str[11] * 6) +
-                ($str[12] * 5) +
-                ($str[13] * 4) +
-                ($str[14] * 3) +
-                ($str[16] * 2);
-        $resto = $soma2 % 11;
-        $digito2 = $resto < 2 ? 0 : 11 - $resto;
-        return (($str[16] == $digito1) && ($str[17] == $digito2));
-    }
- 
 }

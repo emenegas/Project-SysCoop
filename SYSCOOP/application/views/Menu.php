@@ -18,10 +18,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <div class="container-fluid">
   <a class="text-white navbar-brand" href="<?php echo site_url('projetopnae')?>">Projetos</a>
-
-  <div class="collapse navbar-collapse">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
         <a class="text-white nav-link" href="<?php echo site_url('agricultor')?>">Agricultores<span class="sr-only">(current)</span></a>
@@ -42,13 +45,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </ul>
     <ul class="nav justify-content-end">
 
-      <div class="dropdown">
+      <li class="nav-item dropdown">
 
-        <a class="nav-item text-white nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Relatórios
         </a>
 
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores por Produto</a>
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorCooperativa')?>">Agricultores por Cooperativa</a>
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores com DAP</a>
@@ -56,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Funcionários por Cooperativa</a>
         </div>
 
-      </div>
+      </li>
 
 
       <li class="nav-item">
@@ -66,11 +69,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        <a class="text-white nav-link" href="<?php echo site_url('funcionario/backup')?>" onclick="return confirm('Fazer Backup? Você sera redirecionando para Projetos...')">Backup</a>       
      </li>
      <li class="nav-item navbar-right">
-       <a class="text-white nav-link" href="<?php echo site_url('login/sair')?>">Sair</a>       
+       <a class="btn btn-danger navbar-btn" href="<?php echo site_url('login/sair')?>">Sair</a>       
      </li>
    </ul>
  </div>
 </div>
+
 </nav>
 
 

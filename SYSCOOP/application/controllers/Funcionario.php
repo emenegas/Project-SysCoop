@@ -80,9 +80,11 @@ class Funcionario extends MY_Controller {
 	public function alterar($id){
 		
 		$funcionario = $this->Funcionario_model->getById($id);
+		
 		if(!$funcionario){
 			show_404();
 		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -138,11 +140,16 @@ class Funcionario extends MY_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 		);
+
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
+
 			$data['funcionario'] = $funcionario;
+			$data['cooperativas'] = $cooperativas;
 			$data['formerror'] = validation_errors();
+
 			$this->load->view('FuncionarioEdita', $data);
+
 		} else {
 
 			$data['nome'] = $this->input->post('nome');
@@ -157,8 +164,11 @@ class Funcionario extends MY_Controller {
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Funcionario_model->alterar($id,$data)) {
+
 				redirect('funcionario');
+
 			} else {
+
 				log_message('error', 'Erro na alteração...');
 			}
 		}
@@ -169,8 +179,9 @@ class Funcionario extends MY_Controller {
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
+
 		$this->form_validation->set_rules('nome','Nome',				'trim|required');
-		$this->form_validation->set_rules('cpf', 'CPF' , 				'trim|required');
+		$this->form_validation->set_rules('cpf', 'CPF' , 				'trim|required|is_unique[funcionarios.cpf]');
 		$this->form_validation->set_rules('email','Email',				'trim|required|valid_email');
 		$this->form_validation->set_rules('telefone','Telefone',		'trim|required');
 		$this->form_validation->set_rules('senha','Senha',				'trim|required');
@@ -182,43 +193,17 @@ class Funcionario extends MY_Controller {
 
 
 		if($this->form_validation->run()== FALSE):
-			$dados['cooperativa'] = $this->Cooperativa_model->listar();
+
+			$dados['cooperativas'] = $this->Cooperativa_model->listar();
 			$dados['formerror'] = validation_errors();
+
 			$this->load->view('Funcionario', $dados);
+
 		else:
-			$dados['formerror'] = 'Validação OK';
+
 			$this->Funcionario_model->cadastrar();
 			redirect('funcionario');
+
 		endif;
-		
-
 	}
-
-	function callback_valid_cpf($cpf)
-	{
-		$CI =& get_instance();
-
-		$CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
-		$cpf = preg_replace('/[^0-9]/','',$cpf);
-		if(strlen($cpf) != 11 || preg_match('/^([0-9])\1+$/', $cpf))
-		{
-			return false;
-		}
-        // 9 primeiros digitos do cpf
-		$digit = substr($cpf, 0, 9);
-        // calculo dos 2 digitos verificadores
-		for($j=10; $j <= 11; $j++)
-		{
-			$sum = 0;
-			for($i=0; $i< $j-1; $i++)
-			{
-				$sum += ($j-$i) * ((int) $digit[$i]);
-			}
-			$summod11 = $sum % 11;
-			$digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
-		}
-
-		return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
-	}
-
 }

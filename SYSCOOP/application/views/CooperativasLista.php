@@ -25,6 +25,7 @@ $this->load->view('Menu');
             <tr style="width: 80px;">
                <th style="border: 1px solid #dee2e6 ;">Código</th>
                <th style="border: 1px solid #dee2e6 ;">Nome Fantasia</th>
+               <th style="border: 1px solid #dee2e6 ;">CNPJ</th>
                <th style="border: 1px solid #dee2e6 ;">Dap Jurídica</th>
 
                <tr>
@@ -34,6 +35,7 @@ $this->load->view('Menu');
 
                            <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->id ?></td>
                            <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->nomeFantasia ?></td>
+                           <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->cnpj ?></td>
                            <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->dapNumero ?></td>
                            <td style="border: 1px solid #dee2e6 ;">
                               <a href="<?php echo site_url('/cooperativa/'.$item->id.'/editar') ?>" class="btn btn-outline-warning">Alterar</a>

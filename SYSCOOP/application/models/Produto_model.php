@@ -7,6 +7,7 @@ class Produto_model extends CI_Model {
 	public function cadastrar()
 	{
 		try{
+
 			$data = [];
 			$data['nome'] = $this->input->post('nome');
 			$data['unidadeMedida'] = $this->input->post('unidadeMedida');
@@ -14,6 +15,7 @@ class Produto_model extends CI_Model {
 			$data['epoca'] = $this->input->post('epoca');
 
 			return $this->db->insert('produtos',$data);
+
 		}catch(Exception $e){
 			return false;
 		}
@@ -21,40 +23,45 @@ class Produto_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 
-	public function listar()
-	{
+	public function listar(){
+
 		try{
+
 			return $this->db->get('produtos')->result();
+
 		}catch(Exception $e){
 			return false;
 		}
 	}
 
-
 	//----------------------------------------------------------------------------------
 
-	public function getById($id)
-	{
+	public function getById($id){
+
 		try{
+
 			$produto = $this->db
 			->where('id', $id)
 			->get('produtos')
 			->result();
 
 			return reset($produto);
+
 		}catch(Exception $e){
 			return false;
 		}
-
 	}
 
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
+
 		try{
+
 			$this->db->where('id', $id);
 			$this->db->set($data);
 			return $this->db->update('produtos');
+
 		}catch(Exception $e){
 			return false;
 		}
@@ -63,13 +70,15 @@ class Produto_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 
 	public function remover($id){
+
 		try{
+
 			$this->db
 			->where('id', $idProduto)
 			->delete('produtos');
+
 		}catch(Exception $e){
 			return false;
 		}
-
 	}
 }

@@ -13,6 +13,7 @@ class Entidade extends MY_Controller {
 
 	public function index(){
 		$dados = [
+
 			'entidades' => $this->Entidade_model->listar()
 		];
 		$this->load->view('EntidadesLista', $dados);
@@ -21,6 +22,7 @@ class Entidade extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function novo(){
+
 		$this->load->view('Entidade');
 	}
 	
@@ -30,12 +32,17 @@ class Entidade extends MY_Controller {
 		
 		$data = [];
 		$entidade = $this->Entidade_model->getById($id);
+
 		if(!$entidade){
 			show_404();
 		}
+
 		$data['entidade'] = $entidade;
 		$this->load->view('EntidadeEdita', $data);
 	}
+
+	//----------------------------------------------------------------------------------
+	
 	public function alterar($id){
 		
 		$this->load->library('form_validation');
@@ -65,7 +72,7 @@ class Entidade extends MY_Controller {
 			array(
 				'field' => 'cpfRepresentante',
 				'label' => 'cpfRepresentante',
-				'rules' => 'required|min_length[11]|max_length[45]'
+				'rules' => 'required|min_length[11]|max_length[45]|is_unique[entidadesexecutoras.cpf]'
 			),
 			array(
 				'field' => 'cep',
@@ -93,11 +100,14 @@ class Entidade extends MY_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 		);
+
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
+
 			$data['entidade'] = $entidade;
 			$data['formerror'] = validation_errors();
 			$this->load->view('EntidadeEdita', $data);
+
 		} else {
 			
 			$data['nomeFantasia'] = $this->input->post('nomeFantasia');
@@ -112,8 +122,11 @@ class Entidade extends MY_Controller {
 			$data['status'] = $this->input->post('status');
 
 			if ($this->Entidade_model->alterar($id,$data)) {
+
 				redirect('entidade');
+
 			} else {
+
 				log_message('error', 'Erro na alteração...');
 			}
 		}
@@ -127,31 +140,26 @@ class Entidade extends MY_Controller {
 		
 		$this->form_validation->set_rules('nomeFantasia', 'Nome Fantasia', 'trim|required');
 		$this->form_validation->set_rules('email',        'Email',         'trim|required|valid_email');
-		$this->form_validation->set_rules('cnpj',         'CNPJ',          'trim|required');
+		$this->form_validation->set_rules('cnpj',         'CNPJ',          'trim|required|is_unique[entidadesexecutoras.cnpj]');
 		$this->form_validation->set_rules('telefone',     'Telefone',      'trim|required');
 		$this->form_validation->set_rules('representante','representante', 'trim|required');
-		$this->form_validation->set_rules('cpfRepresentante',          'CPF Representante',           'trim|required');
+		$this->form_validation->set_rules('cpfRepresentante',          'CPF Representante',           'trim|required|is_unique[entidadesexecutoras.cpf]');
 		$this->form_validation->set_rules('cep',          'cep',           'trim|required');
 		$this->form_validation->set_rules('uf',           'UF',            'trim|required');
 		$this->form_validation->set_rules('cidade',          'cidade',           'trim|required');
 		$this->form_validation->set_rules('endereco',     'Endereço',      'trim|required');
 		
 		if($this->form_validation->run()== FALSE){
+
 			$dados['formerror'] = validation_errors();
 			$this->load->view('Entidade', $dados);
+
 		}else{
-			$dados['formerror'] = 'Validação OK';
+			
 			$this->Entidade_model->cadastrar();
 			redirect('entidade');
 		}
-
 		
 	}
 
-	//----------------------------------------------------------------------------------
-
-
-
-	
-	
 }

@@ -31,7 +31,9 @@ class Agricultor extends MY_Controller {
 
 	public function index(){
 		$dados=[
+
 			'agricultores'=> $this->Agricultor_model->listar()
+			
 		];
 		$this->load->view('AgricultoresLista', $dados);
 	}
@@ -39,21 +41,27 @@ class Agricultor extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function editar($id){
+
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
 		$produtos = $this->Produto_model->listar();
 		$cooperativas = $this->Cooperativa_model->listar();
+
 		if(!$agricultor){
 			show_404();
 		}
+
 		$data['produtos'] = $produtos; 
 		$data['agricultor'] = $agricultor;
 		$data['cooperativas'] = $cooperativas;
+
 		$this->load->view('AgricultorEdita', $data);
 	}
 
+	//----------------------------------------------------------------------------------
 
 	public function alterar($id){
+
 		$data = [];
 		$agricultor = $this->Agricultor_model->getById($id);
 		$produtos = $this->Produto_model->listar();
@@ -62,6 +70,7 @@ class Agricultor extends MY_Controller {
 		if(!$agricultor){
 			show_404();
 		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -126,13 +135,17 @@ class Agricultor extends MY_Controller {
 				'rules' => 'required|min_length[4]|max_length[45]'
 			)
 		);
+
 		$this->form_validation->set_rules($validations);
 		if ($this->form_validation->run() == FALSE) {
+			
 			$data['agricultor'] = $agricultor;
 			$data['produtos'] = $produtos;
 			$data['cooperativas'] = $cooperativas;
 			$data['formerror'] = validation_errors();
+			
 			$this->load->view('AgricultorEdita', $data);
+
 		} else {
 			
 			$data['nome'] = $this->input->post('nome');
@@ -149,7 +162,9 @@ class Agricultor extends MY_Controller {
 			$produtos = $this->input->post('produtos');
 
 			if ($this->Agricultor_model->alterar($id,$data,$produtos,$cooperativa)) {
+
 				redirect('agricultor');
+
 			} else {
 				log_message('error', 'Erro na alteração...');
 			}
@@ -163,8 +178,9 @@ class Agricultor extends MY_Controller {
 	public function cadastrar(){
 
 		$this->load->library(array('form_validation','email'));
+
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required|cpf_existe[cpf]');	
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required|is_unique[agricultores.cpf]');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -177,39 +193,21 @@ class Agricultor extends MY_Controller {
 		$this->form_validation->set_rules('dapValidade','Validade da DAP',	'trim');
 
 		if($this->form_validation->run()== FALSE):
+
 			$dados['formerror'] = validation_errors();
 			$dados['produtos'] = $this->Produto_model->listar();
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
 
-			$this->load->view('Agricultor', $dados);
+			exit($this->load->view('Agricultor', $dados, TRUE));
 
 		else:
 
-			$dados['formerror'] = @$this->Agricultor_model->cadastrar() or die("Erro no cadastrar");
+			$this->Agricultor_model->cadastrar();
 			redirect('agricultor');
+
 		endif;
 
 	}
-
-	//----------------------------------------------------------------------------------
-
-	function cpf_existe($cpf){
-
-		$this->Agricultor_model->getByCPF($cpf);
-		   $result = FALSE; 
-		   $username=$this->input->post('username'); 
-		   $email=$this->input->post('emailad');
-		    $dbmember=$this->members->get_members();
-		    foreach ( $dbmember as $key){ // condition of username and email if($username==$key && $email==$key){ if($username == $key->UserName && $email == $key->EmailAddress){ $this->form_validation->set_message('check_user','already existed! Please check username and email agian.'); return FALSE; break; } return TRUE; } } 
-
-		
-print_r($retorno);
-exit;
-		
-	}
-
-	//----------------------------------------------------------------------------------
-
 
 	//----------------------------------------------------------------------------------
 

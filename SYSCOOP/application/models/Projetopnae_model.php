@@ -7,6 +7,7 @@ class Projetopnae_model extends CI_Model {
 	public function cadastrar($cooperativa , $entidade)
 	{
 		try{
+
 			$this->load->model('Cooperativa_model');
 			$this->load->model('itens_model');
 			$this->load->model('Funcionario_model');
@@ -39,7 +40,6 @@ class Projetopnae_model extends CI_Model {
 			$data['coopCidade']              = $cooperativa->cidade;
 			$data['coopEndereco']            = $cooperativa->endereco;
 
-
 			$data['entidadeExecutora']       = $entidade->id;
 			$data['entNomeFantasia']         = $entidade->nomeFantasia;
 			$data['entEmail']                = $entidade->email;
@@ -52,10 +52,8 @@ class Projetopnae_model extends CI_Model {
 			$data['entCidade']               = $entidade->cidade;
 			$data['entEndereco']             = $entidade->endereco;
 
-
 			$data['data'] = date('Y-m-d H:i:s');
 			$data['dataEncerramento'] = $this->input->post('dataEncerramento');
-
 
 			$this->db->insert('projetos',$data);
 			return $this->db->insert_id();
@@ -68,7 +66,9 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function getById($id){
+
 		try{
+			
 			$projeto = $this->db
 			->where('id', $id)
 			->get('projetos')
@@ -84,7 +84,9 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function listar(){
+
 		try{
+
 			$status = $this->input->get('status') == 'inativo'? 'inativo': 'ativo';
 			return $this->db
 			->where('status',$status)
@@ -98,7 +100,9 @@ class Projetopnae_model extends CI_Model {
 	//----------------------------------------------------------------------------------
 	
 	public function remover($id){
+
 		try{
+
 			$this->db
 			->where('id', $id)
 			->delete('projetos');
@@ -106,23 +110,20 @@ class Projetopnae_model extends CI_Model {
 		}catch(Exception $e){
 			return false;
 		}
-
 	}
 
 	//-----------------ALTERAR-----------------------------------------------------------------
 
 	public function alterar($id,$data) {
+
 		try{
+
 			$this->db->where('id', $id);
 			$this->db->set($data);
 			return $this->db->update('projetos');
-		}
-		catch(Exception $e){
+			
+		}catch(Exception $e){
 			return FALSE;
 		}
-
-	}
-	//----------------------------------------------------------------------------------
-	
-	
+	}	
 }

@@ -2,57 +2,62 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu')
 ?>
-  <?php if(isset($formerror)): ?>
-   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $formerror ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-    </button>
-  </div>
-  <?php endif; ?>
+<body>
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Aviso!</strong>
+			<div><?php echo $formerror ?></div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span> 
+			</button>
+		</div>
+	<?php endif; ?>
 
-<div id='table'>
-	<table class= 'table table-hover'>
-		<thead>
-			<tr id="title"><th colspan=3>Relatório de Agricultores por Cooperativa</th></tr>
-		</thead>
+	<div class="container-fluid">
+		<div class="col-md-12 mb-3">
+			<label>Cooperativa</label>
+			<select name="cooperativa" class="form-control" id="cooperativa" >
+				<option>Selecione uma Cooperativa</option>
+				<?php foreach ($cooperativas as $cooperativa): ?>
+					<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
+				<?php endforeach ?>
+			</select>
 
-		<tbody>
-			<tr style="width: 100px;">
-				<th style="border: 1px solid #dee2e6; width: 50%;">Cooperativa
+			<table class="table">	
+				
+				<td>
 
-					<select name="cooperativa" class="form-control" id="cooperativa" >
-						<?php foreach ($cooperativas as $cooperativa): ?>
-							<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
-						<?php endforeach ?>
-					</select>
-				</th>
-			</tr>
-			<td>
+					<table id="agricultor" style="border: 1px solid #dee2e6;"> </table>
 
-				<label id="agricultor" > </label>
-
-			</td>
-		</tbody>
-	</table>
+				</td>
+			</tbody>
+		</table>
+	</div>
 </div>
-
 <script type="text/javascript">
 	(function(){
 		agricultor = $('#agricultor')
 		$('#cooperativa').on('change', function(){
 			$.get('<?php echo site_url('relatorio/PorCooperativa/') ?>' + $(this).val(), function(agricultores){
 				agricultor.html('');
+				console.log(agricultores);
 				$.each(agricultores, function(count, vivente){
-
-					$('<option/>').attr('value',vivente.id).text(vivente.nome).appendTo(agricultor)
-
+					tr = $('<tr/>');
+					$('<td/>').text(vivente.nome).appendTo(tr);
+					$('<td/>').text(vivente.cpf).appendTo(tr);
+					$('<td/>').text(vivente.dapLimite).appendTo(tr);
+					$('<td/>').text(vivente.dapNumero).appendTo(tr);
+					$('<td/>').text(vivente.telefone).appendTo(tr);
+					$('<td/>').text(vivente.email).appendTo(tr);
+					$('<td/>').text(vivente.cidade).appendTo(tr);
+					$('<td/>').text(vivente.status).appendTo(tr);
+					tr.appendTo(agricultor);
 				})
 			})
 		})
 	})()
 </script>
+
 <script type="text/javascript">
 	setTimeout(function(){
 		$('button.close').click()
