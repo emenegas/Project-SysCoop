@@ -50,7 +50,7 @@ $this->load->view('Menu');
 					<option>Primavera</option>
 				</select>
 			</div>
-			<div class="button">
+			<div class="button" style="margin-top: 30px;float: right;">
 				<button type="submit" class="btn btn-info">Cadastrar</button>
 				<a href="<?php echo site_url('produto') ?>" class="btn btn-outline-danger">Cancelar</a>
 

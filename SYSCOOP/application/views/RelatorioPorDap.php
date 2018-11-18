@@ -13,19 +13,27 @@ $this->load->view('Menu')
 		</div>
 	<?php endif; ?>
 
-	<div class="container-fluid">
-		<form action="<?php echo site_url('relatorio/PorDap')?>" method="post">
-			<div class="col-md-12 mb-3"><h2>Buscar Agricultores com gasto do limite da DAP entre:</h2>
-				<label>Digite o intervalo de valor da DAP</label>
-				<input type="number" name="valor1">
-				<input type="number" name="valor2">
-				<input type="submit" name="Buscar">
+	<form action="<?php echo site_url('relatorio/PorDap')?>" method="post">
+		<div class="container-fluid">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label>Digite o intervalo de valor da DAP</label>
+					<div class="col-md-5 mb-3">
+						<input type="number" name="valor1" placeholder="Valor Inicial" class="form-control">
+					</div>
+					<div class="col-md-5 mb-3">
+						<input type="number" name="valor2" placeholder="Valor Final" class="form-control">
+					</div>		
+					<input type="submit" name="Buscar" value="Buscar" class="btn btn-outline-info">
+				</div>
 			</div>
-			<table class="table">
-				<td>
-					<table id="agricultor"></table>
-				</td>
-			</tbody>
+		</div>
+	</form>
+		<table class="table">
+			<td>
+				<table id="agricultor"></table>
+			</td>
+			
 		</table>
 	</div>
 	<script type="text/javascript">

@@ -50,7 +50,7 @@ $this->load->view('Menu');
      <th>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:
        <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
      </th>
-     <th >Homologação n°
+     <th >Contrato n°
        <input type="text" name="homologacaoCodigo" id="homologacaoCodigo" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
      </th>
      <script type="text/javascript">var input = document.getElementById('dataEncerramento');

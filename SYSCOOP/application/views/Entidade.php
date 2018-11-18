@@ -239,7 +239,7 @@ return true;
 				</div>
 			</div>
 
-			<div class="button" >
+			<div class="button" style="margin-top: 30px;float: right;">
 				<button type="submit" class="btn btn-outline-info">Cadastrar</button>
 				<a href="<?php echo site_url('entidade') ?>" class="btn btn-outline-danger">Cancelar</a>
 			</div>

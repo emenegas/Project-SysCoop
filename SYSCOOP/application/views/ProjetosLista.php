@@ -28,19 +28,24 @@ $this->load->view('Menu');
                <th style="border: 1px solid #dee2e6 ;">Código</th>
                <th style="border: 1px solid #dee2e6 ;">Edital</th>
                <th style="border: 1px solid #dee2e6 ;">Entidade Executora</th>
-               <th style="border: 1px solid #dee2e6 ;">Data</th>
+               <th style="border: 1px solid #dee2e6 ;">Cooperativa Fornecedora</th>
+               <th style="border: 1px solid #dee2e6 ;">Data de Cadastro</th>
                <tr>
                   <tr>
                      <?php foreach ($projetos as $item): ?>
                         <tr>
                            <td style="border: 1px solid #dee2e6 ;"><?php echo $item->id ?></td>
-                           <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->nomeEdital ?></td>
-                           <td style="border: 1px solid #dee2e6 ;">  <?php echo $item->entNomeFantasia ?></td>
-                           <td style="border: 1px solid #dee2e6 ;"> <?php echo $item->data ?></td>
+                           <td style="border: 1px solid #dee2e6 ;"><?php echo $item->nomeEdital ?></td>
+                           <td style="border: 1px solid #dee2e6 ;"><?php echo $item->entNomeFantasia ?></td>
+                           <td style="border: 1px solid #dee2e6 ;"><?php echo $item->coopNomeFantasia ?></td>
+                           <td style="border: 1px solid #dee2e6 ;"><?php echo $item->data ?></td>
                            <td style="border: 1px solid #dee2e6 ;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
                               <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Visualizar</a>
                               <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
                               <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" onclick="return confirm('Deseja excluir esse projeto ?')" >Excluir</a>
+                            </div>
                            </td>
                         </tr>
                      <?php endforeach ?>

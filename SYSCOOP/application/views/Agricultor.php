@@ -253,7 +253,7 @@ $this->load->view('Menu');
 
 				</div>
 			</div>
-			<div class="button">
+			<div class="button" style="margin-top: 30px;float: right;">
 				<button type="submit" class="btn btn-outline-success">Cadastrar</button>
 				<a href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 			</div>	

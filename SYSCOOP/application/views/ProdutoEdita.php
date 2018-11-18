@@ -53,7 +53,7 @@ $this->load->view('Menu');
 				</select>
 			</div>
 		</div>
-		<div class="button">
+		<div class="button" style="margin-top: 30px;float: right;">
 			<input type="submit" name="alterar" value="Confirmar" class="btn btn-outline-info"/>
 			<a href="<?php echo site_url('produto') ?>" class="btn btn-outline-danger">Cancelar</a>
 		</div>

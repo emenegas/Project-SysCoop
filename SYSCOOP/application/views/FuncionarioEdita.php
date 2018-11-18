@@ -52,7 +52,7 @@ $this->load->view('Menu');
 				<label form="senha">Senha</label>
 				<input type="text" name="senha" id="senha" class="form-control" value="">
 			</div>
-			<div class="col-md-4 mb-3">
+			<div class="col-md-8 mb-3">
 				<label for="cooperativa">Cooperativa:</label>
 				<select name="cooperativa" class="form-control" required>
 					<option  value="<?php echo $funcionario->cooperativa; ?>">Atual</option>
@@ -69,7 +69,7 @@ $this->load->view('Menu');
 					<option <?php echo $funcionario->status == 'inativo'?'selected':''; ?> value="inativo">Inativo</option>				
 				</select>
 			</div>
-			<div class="button">
+			<div class="button" style="margin-top: 30px;float: right;">
 				<input type="submit" name="alterar" value="Continuar" class="btn btn-outline-info"/>
 				<a href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
 			</div>

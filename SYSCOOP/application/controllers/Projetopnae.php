@@ -28,6 +28,7 @@ class Projetopnae extends MY_Controller {
 //----------------------------------------------------------------------------------
 
 	public function info($id){
+		
 		$data = [];
 		$projeto = $this->Projetopnae_model->getById($id);
 		$itens = $this->Itens_model->getByProjeto($id);
@@ -52,6 +53,7 @@ class Projetopnae extends MY_Controller {
 
 			'cooperativas'=> $this->Cooperativa_model->listar(),
 			'entidadesExecutoras' => $this->Entidade_model->listar()
+
 		];
 		$this->load->view('Projetopnae', $dados);
 
@@ -62,13 +64,16 @@ class Projetopnae extends MY_Controller {
 	public function remover($id){
 
 		$projeto = $this->Projetopnae_model->getById($id);
+
 		if($projeto->status == 'ativo'){
 
 			$this->Itens_model->removerProjeto($id);
 			$this->Projetopnae_model->remover($id);
 			redirect('projetopnae');
+
 		}else{
-			$data['formerror'] = 'Esse projeto nÃ£o pode ser excluido depois de concluido';
+
+			$data['formerror'] = 'Esse projeto não pode ser excluido porque já foi concluído';
 			$data['projetos'] = $this->Projetopnae_model->listar();
 			$this->load->view('ProjetosLista', $data);
 		}
@@ -93,7 +98,7 @@ class Projetopnae extends MY_Controller {
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('status',            'Status',               'trim|required');
-		$this->form_validation->set_rules('homologacaoCodigo', 'CÃ³digo HomologaÃ§Ã£o',   'trim');
+		$this->form_validation->set_rules('homologacaoCodigo', 'Contrato',   'trim');
 		$this->form_validation->set_rules('dataEncerramento',  'Data de Encerramento', 'trim|required');
 
 		if ( !$this->form_validation->run() ) {
@@ -108,7 +113,7 @@ class Projetopnae extends MY_Controller {
 		}
 
 		if ( $this->input->post('homologacaoCodigo') && $this->input->post('status') == 'ativo' && $projeto->status == 'ativo' ) {
-			$data['formerror'] = 'Com Homologação é necessário marcar projeto como "Concluído".';
+			$data['formerror'] = 'Com numero de Contrato é necessário marcar projeto como "Concluído".';
 
 			exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 		}
@@ -117,7 +122,7 @@ class Projetopnae extends MY_Controller {
 		if ( $this->input->post('status') == 'inativo' && $projeto->status == 'ativo' ) {
 
 			if ( !$this->input->post('homologacaoCodigo') ) {
-				$data['formerror'] = 'Faltou código de homogação.';
+				$data['formerror'] = 'Faltou o numero do Contrato.';
 
 				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 			}

@@ -36,8 +36,7 @@ $this->load->view('Menu');
 					<div class="invalid-feedback">
 					O Arquivo do Edital é obrigatório!</div>
 				</div>
-
-				<div class="col-md-12 mb-3">
+				<div class="col-md-6 mb-3">
 					<label for="cooperativa">Cooperativa:</label>
 					<input list="cooperativa" name="cooperativa" class="form-control" required>
 					<datalist id="cooperativa" >
@@ -46,14 +45,8 @@ $this->load->view('Menu');
 						<?php endforeach ?>
 					</datalist>
 				</div>
-				<div class="col-md-12 mb-4">
-					<label form="caracteristicasCoop">Características Cooperativa Fornecedora</label>
-					<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" placeholder="Digite aqui os detalhes de comercialização e entrega dos produtos!" class="form-control" required></textarea>
-					<div class="invalid-feedback">
-					Campo obrigatório!</div>
-				</div>
 
-				<div class="col-md-12 mb-4"> 
+				<div class="col-md-6 mb-4"> 
 					<label for="entidadeExecutora">Entidade Executora:</label>
 					<input list="entidadeExecutora" name="entidadeExecutora" class="form-control" required>
 					<datalist id="entidadeExecutora" >
@@ -62,9 +55,16 @@ $this->load->view('Menu');
 						<?php endforeach ?>
 					</datalist>
 				</div>
+				<div class="col-md-12 mb-4">
+					<label form="caracteristicasCoop">Características da Cooperativa Fornecedora</label>
+					<textarea type="text" name="caracteristicasCoop" id="caracteristicasCoop" placeholder="Digite aqui os detalhes de comercialização e entrega dos produtos para este Projeto" class="form-control" required></textarea>
+					<div class="invalid-feedback">
+					Campo obrigatório!</div>
+				</div>
+
 			</div>
 
-			<div class="button">
+			<div class="button" style="margin-top: 30px;float: right;">
 				<button type="submit" class="btn btn-info">Continuar</button>
 				<a href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
 
