@@ -164,7 +164,7 @@ class Agricultor extends MY_Controller {
 
 		$this->load->library(array('form_validation','email'));
 		$this->form_validation->set_rules('nome','Nome',					'trim|required');
-		$this->form_validation->set_rules('cpf','CPF',						'trim|required');	
+		$this->form_validation->set_rules('cpf','CPF',						'trim|required|cpf_existe[cpf]');	
 		$this->form_validation->set_rules('telefone','Telefone',			'trim|required');
 		$this->form_validation->set_rules('email','Email',					'trim|required|valid_email');
 		$this->form_validation->set_rules('uf','Uf',						'trim|required');
@@ -184,8 +184,8 @@ class Agricultor extends MY_Controller {
 			$this->load->view('Agricultor', $dados);
 
 		else:
-			$dados['formerror'] = 'Validação OK';
-			$this->Agricultor_model->cadastrar();
+
+			$dados['formerror'] = @$this->Agricultor_model->cadastrar() or die("Erro no cadastrar");
 			redirect('agricultor');
 		endif;
 
@@ -193,16 +193,19 @@ class Agricultor extends MY_Controller {
 
 	//----------------------------------------------------------------------------------
 
-	function callback_cpf_existe($cpf){
+	function cpf_existe($cpf){
 
-		$this->db->select('cpf');
-		$this->db->where('cpf', $cpf);
-		$retorno = $this->db->get('agricultores')->num_rows();
+		$this->Agricultor_model->getByCPF($cpf);
+		   $result = FALSE; 
+		   $username=$this->input->post('username'); 
+		   $email=$this->input->post('emailad');
+		    $dbmember=$this->members->get_members();
+		    foreach ( $dbmember as $key){ // condition of username and email if($username==$key && $email==$key){ if($username == $key->UserName && $email == $key->EmailAddress){ $this->form_validation->set_message('check_user','already existed! Please check username and email agian.'); return FALSE; break; } return TRUE; } } 
 
-		if($retorno > 0 ){
-			return FALSE;
-		}
-		return $cpf;
+		
+print_r($retorno);
+exit;
+		
 	}
 
 	//----------------------------------------------------------------------------------

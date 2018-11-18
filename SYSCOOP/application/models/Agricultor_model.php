@@ -84,8 +84,28 @@ class Agricultor_model extends CI_Model {
 		}
 
 	}
+	//----------------------------------------------------------------------------------
+	
+	public function getByCPF($cpf){
+
+		try{
+			$retorno = $this->db
+			->where('cpf', $cpf)
+			->get('agricultores')
+			->num_rows();
+
+			if($retorno > 0 ){
+				return $cpf;
+			}
+			return FALSE;
+		}catch(Exception $e){
+			return FALSE;
+		}
+	}
 	
 	//----------------------------------------------------------------------------------
+	
+
 	
 	public function getByProduto($id){
 		try{

@@ -15,7 +15,7 @@ class Projetopnae extends MY_Controller {
 
 	}
 
-	//--------------------Listagem Total-----------------------------------------------
+//--------------------Listagem Total-----------------------------------------------
 
 	public function index(){
 		$dados=[
@@ -25,7 +25,7 @@ class Projetopnae extends MY_Controller {
 
 	}
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 	public function info($id){
 		$data = [];
@@ -44,7 +44,7 @@ class Projetopnae extends MY_Controller {
 
 	}
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 
 	public function novo(){
@@ -57,7 +57,7 @@ class Projetopnae extends MY_Controller {
 
 	}
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 	public function remover($id){
 
@@ -75,7 +75,7 @@ class Projetopnae extends MY_Controller {
 
 	}
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 	public function alterar($idProjeto){
 		$projeto = $this->Projetopnae_model->getById($idProjeto);
@@ -158,17 +158,18 @@ class Projetopnae extends MY_Controller {
 	}
 
 
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 	public function cadastrar(){
 		$this->load->library(array('form_validation'));
 
 		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim|required');
-		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim|required');
+		$this->form_validation->set_rules('arquivoEdital', 		'Arquivo Edital',         'trim');
 		$this->form_validation->set_rules('cooperativa',    	 'Cooperativa',           'trim|required|is_natural');
 		$this->form_validation->set_rules('caracteristicasCoop',  		  'caracteristicasCoop',   		'trim');
 		$this->form_validation->set_rules('entidadeExecutora',     'Entidade Executora',      'trim|required|is_natural');
 		$this->form_validation->set_rules('dataEncerramento',     'Data Encerramento',      'trim|required');
+
 
 		$dados = ['formerror' => ''];
 		if($this->form_validation->run()== FALSE){
@@ -176,6 +177,38 @@ class Projetopnae extends MY_Controller {
 			$dados['cooperativas'] = $this->Cooperativa_model->listar();
 			$dados['entidadesExecutoras'] = $this->Entidade_model->listar();
 		}else{
+
+
+			$pathToSave = $_SERVER["DOCUMENT_ROOT"] . "/Project-SysCoop/SYSCOOP/application/arquivoEdital/";
+
+			/*Checa se a pasta existe - caso negativo ele cria*/
+			if(!file_exists($pathToSave))
+			{
+				mkdir($pathToSave);
+			}
+
+			if( $_FILES ){
+
+				if( $_FILES['arquivoEdital'] ) 
+				{ 
+
+					$dir = $pathToSave; 
+					$tmpName = $_FILES['arquivoEdital']['tmp_name'];
+					$name = $_FILES['arquivoEdital']['name'];
+					$pdf_path = "/Project-SysCoop/SYSCOOP/application/arquivoEdital/".$_FILES['arquivoEdital']['name'];
+
+					preg_match_all('/\.[a-zA-Z0-9]+/', $name , $extensao);
+					if(!in_array(strtolower(current(end($extensao))), array('.txt','.pdf', '.doc', '.xls','.xlms')))
+					{
+						$dados['formerror'] = 'Permitido apenas arquivos doc,xls,pdf e txt.';
+					}else{
+
+						move_uploaded_file( $tmpName, $dir . $name );   
+					}          
+
+				}
+
+			}
 			$cooperativa = $this->Cooperativa_model->getById(set_value('cooperativa'));
 
 			if(!$cooperativa){
@@ -188,7 +221,7 @@ class Projetopnae extends MY_Controller {
 			}
 
 			if(empty($dados['formerror']) ){
-				$id = $this->Projetopnae_model->cadastrar($cooperativa, $entidadeExecutora);
+				$id = $this->Projetopnae_model->cadastrar($cooperativa, $entidadeExecutora,$pdf_path);
 				if($id){
 					redirect('projetopnae/'.$id.'/itens');
 				}
@@ -198,6 +231,4 @@ class Projetopnae extends MY_Controller {
 
 		$this->load->view('Projetopnae', $dados);
 	}
-
-
 }

@@ -15,7 +15,7 @@ class Projetopnae_model extends CI_Model {
 
 			$data = [];
 			$data['nomeEdital']              = $this->input->post('nomeEdital');
-			$data['arquivoEdital']           = $this->input->post('arquivoEdital');
+			$data['arquivoEdital']           = "/Project-SysCoop/SYSCOOP/application/arquivoEdital/".$_FILES['arquivoEdital']['name'];
 			$data['caracteristicasCoop'] 	= $this->input->post('caracteristicasCoop');
 
 			$data['cooperativa']             = $cooperativa->id;

@@ -174,7 +174,7 @@ return true;
 			</div>
 			<div class="col-md-4 mb-3">
 				<label form="cpf">CPF</label>
-				<input type="text" name="cpf" id="cpf" class="form-control cpf-mask" placeholder="000.000.000-00" onKeyPress="return Apenas_Numeros(event);" onBlur="validaCPF(this);">
+				<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" onKeyPress="return Apenas_Numeros(event);" onBlur="validaCPF(this);" maxlength="11">
 				<div class="invalid-feedback">
 					Campo obrigatório!
 				</div>
