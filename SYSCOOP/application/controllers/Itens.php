@@ -18,6 +18,7 @@ class Itens extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function index($idProjeto){
+
 		$id = $idProjeto;
 		$projeto = $this->Projetopnae_model->getById($id);
 
@@ -37,6 +38,7 @@ class Itens extends MY_Controller {
 	//----------------------------------------------------------------------------------
 
 	public function adicionar($idProjeto){
+
 		$id = $idProjeto;
 		$projeto = $this->Projetopnae_model->getById($id);
 
@@ -59,10 +61,18 @@ class Itens extends MY_Controller {
 		
 		
 		if($this->form_validation->run()== FALSE){
+
 			$dados['formerror'] = validation_errors();
+
 			$this->load->view('Itens', $dados);
+
 		}else{
+			// $agricultor = $this->Agricultor_model->getByProjeto($idProjeto)
+			// if($agricultor->dapLimite){
+				
+			// }
 			$this->Itens_model->Cadastrar($idProjeto);
+
 			redirect('/projetopnae/'.$idProjeto. '/itens');
 			
 		}

@@ -57,6 +57,7 @@ class Funcionario extends MY_Controller {
 	public function novo(){
 
 		$dados=[
+			
 			'cooperativas'=> $this->Cooperativa_model->listar()
 		];
 		$this->load->view('Funcionario', $dados);

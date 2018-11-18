@@ -5,7 +5,7 @@ $this->load->view('Menu');
 <style type="text/css">
 
 body{
-    background: -webkit-linear-gradient(left, #0000, #00c6ff);
+    background: #2F4F4F;
 }
 .contact-form{
     background: #fff;
@@ -58,15 +58,16 @@ body{
     cursor: pointer;
 }
 </style>
-<?php if(isset($email_enviado)): ?>
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $email_enviado ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-  </button>
-</div>
-<?php  endif ?>
+<body>
+   <?php if(isset($formerror)): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Aviso!</strong>
+            <div><?php echo $formerror ?></div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+            </button>
+        </div>
+    <?php endif; ?>
 <div class="container contact-form">
     <div class="contact-image">
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
@@ -76,13 +77,13 @@ body{
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo *" value="" />
+                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo *" value="" required />
                 </div>
                 <div class="form-group">
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Seu email *" value="" />
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Seu email *" value="" required />
                 </div>
                 <div class="form-group">
-                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Numero do seu telefone *" value="" />
+                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Seu numero de telefone *" value="" required />
                 </div>
                 <div class="form-group">
                     <input type="submit" name="btnSubmit" class="btnContact" value="Enviar Mensagem" />
@@ -90,10 +91,10 @@ body{
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Assunto *" value="" />
+                    <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Assunto *" value="" required />
                 </div>
                 <div class="form-group">
-                    <textarea name="mensagem" id="mensagem" class="form-control" placeholder="Sua mensagem *" style="width: 100%; height: 150px;"></textarea>
+                    <textarea name="mensagem" id="mensagem" class="form-control" placeholder="Sua mensagem *" style="width: 100%; height: 150px;" required></textarea>
                 </div>
             </div>
         </div>

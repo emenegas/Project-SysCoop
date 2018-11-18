@@ -54,9 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores por Produto</a>
           <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorCooperativa')?>">Agricultores por Cooperativa</a>
-          <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores com DAP</a>
-          <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Agricultores por Limite</a>
-          <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorProd')?>">Funcionários por Cooperativa</a>
+          <a class="dropdown-item" href="<?php echo site_url('relatorio/indexPorDap')?>">Agricultores por valor de DAP</a>
+          <a class="dropdown-item" href="<?php echo site_url('relatorio/indexFuncPorCoop')?>">Funcionários por Cooperativa</a>
         </div>
 
       </li>

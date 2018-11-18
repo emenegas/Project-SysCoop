@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu')
 ?>
 <body>
-
 	<?php if(isset($formerror)): ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Aviso!</strong>
@@ -15,42 +14,44 @@ $this->load->view('Menu')
 	<?php endif; ?>
 
 	<div class="container-fluid">
-		<div class="col-md-4 mb-3">
-			<label>Produto</label>
-			<select name="produto" class="form-control" id="produto" >
-				<option>Selecione o Produto</option>
-				<?php foreach ($produtos as $produto): ?>
-
-					<option value="<?php echo $produto->id ?>"><?php echo $produto->nome ?></option>
-
+		<div class="col-md-12 mb-3">
+			<label>Cooperativa</label>
+			<select name="cooperativa" class="form-control" id="cooperativa" >
+				<option>Selecione a Cooperativa</option>
+				<?php foreach ($cooperativas as $cooperativa): ?>
+					<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
 				<?php endforeach ?>
 			</select>
-		</div>
-		<table class="table">
-			<td>
-				<table id="agricultor" style="border: 1px solid #dee2e6;"></table>		
-			</td>
-		</tbody>
-	</table>
+
+			<table class="table">	
+				
+				<td>
+
+					<table id="funcionario" style="border: 1px solid #dee2e6;"> </table>
+
+				</td>
+			</tbody>
+		</table>
+	</div>
 </div>
 <script type="text/javascript">
 	(function(){
-		agricultor = $('#agricultor')
-		$('#produto').on('change', function(){
-			$.get('<?php echo site_url('relatorio/PorProduto/') ?>' + $(this).val(), function(agricultores){
-				agricultor.html('');
-				console.log(agricultores);
-				$.each(agricultores, function(count, vivente){
+		funcionario = $('#funcionario')
+		$('#cooperativa').on('change', function(){
+			$.get('<?php echo site_url('relatorio/FuncPorCoop/') ?>' + $(this).val(), function(funcionarios){
+				funcionario.html('');
+				console.log(funcionarios);
+				$.each(funcionarios, function(count, vivente){
 					tr = $('<tr/>');
+					$('<td/>').text(vivente.id).appendTo(tr);
 					$('<td/>').text(vivente.nome).appendTo(tr);
 					$('<td/>').text(vivente.cpf).appendTo(tr);
-					$('<td/>').text(vivente.dapLimite).appendTo(tr);
-					$('<td/>').text(vivente.dapNumero).appendTo(tr);
-					$('<td/>').text(vivente.telefone).appendTo(tr);
 					$('<td/>').text(vivente.email).appendTo(tr);
 					$('<td/>').text(vivente.cidade).appendTo(tr);
+					$('<td/>').text(vivente.cep).appendTo(tr);
 					$('<td/>').text(vivente.status).appendTo(tr);
-					tr.appendTo(agricultor);
+					
+					tr.appendTo(funcionario);
 				})
 			})
 		})
@@ -60,5 +61,5 @@ $this->load->view('Menu')
 <script type="text/javascript">
 	setTimeout(function(){
 		$('button.close').click()
-	},5000);
+	},2000);
 </script>

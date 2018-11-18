@@ -24,16 +24,17 @@ class Relatorio_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	
-	public function getByDap($id){ 
+	public function getByDap($valor1 , $valor2){ 
 
 		try{
 
 			$agricultor = $this->db
-			->where('id', $id)
-			->where('id', 'dapLimite')
+			->select('agricultores.dapLimite')
+			->where('dapLimite >=', $valor1)
+			->where('dapLimite <=', $valor2)
 			->get('agricultores')
 			->result();
-
+			
 			return ($agricultor);
 
 		}catch(Exception $e){
@@ -62,7 +63,19 @@ class Relatorio_model extends CI_Model {
 
 	//----------------------------------------------------------------------------------
 	
-	public function getByCoopFunc($id){
+	public function getByFuncCoop($id){
+		
+		try{
+			
+			$funcionarios = $this->db
+			->where('cooperativa', $id)
+			->get('funcionarios')
+			->result();
+			
+			return ($funcionarios);
 
+		}catch(Exception $e){
+			return false;
+		}
 	}
 }

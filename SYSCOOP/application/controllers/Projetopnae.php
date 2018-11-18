@@ -202,7 +202,7 @@ class Projetopnae extends MY_Controller {
 					{
 						$dados['formerror'] = 'Permitido apenas arquivos doc,xls,pdf e txt.';
 					}else{
-
+						$name = $_FILES['arquivoEdital']['name'].date('Y-m-d H.i.s').'.pdf';
 						move_uploaded_file( $tmpName, $dir . $name );   
 					}          
 

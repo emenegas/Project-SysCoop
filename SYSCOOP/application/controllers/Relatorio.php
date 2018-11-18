@@ -44,7 +44,7 @@ class Relatorio extends MY_Controller {
 
 	public function PorCooperativa($id)
 	{
-	
+
 		$agricultores = $this->Relatorio_model->getByCoopAgri($id);
 		header('Content-type: text/json');
 		echo json_encode($agricultores);
@@ -53,4 +53,55 @@ class Relatorio extends MY_Controller {
 
 	//----------------------------------------------------------------------------------
 
+	public function indexPorDap(){
+		$dados=[
+
+
+		];
+		$this->load->view('RelatorioPorDap', $dados);
+	}
+
+	public function PorDap()
+	{
+		$this->load->library(array('form_validation'));
+		$this->form_validation->set_rules('valor1','Valor Inicial',		'trim|required|is_numeric');
+		$this->form_validation->set_rules('valor2','Valor Final',	'trim|required|is_numeric');
+
+		if($this->form_validation->run()== FALSE){
+
+			$dados['formerror'] = validation_errors();
+
+			exit($this->load->view('RelatorioPorDap', $dados, TRUE));
+
+		}else{
+
+			$valor1 = $this->input->post('valor1');
+			$valor2 = $this->input->post('valor2');
+
+			$agricultores = $this->Relatorio_model->getByDap($valor1, $valor2);
+			header('Content-type: text/json');
+			echo json_encode($agricultores);
+		}
+	}
+
+	//--------------------------funcionários por Cooperativa----------------------------------
+
+	public function indexFuncPorCoop(){
+		$dados=[
+			
+			'cooperativas' => $this->Cooperativa_model->listar()
+
+		];
+
+		$this->load->view('RelatorioFuncPorCoop', $dados);
+	}
+
+	public function FuncPorCoop($id)
+	{
+
+		$funcionario = $this->Relatorio_model->getByFuncCoop($id);
+		header('Content-type: text/json');
+		echo json_encode($funcionario);
+
+	}
 }
