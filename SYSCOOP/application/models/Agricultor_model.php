@@ -128,7 +128,7 @@ class Agricultor_model extends CI_Model {
 			->where('agricultor', $id)
 			->delete('agricultores_has_cooperativas');
 
-			foreach ($produtos as $produtoId) {
+			foreach((array)$produtos as $produtoId){
 
 				$dados = [];
 				$dados['produto'] = $produtoId;
@@ -140,7 +140,6 @@ class Agricultor_model extends CI_Model {
 
 			if(!empty($cooperativa)){
 				
-
 				$dados = [];
 				$dados['cooperativa'] = $cooperativa ? $this->input->post('cooperativa') : NULL;
 				$dados['agricultor'] = $id;

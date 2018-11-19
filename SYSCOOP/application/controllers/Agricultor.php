@@ -160,7 +160,7 @@ class Agricultor extends MY_Controller {
 			$data['dapValidade'] = $this->input->post('dapValidade');
 			$data['status'] = $this->input->post('status');
 			$produtos = $this->input->post('produtos');
-
+			
 			if ($this->Agricultor_model->alterar($id,$data,$produtos,$cooperativa)) {
 
 				redirect('agricultor');
