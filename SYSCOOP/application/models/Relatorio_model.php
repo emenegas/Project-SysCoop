@@ -29,7 +29,6 @@ class Relatorio_model extends CI_Model {
 		try{
 
 			$agricultor = $this->db
-			->select('agricultores.dapLimite')
 			->where('dapLimite >=', $valor1)
 			->where('dapLimite <=', $valor2)
 			->get('agricultores')

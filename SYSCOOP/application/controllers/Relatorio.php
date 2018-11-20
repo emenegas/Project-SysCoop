@@ -77,10 +77,22 @@ class Relatorio extends MY_Controller {
 
 			$valor1 = $this->input->post('valor1');
 			$valor2 = $this->input->post('valor2');
+			
+			if($valor1 <= $valor2){
 
-			$agricultores = $this->Relatorio_model->getByDap($valor1, $valor2);
-			header('Content-type: text/json');
-			echo json_encode($agricultores);
+				if($agricultores = $this->Relatorio_model->getByDap($valor1, $valor2)){
+					
+					$dados['agricultores'] = $agricultores;
+					$this->load->view('RelatorioPorDap', $dados);
+					
+				}else{
+					$dados['formerror'] = 'No momento não existem agricultores com gasto do Limite da DAP nesse intervalo de valor!';
+					exit($this->load->view('RelatorioPorDap', $dados, TRUE));
+				}
+			}else{
+				$dados['formerror'] = 'O valor 1 deve ser menor que o valor 2!';
+					exit($this->load->view('RelatorioPorDap', $dados, TRUE));
+			}
 		}
 	}
 

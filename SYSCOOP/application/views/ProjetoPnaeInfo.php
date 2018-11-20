@@ -83,7 +83,7 @@ $this->load->view('Menu');
 </table>
 </table>
 <table class="table table-bordered">
-  <thead class="thead-light"><h4>I - IDENTIFICAÇÃO DOS FORNECEDORES</h4>
+  <thead class="thead-light"><h4>I - IDENTIFICAÇÃO DO FORNECEDOR</h4>
     <tr>
       <th>Código</th>
       <th>Nome do Proponente</th>

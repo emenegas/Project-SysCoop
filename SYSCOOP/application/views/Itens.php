@@ -43,7 +43,7 @@ $this->load->view('Menu');
 
 
 			<td >
-				<textarea style="height: 150px;"type="text" name="descricaoProd" id="descricaoProd" class="form-control" value="">PRODUTO - TIPO 1. ISENTO DE MATERIAS ESTRANHAS, IMPUREZAS, INSETOS VIVOS OU MORTOS, EMBRALAGEM DE POLIETILENO TRANSPARENTE, ATÓXICO, DE 1KG, ROTULAGEM DE ACORDO COM AS NORMAS DA ANVISA, VALIDADE DE 12 MESES A PARTIR DA DATA DE ENTREGA</textarea>
+				<textarea style="height: 150px;"type="text" name="descricaoProd" id="descricaoProd" class="form-control" value="">PRODUTO - TIPO 1. ISENTO DE MATÉRIAS ESTRANHAS, IMPUREZAS, INSETOS VIVOS OU MORTOS, EMBALAGEM DE POLIETILENO TRANSPARENTE, ATÓXICO, DE 1KG, ROTULAGEM DE ACORDO COM AS NORMAS DA ANVISA, VALIDADE DE 12 MESES A PARTIR DA DATA DE ENTREGA</textarea>
 			</td>
 			<td>
 				<select name="produto" class="form-control" id="produto" autocomplete="off" >

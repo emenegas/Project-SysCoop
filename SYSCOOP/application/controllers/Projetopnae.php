@@ -138,6 +138,7 @@ class Projetopnae extends MY_Controller {
 
 				exit($this->load->view('ProjetoPnaeInfo', $data, TRUE));
 			}
+			
 
 			$dados['status']            = $this->input->post('status');
 			$dados['homologacaoCodigo'] = $this->input->post('homologacaoCodigo');
@@ -166,6 +167,7 @@ class Projetopnae extends MY_Controller {
 //----------------------------------------------------------------------------------
 
 	public function cadastrar(){
+
 		$this->load->library(array('form_validation'));
 
 		$this->form_validation->set_rules('nomeEdital', 		'Nome Edital',         'trim|required');

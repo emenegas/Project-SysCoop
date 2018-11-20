@@ -140,7 +140,7 @@ class Itens_model extends CI_Model {
 				->update('agricultores');
 			}
 			return TRUE;
-		
+			
 		}catch(Exception $e){
 			return FALSE;
 		}

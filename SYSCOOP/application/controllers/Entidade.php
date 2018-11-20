@@ -44,7 +44,9 @@ class Entidade extends MY_Controller {
 	//----------------------------------------------------------------------------------
 	
 	public function alterar($id){
-		
+
+		$entidade = $this->Entidade_model->getById($id);
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 		$validations = array(
@@ -72,7 +74,7 @@ class Entidade extends MY_Controller {
 			array(
 				'field' => 'cpfRepresentante',
 				'label' => 'cpfRepresentante',
-				'rules' => 'required|min_length[11]|max_length[45]|is_unique[entidadesexecutoras.cpf]'
+				'rules' => 'required|min_length[11]|max_length[45]'
 			),
 			array(
 				'field' => 'cep',
@@ -143,7 +145,7 @@ class Entidade extends MY_Controller {
 		$this->form_validation->set_rules('cnpj',         'CNPJ',          'trim|required|is_unique[entidadesexecutoras.cnpj]');
 		$this->form_validation->set_rules('telefone',     'Telefone',      'trim|required');
 		$this->form_validation->set_rules('representante','representante', 'trim|required');
-		$this->form_validation->set_rules('cpfRepresentante',          'CPF Representante',           'trim|required|is_unique[entidadesexecutoras.cpf]');
+		$this->form_validation->set_rules('cpfRepresentante',          'CPF Representante',           'trim|required|is_unique[entidadesexecutoras.cpfRepresentante]');
 		$this->form_validation->set_rules('cep',          'cep',           'trim|required');
 		$this->form_validation->set_rules('uf',           'UF',            'trim|required');
 		$this->form_validation->set_rules('cidade',          'cidade',           'trim|required');

@@ -13,49 +13,59 @@ $this->load->view('Menu')
 		</div>
 	<?php endif; ?>
 
-	<form action="<?php echo site_url('relatorio/PorDap')?>" method="post">
-		<div class="container-fluid">
-			<div class="form-row">
-				<div class="col-md-4 mb-3">
-					<label>Digite o intervalo de valor da DAP</label>
-					<div class="col-md-5 mb-3">
-						<input type="number" name="valor1" placeholder="Valor Inicial" class="form-control">
-					</div>
-					<div class="col-md-5 mb-3">
-						<input type="number" name="valor2" placeholder="Valor Final" class="form-control">
-					</div>		
-					<input type="submit" name="Buscar" value="Buscar" class="btn btn-outline-info">
-				</div>
-			</div>
-		</div>
-	</form>
-		<table class="table">
-			<td>
-				<table id="agricultor"></table>
-			</td>
-			
-		</table>
-	</div>
-	<script type="text/javascript">
-		(function(){
-			agricultor = $('#agricultor')
-			$('#produto').on('change', function(){
-				$.get('<?php echo site_url('relatorio/PorDAp/') ?>' + $(this).val(), function(agricultores){
-					agricultor.html('');
-					$.each(agricultores, function(count, vivente){
-						tr = $('<tr/>');
-						$('<td/>').text(vivente.nome).appendTo(tr);
-						$('<td/>').text(vivente.dapLimite).appendTo(tr);
-						$('<td/>').text(vivente.dapNumero).appendTo(tr);
-						tr.appendTo(agricultor);
-					})
-				})
-			})
-		})()
-	</script>
 
-	<script type="text/javascript">
-		setTimeout(function(){
-			$('button.close').click()
-		},5000);
-	</script>
+	
+	<div class="container-fluid">
+		<form class="needs-validation" action="<?php echo site_url('relatorio/PorDap')?>" method="post"  novalidate>
+			<div class="form-row">
+				<label><h3>Digite o intervalo de valor da DAP</h3></label>
+				<div class="col-md-2 mb-3">
+					<input type="number" name="valor1" id="valor1" placeholder="Valor Inicial" class="form-control" required>
+					<div class="invalid-feedback">
+						Campo obrigatório!
+					</div>
+				</div>
+				<div class="col-md-2 mb-3">
+					<input type="number" name="valor2" id="valor2" placeholder="Valor Final" class="form-control" required>
+				</div>
+				<div class="invalid-feedback">
+					Campo	 obrigatório!
+				</div>
+				<button type="submit" name="Buscar" class="btn btn-outline-warning">Buscar</button>
+			</div>
+		</form>
+	</div>
+
+	<table class="table table-bordered table-condensed table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Gasto da DAP</th>
+				<th>Numero da DAP</th>
+				<th>Validade da DAP</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php if(isset($agricultores)): ?>
+
+
+				<?php foreach ($agricultores as $item): ?>
+					<tr>
+						<td> <?php echo $item->nome ?></td>
+						<td>  <?php echo $item->cpf ?></td>
+						<td>  <?php echo $item->dapLimite ?></td>
+						<td>  <?php echo $item->dapNumero ?></td>
+						<td>  <?php echo $item->dapValidade ?></td>
+
+					</tr> 
+				<?php endforeach ?>
+			<?php endif; ?>
+		</tbody>
+	</table>
+</body>
+<script type="text/javascript">
+	setTimeout(function(){
+		$('button.close').click()
+	},5000);
+</script>

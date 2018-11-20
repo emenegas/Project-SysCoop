@@ -11,7 +11,7 @@ $this->load->view('Menu');
 				<span aria-hidden="true">&times;</span> 
 			</button>
 		</div>
-	<?php endif; ?>
+
 
 	<div class="container-fluid">
 

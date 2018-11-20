@@ -68,6 +68,15 @@ body{
             </button>
         </div>
     <?php endif; ?>
+    <?php if(isset($formInfo)): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Informação...</strong>
+            <div><?php echo $formInfo ?></div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+            </button>
+        </div>
+    <?php endif; ?>
 <div class="container contact-form">
     <div class="contact-image">
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>

@@ -54,7 +54,7 @@ class Itens extends MY_Controller {
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_rules('produto',     'Cod Produto',          			 'trim|required|is_natural');
 		$this->form_validation->set_rules('agricultor',     'Cod Agricultor',     			 'trim|is_natural');
-		$this->form_validation->set_rules('quantidade',     'Quantidade',      				 'trim|required');
+		$this->form_validation->set_rules('quantidade',     'Quantidade',      				 'trim|required|is_natural');
 		$this->form_validation->set_rules('precoUnidade',     'Preço Unitário',     		 'trim|required');
 		$this->form_validation->set_rules('descricaoProd',     'Descrição',     			 'trim|required');
 		$this->form_validation->set_rules('cronogramaEntregaProd',     'Cronograma',      	 'trim|required');

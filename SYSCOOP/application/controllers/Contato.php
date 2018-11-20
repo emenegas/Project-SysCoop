@@ -54,10 +54,12 @@ class Contato extends My_Controller {
 
       if (!$em) {
         $dados['formerror'] = 'Erro ao enviar o email. Favor enviar um e-mail para nucleofae@gmail.com';
-        $this->load->view('Contato',$data);
-      }
-      $data['action'] = site_url('Contato/enviaEmail');
-      $this->load->view('Contato',$data);
+        $this->load->view('Contato',$dados);
+      }else{
+        $dados['formInfo'] =  'Mensagem enviada com sucesso!';
     }
+    $dados['action'] = site_url('Contato/enviaEmail');
+    $this->load->view('Contato',$dados);
+      }
   }
 }
