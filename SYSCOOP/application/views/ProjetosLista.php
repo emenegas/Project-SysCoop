@@ -12,6 +12,7 @@ $this->load->view('Menu');
     </button>
   </div>
   <?php endif; ?>
+  
 <div class="container-fluid">
    <div id='table'>
       <table class= 'table table-hover'>

@@ -3,73 +3,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 
- <?php if(isset($formerror)): ?>
-   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $formerror ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-    </button>
-  </div>
-  <?php endif; ?>
+<?php if(isset($formerror)): ?>
+ <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Aviso!</strong>
+  <div><?php echo $formerror ?></div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span> 
+  </button>
+</div>
+<?php endif; ?>
+<script language="JavaScript1.2">
 
+  <!--
+
+    function DoPrinting(){
+
+      if (!window.print){
+
+        alert("Use o Netscape ou Internet Explorer \n nas versões 4.0 ou superior!")
+
+        return
+
+      }
+
+      window.print()
+
+    }
+
+//-->
+
+</script>
 
 <div class="container">
   <table class="table table">
     <thead class="thead-dark">
-      <tr>
-        <th><?php echo $projeto->coopNomeFantasia ?></th>
+     <thead >
+       <tr class="thead-light">
 
-        <th> <?php echo $projeto->coopEndereco ?> <?php echo $projeto->coopCidade?>/<?php echo $projeto->coopUf ?></th>
-        <th>
-          <?php echo $projeto->coopEmail?>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          CNPJ: <?php echo $projeto->coopCnpj?>
-        </th>
-        <th>
-          Fone: <?php echo $projeto->coopTelefone?>
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-  </table>
-  <table class="table table">
+        <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
+        <th style="width: 30%"> Situação:
+          <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
+           <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>
+         </select>
+       </th>
+       <th>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:
+         <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
+       </th>
+       <th >Contrato n°
+         <input type="text" name="homologacaoCodigo" id="homologacaoCodigo" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
+       </th>
+       <script type="text/javascript">var input = document.getElementById('dataEncerramento');
+       input.addEventListener('change', function() {
+        var agora = new Date();
+        var escolhida = new Date(this.value);
+        if (escolhida < agora) {
+          this.value = [agora.getFullYear(), agora.getMonth() + 1, agora.getDate()].map(v => v < 10 ? '0' + v : v).join('-');
+          alert("Não é permitida data retroativa!");
+        }
+      });
+    </script>
+    <th> 
+      <div class="btn-group" role="group" aria-label="Basic example">
+  <button id="button" name="button" type="button" class="btn btn-outline-info" onClick="DoPrinting()" value="Imprimir">Imprimir</button>
+  <button type="submit"  class="btn btn-outline-warning" name="alterar" value="Alterar">Alterar</button>
+      </div>
+      <?php echo form_close(); ?>
 
-    <thead >
-     <tr class="thead-light">
+    </th>
+  </tr>
+</table>
 
-      <?php echo form_open('projetopnae/' .$projeto->id. '/alterar', 'id="form-projeto"'); ?> 
-      <th style="width: 30%"> Situação:
-        <select name="status" class="form-control" value="<?php echo $projeto->status; ?>">
-         <option <?php echo $projeto->status == 'ativo'?'selected':''; ?> value="ativo">Em andamento</option>   <option <?php echo $projeto->status == 'inativo'?'selected':''; ?> value="inativo">Concluído</option>
-       </select>
-     </th>
-     <th>Ref. Chamada Pública n° <?php echo $projeto->nomeEdital ?> Encerramento às:
-       <input  type="date" name="dataEncerramento" id="dataEncerramento" class="form-control" value="<?php echo $projeto->dataEncerramento; ?>"> 
-     </th>
-     <th >Contrato n°
-       <input type="text" name="homologacaoCodigo" id="homologacaoCodigo" class="form-control" value="<?php echo $projeto->homologacaoCodigo; ?>"> 
-     </th>
-     <script type="text/javascript">var input = document.getElementById('dataEncerramento');
-     input.addEventListener('change', function() {
-      var agora = new Date();
-      var escolhida = new Date(this.value);
-      if (escolhida < agora) {
-        this.value = [agora.getFullYear(), agora.getMonth() + 1, agora.getDate()].map(v => v < 10 ? '0' + v : v).join('-');
-        alert("Não é permitida data retroativa!");
-      }
-    });
-  </script>
-  <th> 
-    <a onclink="window.print();" class="btn btn-primary no-print">Imprimir</a>
-   <input type="submit"  class="btn btn-outline-info" name="alterar" value="Alterar" />
-   <?php echo form_close(); ?>
+<table class="table table">
+  <thead class="thead-dark">
+ <tr>
+  <th><?php echo $projeto->coopNomeFantasia ?></th>
 
- </th>
+  <th> <?php echo $projeto->coopEndereco ?> <?php echo $projeto->coopCidade?>/<?php echo $projeto->coopUf ?></th>
+  <th>
+    <?php echo $projeto->coopEmail?>
+  </th>
 </tr>
+<tr>
+  <th>
+    CNPJ: <?php echo $projeto->coopCnpj?>
+  </th>
+  <th>
+    Fone: <?php echo $projeto->coopTelefone?>
+  </th>
+  <th></th>
+</tr>
+</thead>
 </table>
 <table class="table table-bordered">
   <thead class="thead-light">
@@ -246,9 +269,10 @@ $this->load->view('Menu');
 <table class="table table-bordered" >
   <thead  class="table-sm">
     <tr>
-      <th>
+      <th style="text-align: right;">
         Total do Projeto: R$ <?php echo $projeto->totalProjeto ?>
       </th>
+
     </tr>
   </thead>
 </table>
