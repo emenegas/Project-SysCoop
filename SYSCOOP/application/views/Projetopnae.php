@@ -20,40 +20,44 @@ $this->load->view('Menu');
 			<div class="form-row">
 				<div class="col-md-10 mb-3">	
 					<label for="nomeEdital">Identificação da proposta de atendimento ao edital/chamada pública N°</label>
-					<input type="text" class="form-control" id="nomeEdital" name="nomeEdital" required>
+					<input type="text" class="form-control" id="nomeEdital" name="nomeEdital" placeholder="Digite aqui o nome/numero do Edital que este projeto sera baseado!" required>
 					<div class="invalid-feedback">
-					Numero obrigatório!</div>
+					Numero obrigatório, digite o numero/nome do Edital para poder continuar.</div>
 				</div>
 
 				<div class="col-md-2 mb-3">
 					<label for="dataEncerramento">Data de Encerramento</label>
-					<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento"  required>
+					<input type="date" class="form-control" id="dataEncerramento" name="dataEncerramento" data-toggle="tooltip" title="Selecione a data de Encerramento do Edital!" required>
 				</div>
 
 				<div class="custom-file col-md-12 mb-4">
-					<input type="file" class="custom-file-input" id="arquivoEdital" name="arquivoEdital" value="" required>
+					<input type="file" class="custom-file-input" id="arquivoEdital" name="arquivoEdital" value="" data-toggle="tooltip" title="Clique para selecionar um arquivo no fomato .pdf" required>
 					<label class="custom-file-label" for="customFile">Escolher arquivo</label>
 					<div class="invalid-feedback">
-					O Arquivo do Edital é obrigatório!</div>
+					O Arquivo do Edital é obrigatório! O arquivo deve estar em formato .pdf!</div>
 				</div>
 				<div class="col-md-6 mb-3">
 					<label for="cooperativa">Cooperativa:</label>
-					<input list="cooperativa" name="cooperativa" class="form-control" required>
+					<input list="cooperativa" name="cooperativa" class="form-control" data-toggle="tooltip" title="Selecione a Cooperativa Fornecedora para este Projeto!" required>
 					<datalist id="cooperativa" >
 						<?php foreach ($cooperativas as $cooperativa): ?>
 							<option value="<?php echo $cooperativa->id ?>"><?php echo $cooperativa->nomeFantasia ?></option>
 						<?php endforeach ?>
 					</datalist>
+					<div class="invalid-feedback">
+					É necessário selecionar uma Cooperativa para continuar! Digite as inicias da Cooperativa que esta buscando.</div>
 				</div>
 
 				<div class="col-md-6 mb-4"> 
 					<label for="entidadeExecutora">Entidade Executora:</label>
-					<input list="entidadeExecutora" name="entidadeExecutora" class="form-control" required>
+					<input list="entidadeExecutora" name="entidadeExecutora" class="form-control" data-toggle="tooltip" title="Selecione a Entidade Executora do Projeto!" required>
 					<datalist id="entidadeExecutora" >
 						<?php foreach ($entidadesExecutoras as $entidadeExecutora): ?>
 							<option value="<?php echo $entidadeExecutora->id ?>"><?php echo $entidadeExecutora->nomeFantasia ?></option>
 						<?php endforeach ?>
 					</datalist>
+					<div class="invalid-feedback">
+					É necessário selecionar uma Entidade para continuar! Digite as inicias da Entidade que esta buscando.</div>
 				</div>
 				<div class="col-md-12 mb-4">
 					<label form="caracteristicasCoop">Características da Cooperativa Fornecedora</label>
@@ -65,8 +69,8 @@ $this->load->view('Menu');
 			</div>
 
 			<div class="button" style="margin-top: 30px;float: right;">
-				<button type="submit" class="btn btn-info">Continuar</button>
-				<a href="<?php echo site_url('projetopnae') ?>" class="btn btn-outline-danger">Cancelar</a>
+				<button type="submit" data-toggle="tooltip" title="Clique para continuar o Cadastro!" class="btn btn-info">Continuar</button>
+				<a href="<?php echo site_url('projetopnae') ?>" data-toggle="tooltip" title="Voltar para a listagem." class="btn btn-outline-danger">Cancelar</a>
 
 			</div>
 		</form>

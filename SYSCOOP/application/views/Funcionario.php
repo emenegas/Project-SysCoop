@@ -3,52 +3,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
 <script language=javascript>
-<!--
-function fone(obj,prox) {
-switch (obj.value.length) {
-	case 1:
-		obj.value = "(" + obj.value;
-		break;
-	case 3:
-		obj.value = obj.value + ")";
-		break;	
-	case 8:
-		obj.value = obj.value + "-";
-		break;	
-	case 13:
-		prox.focus();
-		break;
-}
-}
-function formata_data(obj,prox) {
-switch (obj.value.length) {
-	case 2:
-		obj.value = obj.value + "/";
-		break;
-	case 5:
-		obj.value = obj.value + "/";
-		break;
-	case 9:
-		prox.focus();
-		break;
-}
-}
-function Apenas_Numeros(caracter)
-{
-  var nTecla = 0;
-  if (document.all) {
-	  nTecla = caracter.keyCode;
-  } else {
-	  nTecla = caracter.which;
-  }
-  if ((nTecla> 47 && nTecla <58)
-  || nTecla == 8 || nTecla == 127
-  || nTecla == 0 || nTecla == 9  // 0 == Tab
-  || nTecla == 13) { // 13 == Enter
-	  return true;
-  } else {
-	  return false;
-  }
+
+	function fone(obj,prox) {
+		switch (obj.value.length) {
+			case 1:
+			obj.value = "(" + obj.value;
+			break;
+			case 3:
+			obj.value = obj.value + ")";
+			break;	
+			case 8:
+			obj.value = obj.value + "-";
+			break;	
+			case 13:
+			prox.focus();
+			break;
+		}
+	}
+	function formata_data(obj,prox) {
+		switch (obj.value.length) {
+			case 2:
+			obj.value = obj.value + "/";
+			break;
+			case 5:
+			obj.value = obj.value + "/";
+			break;
+			case 9:
+			prox.focus();
+			break;
+		}
+	}
+	function Apenas_Numeros(caracter)
+	{
+		var nTecla = 0;
+		if (document.all) {
+			nTecla = caracter.keyCode;
+		} else {
+			nTecla = caracter.which;
+		}
+		if ((nTecla> 47 && nTecla <58)
+			|| nTecla == 8 || nTecla == 127
+			|| nTecla == 0 || nTecla == 9  
+			|| nTecla == 13) { 
+			return true;
+	} else {
+		return false;
+	}
 }
 function validaCPF(cpf) 
 {
@@ -120,140 +120,144 @@ if (erro.length > 0) {
 return true;	
 }
 
- //envento onkeyup
- function maskCPF(CPF) {
- 	var evt = window.event;
- 	kcode=evt.keyCode;
- 	if (kcode == 8) return;
- 	if (CPF.value.length == 3) { CPF.value = CPF.value + '.'; }
- 	if (CPF.value.length == 7) { CPF.value = CPF.value + '.'; }
- 	if (CPF.value.length == 11) { CPF.value = CPF.value + '-'; }
- }
- 
- // evento onBlur
- function formataCPF(CPF)
- {
- 	with (CPF)
- 	{
- 		value = value.substr(0, 3) + '.' + 
- 		value.substr(3, 3) + '.' + 
- 		value.substr(6, 3) + '-' +
- 		value.substr(9, 2);
- 	}
- }
- function retiraFormatacao(CPF)
- {
- 	with (CPF)
- 	{
- 		value = value.replace (".","");
- 		value = value.replace (".","");
- 		value = value.replace ("-","");
- 		value = value.replace ("/","");
- 	}
- }
-//-->
+
+function maskCPF(CPF) {
+	var evt = window.event;
+	kcode=evt.keyCode;
+	if (kcode == 8) return;
+	if (CPF.value.length == 3) { CPF.value = CPF.value + '.'; }
+	if (CPF.value.length == 7) { CPF.value = CPF.value + '.'; }
+	if (CPF.value.length == 11) { CPF.value = CPF.value + '-'; }
+}
+
+
+function formataCPF(CPF)
+{
+	with (CPF)
+	{
+		value = value.substr(0, 3) + '.' + 
+		value.substr(3, 3) + '.' + 
+		value.substr(6, 3) + '-' +
+		value.substr(9, 2);
+	}
+}
+function retiraFormatacao(CPF)
+{
+	with (CPF)
+	{
+		value = value.replace (".","");
+		value = value.replace (".","");
+		value = value.replace ("-","");
+		value = value.replace ("/","");
+	}
+}
+
 </script>
-  <?php if(isset($formerror)): ?>
-   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Aviso!</strong>
-    <div><?php echo $formerror ?></div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span> 
-    </button>
-  </div>
-  <?php endif; ?>
-<div class="container-fluid">
-	<form class="needs-validation" action="<?php echo site_url('funcionario/cadastrar')?>" method="post"  novalidate>
-		<div class="form-row">
-			<div class="col-md-4 mb-3">
-				<label form="nome">Nome</label>
-				<input type="text" name="nome" id="nome" class="form-control" value="<?php echo set_value('nome')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="cpf">CPF</label>
-				<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" onKeyPress="return Apenas_Numeros(event);" onBlur="validaCPF(this);" maxlength="11">
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="email">Email</label>
-				<input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="telefone">Telefone</label>
-				<input type="text" name="telefone" id="telefone" class="form-control" value="<?php echo set_value('telefone')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="cep">CEP</label>
-				<input type="text" name="cep" id="cep" class="form-control" value="<?php echo set_value('cep')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
+<body>
 
-			<div class="col-md-4 mb-3">
-				<label form="uf">UF</label>
-				<input type="text" name="uf" id="uf" class="form-control" value="<?php echo set_value('uf')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="cidade">Cidade</label>
-				<input type="text" name="cidade" id="cidade" class="form-control" value="<?php echo set_value('cidade')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-3">
-				<label form="endereco">Endereço</label>
-				<input type="text" name="endereco" id="endereco" class="form-control" value="<?php echo set_value('endereco')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-			<div class="col-md-4 mb-3">
-				<label form="senha">Senha</label>
-				<input type="password" name="senha" id="senha" class="form-control" value="<?php echo set_value('senha')?>" required>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-
-			<div class="col-md-8 mb-3">
-				<label for="cooperativa">Cooperativa:</label>
-				<select name="cooperativa" class="form-control" required>
-
-					<?php foreach ($cooperativas as $cooperativa)
-					{
-						echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
-					}?>
-				</select>
-				<div class="invalid-feedback">
-					Campo obrigatório!
-				</div>
-			</div>
-
-			<div class="button" style="margin-top: 30px;float: right;">
-				<button type="submit" class="btn btn-outline-info">Cadastrar</button>
-				<a href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
-
-			</div>
-
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Aviso!</strong>
+			<div><?php echo $formerror ?></div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span> 
+			</button>
 		</div>
-	</form>
-</div>	
+	<?php endif; ?>
+
+	<div class="container-fluid">
+		<form class="needs-validation" action="<?php echo site_url('funcionario/cadastrar')?>" method="post"  novalidate>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label form="nome">Nome</label>
+					<input type="text" name="nome" id="nome" class="form-control" placeholder="Nome completo do funcionário" value="<?php echo set_value('nome')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite o nome completo do Funcionário!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="cpf">CPF</label>
+					<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" onKeyPress="return Apenas_Numeros(event);" onBlur="validaCPF(this);" maxlength="11">
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite um CPF válido! Obs: Não é permitida a duplicidade desta informação!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="email">Email</label>
+					<input type="email" name="email" id="email" class="form-control" placeholder="exemplo@email.com" value="<?php echo set_value('email')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite um Email válido, exemplo@email.com!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="telefone">Telefone</label>
+					<input type="text" name="telefone" id="telefone" class="form-control" value="<?php echo set_value('telefone')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite um numero de telefone com DDD!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="cep">CEP</label>
+					<input type="text" name="cep" id="cep" class="form-control" placeholder="00000-000" value="<?php echo set_value('cep')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite um CEP com 8 digitos!
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-3">
+					<label form="uf">UF</label>
+					<input type="text" name="uf" id="uf" class="form-control" value="<?php echo set_value('uf')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="cidade">Cidade</label>
+					<input type="text" name="cidade" id="cidade" class="form-control" value="<?php echo set_value('cidade')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório!
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-3">
+					<label form="endereco">Endereço</label>
+					<input type="text" name="endereco" id="endereco" class="form-control" placeholder="Rua exemplo - 500, Bairro" value="<?php echo set_value('endereco')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório!
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label form="senha">Senha</label>
+					<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite a senha para acesso!" value="<?php echo set_value('senha')?>" required>
+					<div class="invalid-feedback">
+						Campo obrigatório! Digite a senha para posteriormente o funcionário poder acessar o sistema!
+					</div>
+				</div>
+
+				<div class="col-md-8 mb-3">
+					<label for="cooperativa">Cooperativa:</label>
+					<select name="cooperativa" class="form-control" required>
+
+						<?php foreach ($cooperativas as $cooperativa)
+						{
+							echo'<option value="' . $cooperativa->id . '">' . $cooperativa->nomeFantasia . '</option>';
+						}?>
+					</select>
+					<div class="invalid-feedback">
+						Campo obrigatório! Selecione a Cooperativa que o Funcionário pertencerá! 
+					</div>
+				</div>
+
+				<div class="button" style="margin-top: 30px;float: right;">
+					<button type="submit" class="btn btn-outline-info">Cadastrar</button>
+					<a href="<?php echo site_url('funcionario') ?>" class="btn btn-outline-danger">Cancelar</a>
+
+				</div>
+
+			</div>
+		</form>
+	</div>	
+</body>
 
 <!-- -------------------------------------------------------------------------------------------------------------- -->
 <script>

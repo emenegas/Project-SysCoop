@@ -89,7 +89,7 @@ body{
                     <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo *" value="" required />
                 </div>
                 <div class="form-group">
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Seu email *" value="" required />
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Seu email *" value="" required />
                 </div>
                 <div class="form-group">
                     <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Seu numero de telefone *" value="" required />

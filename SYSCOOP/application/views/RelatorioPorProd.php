@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')
+$this->load->view('Menu');
 ?>
 <body>
 
@@ -25,13 +25,25 @@ $this->load->view('Menu')
 
 				<?php endforeach ?>
 			</select>
-		</div>
-		<table class="table">
-			<td>
-				<table id="agricultor" style="border: 1px solid #dee2e6;"></table>		
-			</td>
-		</tbody>
-	</table>
+		</div>	
+		
+			<table class="table table-bordered table-condensed table-hover table-striped">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>Gasto da DAP</th>
+						<th>Numero da DAP</th>
+						<th>Validade da DAP</th>
+						<th>Telefone</th>
+						<th>Cidade</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody  id="agricultor" style="border: 1px solid #dee2e6;">
+
+			</tbody>
+		</table>
 </div>
 <script type="text/javascript">
 	(function(){
@@ -46,8 +58,8 @@ $this->load->view('Menu')
 					$('<td/>').text(vivente.cpf).appendTo(tr);
 					$('<td/>').text(vivente.dapLimite).appendTo(tr);
 					$('<td/>').text(vivente.dapNumero).appendTo(tr);
+					$('<td/>').text(vivente.dapValidade).appendTo(tr);
 					$('<td/>').text(vivente.telefone).appendTo(tr);
-					$('<td/>').text(vivente.email).appendTo(tr);
 					$('<td/>').text(vivente.cidade).appendTo(tr);
 					$('<td/>').text(vivente.status).appendTo(tr);
 					tr.appendTo(agricultor);

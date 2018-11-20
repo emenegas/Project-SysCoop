@@ -17,8 +17,8 @@ $this->load->view('Menu');
    <div id='table'>
       <table class= 'table table-hover'>
          <thead>
-            <tr id="title"><th colspan=3 style="border: none;">Projetos <a href="<?php echo site_url('projetopnae/novo') ?>" class="btn btn-outline-info">NOVO</a> 
-               <a  href="<?php echo site_url('projetopnae?status=inativo') ?>" class="btn btn-outline-success">Concluídos</a> 
+            <tr id="title"><th colspan=3 style="border: none;">Projetos <a href="<?php echo site_url('projetopnae/novo') ?>" data-toggle="tooltip" title="Clique para cadastrar um novo Projeto." class="btn btn-outline-info">NOVO</a> 
+               <a  href="<?php echo site_url('projetopnae?status=inativo') ?>" data-toggle="tooltip" title="Clique para exibir os Projetos ja concluídos." class="btn btn-outline-success">Concluídos</a> 
 
             </th></tr>
          </thead>
@@ -43,9 +43,9 @@ $this->load->view('Menu');
                            <td style="border: 1px solid #dee2e6 ;">
                             <div class="btn-group" role="group" aria-label="Basic example">
 
-                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" class="btn btn-outline-info" >Visualizar</a>
-                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" class="btn btn-outline-warning">Alterar</a>
-                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" class="btn btn-outline-danger" onclick="return confirm('Deseja excluir esse projeto ?')" >Excluir</a>
+                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/info') ?>" data-toggle="tooltip" title="Clique para Visualizar os detalhes do Projeto." class="btn btn-outline-info" >Visualizar</a>
+                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/itens') ?>" data-toggle="tooltip" title="Clique para alterar os itens do Projeto." class="btn btn-outline-warning">Alterar</a>
+                              <a href="<?php echo site_url('/projetopnae/'.$item->id.'/remover') ?>" data-toggle="tooltip" title="Clique para excluir o Projeto e seus itens." class="btn btn-outline-danger" onclick="return confirm('Deseja excluir esse projeto ?')" >Excluir</a>
                             </div>
                            </td>
                         </tr>

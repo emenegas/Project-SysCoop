@@ -2,16 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('Menu');
 ?>
+<body>
 
-<?php if(isset($formerror)): ?>
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Aviso!</strong>
-  <div><?php echo $formerror ?></div>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span> 
-  </button>
-</div>
+  <?php if(isset($formerror)): ?>
+   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Aviso!</strong>
+    <div><?php echo $formerror ?></div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span> 
+    </button>
+  </div>
 <?php endif; ?>
+
 <script language="JavaScript1.2">
 
   <!--
@@ -64,8 +66,8 @@ $this->load->view('Menu');
     </script>
     <th> 
       <div class="btn-group" role="group" aria-label="Basic example">
-  <button id="button" name="button" type="button" class="btn btn-outline-info" onClick="DoPrinting()" value="Imprimir">Imprimir</button>
-  <button type="submit"  class="btn btn-outline-warning" name="alterar" value="Alterar">Alterar</button>
+        <button id="button" name="button" type="button" data-toggle="tooltip" title="Clique para imprimir ou salvar o Projeto em PDF" class="btn btn-outline-info" onClick="DoPrinting()" value="Imprimir">Imprimir</button>
+        <button type="submit"  class="btn btn-outline-warning" name="alterar" data-toggle="tooltip" title="Clique para alterar os campos do Projeto: Situação, data de encerramento, numero do contrato." value="Alterar">Alterar</button>
       </div>
       <?php echo form_close(); ?>
 
@@ -75,23 +77,23 @@ $this->load->view('Menu');
 
 <table class="table table">
   <thead class="thead-dark">
- <tr>
-  <th><?php echo $projeto->coopNomeFantasia ?></th>
+   <tr>
+    <th><?php echo $projeto->coopNomeFantasia ?></th>
 
-  <th> <?php echo $projeto->coopEndereco ?> <?php echo $projeto->coopCidade?>/<?php echo $projeto->coopUf ?></th>
-  <th>
-    <?php echo $projeto->coopEmail?>
-  </th>
-</tr>
-<tr>
-  <th>
-    CNPJ: <?php echo $projeto->coopCnpj?>
-  </th>
-  <th>
-    Fone: <?php echo $projeto->coopTelefone?>
-  </th>
-  <th></th>
-</tr>
+    <th> <?php echo $projeto->coopEndereco ?> <?php echo $projeto->coopCidade?>/<?php echo $projeto->coopUf ?></th>
+    <th>
+      <?php echo $projeto->coopEmail?>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      CNPJ: <?php echo $projeto->coopCnpj?>
+    </th>
+    <th>
+      Fone: <?php echo $projeto->coopTelefone?>
+    </th>
+    <th></th>
+  </tr>
 </thead>
 </table>
 <table class="table table-bordered">
@@ -341,6 +343,7 @@ $this->load->view('Menu');
 </thead>
 </table>
 </div>
+</body>
 <script type="text/javascript">
   setTimeout(function(){
     $('button.close').click()

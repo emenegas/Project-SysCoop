@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')
+$this->load->view('Menu');
 ?>
 <body>
+
 	<?php if(isset($formerror)): ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Aviso!</strong>
@@ -12,7 +13,6 @@ $this->load->view('Menu')
 			</button>
 		</div>
 	<?php endif; ?>
-	
 
 	<div class="container-fluid">
 		<div class="col-md-12 mb-3">
@@ -42,33 +42,34 @@ $this->load->view('Menu')
 			</table>
 		</div>
 	</div>
-	<script type="text/javascript">
-		(function(){
-			funcionario = $('#funcionario')
-			$('#cooperativa').on('change', function(){
-				$.get('<?php echo site_url('relatorio/FuncPorCoop/') ?>' + $(this).val(), function(funcionarios){
-					funcionario.html('');
-					console.log(funcionarios);
-					$.each(funcionarios, function(count, vivente){
-						tr = $('<tr/>');
-						$('<td/>').text(vivente.id).appendTo(tr);
-						$('<td/>').text(vivente.nome).appendTo(tr);
-						$('<td/>').text(vivente.cpf).appendTo(tr);
-						$('<td/>').text(vivente.email).appendTo(tr);
-						$('<td/>').text(vivente.cidade).appendTo(tr);
-						$('<td/>').text(vivente.cep).appendTo(tr);
-						$('<td/>').text(vivente.telefone).appendTo(tr);
-						$('<td/>').text(vivente.status).appendTo(tr);
+</body>
+<script type="text/javascript">
+	(function(){
+		funcionario = $('#funcionario')
+		$('#cooperativa').on('change', function(){
+			$.get('<?php echo site_url('relatorio/FuncPorCoop/') ?>' + $(this).val(), function(funcionarios){
+				funcionario.html('');
+				console.log(funcionarios);
+				$.each(funcionarios, function(count, vivente){
+					tr = $('<tr/>');
+					$('<td/>').text(vivente.id).appendTo(tr);
+					$('<td/>').text(vivente.nome).appendTo(tr);
+					$('<td/>').text(vivente.cpf).appendTo(tr);
+					$('<td/>').text(vivente.email).appendTo(tr);
+					$('<td/>').text(vivente.cidade).appendTo(tr);
+					$('<td/>').text(vivente.cep).appendTo(tr);
+					$('<td/>').text(vivente.telefone).appendTo(tr);
+					$('<td/>').text(vivente.status).appendTo(tr);
 
-						tr.appendTo(funcionario);
-					})
+					tr.appendTo(funcionario);
 				})
 			})
-		})()
-	</script>
+		})
+	})()
+</script>
 
-	<script type="text/javascript">
-		setTimeout(function(){
-			$('button.close').click()
-		},2000);
-	</script>
+<script type="text/javascript">
+	setTimeout(function(){
+		$('button.close').click()
+	},2000);
+</script>

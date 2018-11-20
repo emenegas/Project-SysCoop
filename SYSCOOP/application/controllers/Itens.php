@@ -85,6 +85,7 @@ class Itens extends MY_Controller {
 
 		$this->Itens_model->remover($idProjeto);
 		redirect('/projetopnae/'.$idProjeto. '/itens');
+	
 	}
 
 	//----------------------------------------------------------------------------------

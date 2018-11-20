@@ -83,6 +83,7 @@ class Projetopnae extends MY_Controller {
 //----------------------------------------------------------------------------------
 
 	public function alterar($idProjeto){
+		
 		$projeto = $this->Projetopnae_model->getById($idProjeto);
 		$itens   = $this->Itens_model->getByProjeto($idProjeto);
 

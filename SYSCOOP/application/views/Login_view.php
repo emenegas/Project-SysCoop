@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="shortcut icon" href="assets/planta1.ico" >
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
-<body >
+<body>
   <?php if(isset($formerror)): ?>
    <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <strong>Aviso!</strong>

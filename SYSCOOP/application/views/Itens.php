@@ -46,25 +46,25 @@ $this->load->view('Menu');
 				<textarea style="height: 150px;"type="text" name="descricaoProd" id="descricaoProd" class="form-control" value="">PRODUTO - TIPO 1. ISENTO DE MATÉRIAS ESTRANHAS, IMPUREZAS, INSETOS VIVOS OU MORTOS, EMBALAGEM DE POLIETILENO TRANSPARENTE, ATÓXICO, DE 1KG, ROTULAGEM DE ACORDO COM AS NORMAS DA ANVISA, VALIDADE DE 12 MESES A PARTIR DA DATA DE ENTREGA</textarea>
 			</td>
 			<td>
-				<select name="produto" class="form-control" id="produto" autocomplete="off" >
+				<select name="produto" class="form-control" id="produto" data-toggle="tooltip" title="Clique para exibir os produtos" autocomplete="off">
 					<?php foreach ($produtos as $produto): ?>
 						<option value="<?php echo $produto->id ?>"><?php echo $produto->nome ?></option>
 					<?php endforeach ?>
 				</select>
 			</td>
 			<td> 
-				<input list="agricultor" name="agricultor" class="form-control" autocomplete="off">
+				<input list="agricultor" name="agricultor" class="form-control" data-toggle="tooltip" title="Clique para selecionar um agricultor ou deixe em branco." autocomplete="off">
 				<datalist id="agricultor" >
 
 				</datalist>
 			</td>
 			<td>
 
-				<input type="text" name="quantidade" id="quantidade" class="form-control" autocomplete="off" value="<?php echo set_value('quantidade')?>">
+				<input type="text" name="quantidade" id="quantidade" class="form-control" data-toggle="tooltip" title="Digite a Quantidade de produtos!" autocomplete="off" value="<?php echo set_value('quantidade')?>">
 			</td>
 			<td>
 
-				<input type="text"  name="precoUnidade" id="precoUnidade" class="form-control" autocomplete="off" value="<?php echo set_value('precoUnidade')?>">
+				<input type="text"  name="precoUnidade" id="precoUnidade" class="form-control" data-toggle="tooltip" title="Digite o preço da unidade do Produto" autocomplete="off" value="<?php echo set_value('precoUnidade')?>">
 			</td>
 			<td></td>
 			<td>
@@ -74,7 +74,7 @@ $this->load->view('Menu');
 			<td>
 				<div class="btn-group" role="group" aria-label="Basic example">
 
-					<button type="submit" class="btn btn-outline-primary">+</button> 
+					<button type="submit" data-toggle="tooltip" title="Clique para adicionar o item no Projeto" class="btn btn-outline-primary">+</button> 
 
 				</div>
 			</td>

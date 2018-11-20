@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('Menu')
+$this->load->view('Menu');
 ?>
 <body>
+
 	<?php if(isset($formerror)): ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Aviso!</strong>
@@ -38,10 +39,11 @@ $this->load->view('Menu')
 				</thead>
 				<tbody  id="agricultor" style="border: 1px solid #dee2e6;">
 
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
+</body>	
 <script type="text/javascript">
 	(function(){
 		agricultor = $('#agricultor')

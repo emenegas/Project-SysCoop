@@ -155,6 +155,7 @@ $this->load->view('Menu');
 </script>
 
 <body>
+
 	<?php if(isset($formerror)): ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Aviso!</strong>
@@ -164,6 +165,7 @@ $this->load->view('Menu');
 			</button>
 		</div>
 	<?php endif; ?>
+
 	<div class="container-fluid">
 		<form class="needs-validation" action="<?php echo site_url('agricultor/cadastrar')?>" method="post"  novalidate>
 			<div class="form-row">
@@ -171,63 +173,63 @@ $this->load->view('Menu');
 					<label for="nome">Nome</label>
 					<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Completo" value="<?php echo set_value('nome')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite o seu nome completo.
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="cpf">CPF</label>
 					<input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" onKeyPress="return Apenas_Numeros(event);" onBlur="validaCPF(this);" maxlength="11">
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite o numero do seu CPF sem pontos e traços.
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="telefone">Telefone</label>
 					<input type="text" class="form-control" name="telefone" id="telefone" placeholder="(00)000000000" value="<?php echo set_value('telefone')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite o seu telefone com DDD.
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="email">Email</label>
-					<input type="text" class="form-control" name="email" id="email" placeholder="email@exemplo.com" value="<?php echo set_value('email')?>" required>
+					<input type="email" class="form-control" name="email" id="email" placeholder="email@exemplo.com" value="<?php echo set_value('email')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite o seu Email, exemplo: exemplo@email.com!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="cep">CEP</label>
-					<input type="text" class="form-control" name="cep" id="cep" placeholder="000.000-00" value="<?php echo set_value('cep')?>" required>
+					<input type="text" class="form-control" name="cep" id="cep" placeholder="00000-000" value="<?php echo set_value('cep')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite o CEP da sua residência com 8 digitos!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="uf">UF</label>
 					<input type="text" class="form-control" name="uf" id="uf" placeholder="Estado" value="<?php echo set_value('uf')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite aqui o Estado!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="cidade">Cidade</label>
 					<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" value="<?php echo set_value('cidade')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite a sua cidade de moradia!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="endereco">Endereço</label>
-					<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Rua, 000, centro" value="<?php echo set_value('endereco')?>" required>
+					<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Rua - 000, centro" value="<?php echo set_value('endereco')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Exemplo: Rua exemplo-142, centro!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="dapNumero">Numero da DAP</label>
 					<input type="text" class="form-control" name="dapNumero" id="dapNumero" placeholder="Numero" value="<?php echo set_value('dapNumero')?>" required>
 					<div class="invalid-feedback">
-						Campo obrigatório!
+						Campo obrigatório! Digite a Declaração de Aptidão ao Pronaf!
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
@@ -254,14 +256,15 @@ $this->load->view('Menu');
 				</div>
 			</div>
 			<div class="button" style="margin-top: 30px;float: right;">
-				<button type="submit" class="btn btn-outline-success">Cadastrar</button>
+				<button type="submit" data-toggle="tooltip" title="Clique para finalizar o Cadastro!" class="btn btn-outline-success">Cadastrar</button>
 				<a href="<?php echo site_url('agricultor') ?>" class="btn btn-outline-danger">Cancelar</a>
 			</div>	
+			<!-- --------------------------------------------------- -->
+			
 		</form>
-		<!-- --------------------------------------------------- -->
-	</div>
 
-</div>
+	</div>
+</body>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
