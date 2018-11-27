@@ -187,7 +187,7 @@ class Projetopnae extends MY_Controller {
 		}else{
 
 
-			$pathToSave = $_SERVER["DOCUMENT_ROOT"] . "/Project-SysCoop/SYSCOOP/application/arquivoEdital/";
+			$pathToSave = $_SERVER["DOCUMENT_ROOT"] . "/application/arquivoEdital/";
 
 			/*Checa se a pasta existe - caso negativo ele cria*/
 			if(!file_exists($pathToSave))
@@ -203,7 +203,7 @@ class Projetopnae extends MY_Controller {
 					$dir = $pathToSave; 
 					$tmpName = $_FILES['arquivoEdital']['tmp_name'];
 					$name = $_FILES['arquivoEdital']['name'];
-					$pdf_path = "/Project-SysCoop/SYSCOOP/application/arquivoEdital/".$_FILES['arquivoEdital']['name'];
+					$pdf_path = "/application/arquivoEdital/".$_FILES['arquivoEdital']['name'];
 
 					preg_match_all('/\.[a-zA-Z0-9]+/', $name , $extensao);
 					if(!in_array(strtolower(current(end($extensao))), array('.txt','.pdf', '.doc', '.xls','.xlms')))

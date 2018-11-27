@@ -4,15 +4,6 @@ $this->load->view('Menu');
 ?>
 <body>
 
-	<?php if(isset($formerror)): ?>
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			<strong>Aviso!</strong>
-			<div><?php echo $formerror ?></div>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span> 
-			</button>
-		</div>
-	<?php endif; ?>
 
 	<form action="<?php echo site_url('cooperativa/' .$cooperativa->id. '/alterar')?>" method="post" class="needs-validation" novalidate>
 		<div class="container-fluid">
@@ -143,6 +134,16 @@ $this->load->view('Menu');
 			</div>
 		</div>
 	</form>
+	
+	<?php if(isset($formerror)): ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Aviso!</strong>
+			<div><?php echo $formerror ?></div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span> 
+			</button>
+		</div>
+	<?php endif; ?>
 </body>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -113,8 +113,8 @@ $this->load->view('Menu');
 			erro = "Número de CPF inválido.";
 	}
 	if (erro.length > 0) {
-		alert(erro).click(erro);
-		cpf.focus();
+		alert(erro);
+		cpf.value = '';
 		return false;
 	} 	
 	return true;	
@@ -155,15 +155,7 @@ $this->load->view('Menu');
 </script>
 
 <body>
-		<?php if(isset($formerror)): ?>
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>Aviso!</strong>
-				<div><?php echo $formerror ?></div>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span> 
-				</button>
-			</div>
-		<?php endif; ?>
+		
 
 	<div class="container-fluid">
 		<form class="needs-validation" action="<?php echo site_url('entidade/cadastrar')?>" method="post"  novalidate>
@@ -172,7 +164,7 @@ $this->load->view('Menu');
 
 				<div class="col-md-4 mb-3">
 					<label form="cnpj">CNPJ</label>
-					<input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" class="form-control" onblur="if(!validarCNPJ(this.value)){alert('CNPJ Informado é inválido')}" maxlength="18" required>
+					<input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" class="form-control" onblur="if(!validarCNPJ(this.value)){alert('CNPJ Informado é inválido');this.value = ''}" maxlength="18" required>
 					<div class="invalid-feedback">
 						Campo obrigatório!
 					</div>
@@ -250,6 +242,15 @@ $this->load->view('Menu');
 			</div>
 		</form> 
 	</div>
+	<?php if(isset($formerror)): ?>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Aviso!</strong>
+				<div><?php echo $formerror ?></div>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span> 
+				</button>
+			</div>
+		<?php endif; ?>
 </body>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
